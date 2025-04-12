@@ -1,0 +1,89 @@
+---
+title: "VPN Not Working"
+description: "Troubleshooting steps for when your VPN isn't working with Control D"
+icon: "shield-keyhole"
+---
+
+# VPN Not Working
+
+<Note>
+If you're experiencing issues with your VPN while using Control D, follow these troubleshooting steps.
+</Note>
+
+## 1. Check VPN Status
+
+<Steps>
+  <Step>Ensure your VPN is properly connected</Step>
+  <Step>Check if your VPN credentials are correct</Step>
+  <Step>Verify that your VPN service is operational</Step>
+  <Step>Try disconnecting and reconnecting to your VPN</Step>
+</Steps>
+
+## 2. Verify Control D Configuration
+
+<Steps>
+  <Step>Confirm that Control D is properly configured</Step>
+  <Step>Verify that your DNS settings haven't been changed by the VPN</Step>
+  <Step>Check if Control D is set as your primary DNS resolver</Step>
+</Steps>
+
+## 3. Check DNS Settings
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step>Open Network & Internet settings</Step>
+      <Step>Click on your active connection</Step>
+      <Step>Click "Edit" under IP settings</Step>
+      <Step>Verify DNS settings are set to Control D's IP addresses</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <Steps>
+      <Step>Open System Preferences > Network</Step>
+      <Step>Select your active connection</Step>
+      <Step>Click "Advanced"</Step>
+      <Step>Go to the DNS tab</Step>
+      <Step>Verify Control D's IP addresses are listed first</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Linux">
+    <Steps>
+      <Step>Check your network configuration file</Step>
+      <Step>Verify Control D's IP addresses are set as DNS servers</Step>
+      <Step>Restart networking service if needed</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 4. VPN-Specific Settings
+
+<Warning>
+Some VPNs require specific configurations to work properly with custom DNS settings.
+</Warning>
+
+<Steps>
+  <Step>Check if your VPN forces its own DNS servers</Step>
+  <Step>Look for DNS leak protection settings</Step>
+  <Step>Verify split tunneling configuration</Step>
+  <Step>Check if your VPN allows custom DNS settings</Step>
+</Steps>
+
+## 5. Collect Diagnostic Information
+
+<Warning>
+If issues persist, gather the following information before contacting support:
+</Warning>
+
+<Steps>
+  <Step>Your VPN service name and configuration</Step>
+  <Step>Control D configuration details</Step>
+  <Step>Current DNS settings</Step>
+  <Step>Any error messages received</Step>
+</Steps>
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) for assistance.
+</Card> 

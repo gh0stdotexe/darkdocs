@@ -1,0 +1,45 @@
+---
+title: "Traffic Redirection"
+description: "Enables precise control over DNS queries by allowing users to route traffic through over 100 global proxy locations, with customized rules for domains, services, and a default fallback option."
+icon: "network"
+---
+
+# 
+
+Overview
+
+Control D's Traffic Redirection feature enhances the control over DNS traffic by allowing redirection through transparent proxies to various global locations. This feature can be used to mask the source IP of the client from the destination websites, without the use of a VPN. 
+
+# 
+
+Scopes of Redirection
+
+  * **Custom Rules** : They allow for domain-level redirection with the most granular control. Users can specify what domains to redirect and which proxy location to use for each domain.
+  * **Services** : This scope targets specific web apps or services, redirecting them through the proxies without the need to identify individual domain names.
+  * **Default Rule** : Serving as the fallback, the Default Rule governs the redirection for traffic that doesn't match any custom rule or specified service. A single proxy location can be set as the default path for all unmatched traffic.
+
+## 
+
+Policy Priority
+
+Traffic Redirection follows a strict policy priority hierarchy:
+
+  * **Custom Rules** \- highest priority for granular domain redirection.
+  * **Services** \- for web apps and services redirection.
+  * **Default Rule** \- baseline rule for traffic outside specified policies.
+
+# 
+
+Number of Redirection Locations
+
+Users can leverage Traffic Redirection through more than 100 [globally distributed proxy locations](https://controld.com/network), providing an extensive selection to meet various needs for regional presence.
+
+# 
+
+Enabling and Using Traffic Redirection
+
+To implement Traffic Redirection, you can attach a REDIRECT action to any [Custom Rule](/docs/custom-rules) or [Service](/docs/services) within the [Profiles](/docs/org-profiles) section of Control D. The [Default Rule](/docs/default-rule) is configured from Profile Options. The chosen rules can be assigned to different proxy locations, offering a tailored browsing experience.
+
+__Updated over 1 year ago
+
+* * *

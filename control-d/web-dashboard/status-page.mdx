@@ -1,0 +1,50 @@
+---
+title: "Status Page"
+description: "Check the status of Control D services and infrastructure"
+icon: "signal-bars"
+---
+
+# Status Page
+
+The Control D status page provides real-time information about our service availability and performance metrics.
+
+## Service Status
+
+Our status page shows the current state of:
+- DNS resolvers
+- Web dashboard
+- API endpoints
+- Network infrastructure
+
+## Performance Metrics
+
+We monitor and display:
+- DNS response times
+- Server load
+- Network latency
+- Infrastructure health
+
+<Warning>
+**Personal Information**
+
+The status page does not display any personal or account-specific information. It only shows aggregate system metrics.
+</Warning>
+
+## DNS Performance
+
+We track DNS performance across different:
+- Geographic regions
+- Network providers
+- Protocol types (DoH, DoT, DoQ)
+
+<Note>
+**Higher Latency than DNS**
+
+Some protocols like DNS-over-HTTPS may have slightly higher latency compared to traditional DNS due to the additional encryption overhead.
+</Note>
+
+<Warning>
+**Different IP from DNS Source IP**
+
+If you're using a proxy or VPN, your source IP for DNS queries may differ from your actual IP address. This is normal and expected behavior.
+</Warning>

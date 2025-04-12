@@ -1,0 +1,64 @@
+---
+title: "Legacy Resolver"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Issue IPv4 and IPv6 legacy DNS resolvers to use on older physical devices.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/legacy-resolver)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-are-legacy-resolvers&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-are-legacy-resolvers&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What are Legacy Resolvers</div><Link aria-label=&quot;Skip link to What are Legacy Resolvers&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-are-legacy-resolvers&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Legacy Resolver
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Issue IPv4 and IPv6 legacy DNS resolvers to use on older physical devices.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/legacy-resolver)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-are-legacy-resolvers&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-are-legacy-resolvers&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What are Legacy Resolvers</div><Link aria-label=&quot;Skip link to What are Legacy Resolvers&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-are-legacy-resolvers&quot;></Link>
+
+<p>A Legacy Resolver is a UDP 53 based DNS resolver, and it&#x27;s just an IP pair. If you&#x27;re deploying Control D on a device that does not support Secure DNS protocols, you have to enable this feature. Once you do, you will be issued with 2 pairs of Legacy DNS resolvers: 2x IPv4 and 2x IPv6. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;example-devices&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-example-devices&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Example Devices</div><Link aria-label=&quot;Skip link to Example Devices&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#example-devices&quot;></Link>
+
+<p>Here is a short list of operating systems and device types that require Legacy DNS resolvers</p>
+
+- Windows 10
+
+- Most routers
+
+- Android TV boxes
+
+- Smart TVs
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;how-to-use&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-how-to-use&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>How to Use</div><Link aria-label=&quot;Skip link to How to Use&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#how-to-use&quot;></Link>
+
+<p>Simply edit an Endpoint and toggle the feature ON. Then view your resolver configuration to see your Legacy DNS IPs. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/35866b83a6ca3604791964f9981aa9c9db12b0fdc724bebd325e1bfbcbb24582-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<br/>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Limitation</p>
+
+<p>Legacy DNS resolvers require the source IP of the client to be known to Control D. See the next section to learn more on how that works, and how it can be automated. For troubleshooting, <Link href=&quot;/docs/ip-not-authorized&quot; target=&quot;&quot; title=&quot;&quot;>see this page</Link>.</p>
+" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="what-are-legacy-resolvers"></div><div class="heading-text"><div id="section-what-are-legacy-resolvers" class="heading-anchor_backwardsCompatibility"></div>What are Legacy Resolvers</div>[](#what-are-legacy-resolvers)
+
+<p>A Legacy Resolver is a UDP 53 based DNS resolver, and it's just an IP pair. If you're deploying Control D on a device that does not support Secure DNS protocols, you have to enable this feature. Once you do, you will be issued with 2 pairs of Legacy DNS resolvers: 2x IPv4 and 2x IPv6. </p>
+## <div class="heading-anchor anchor waypoint" id="example-devices"></div><div class="heading-text"><div id="section-example-devices" class="heading-anchor_backwardsCompatibility"></div>Example Devices</div>[](#example-devices)
+
+<p>Here is a short list of operating systems and device types that require Legacy DNS resolvers</p>
+
+- Windows 10
+
+- Most routers
+
+- Android TV boxes
+
+- Smart TVs
+
+## <div class="heading-anchor anchor waypoint" id="how-to-use"></div><div class="heading-text"><div id="section-how-to-use" class="heading-anchor_backwardsCompatibility"></div>How to Use</div>[](#how-to-use)
+
+<p>Simply edit an Endpoint and toggle the feature ON. Then view your resolver configuration to see your Legacy DNS IPs. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/35866b83a6ca3604791964f9981aa9c9db12b0fdc724bebd325e1bfbcbb24582-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<br>
+> ## <span class="callout-icon">🚧</span><p>Limitation</p>
+
+<p>Legacy DNS resolvers require the source IP of the client to be known to Control D. See the next section to learn more on how that works, and how it can be automated. For troubleshooting, [see this page](/docs/ip-not-authorized).</p>
+</div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->5 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">IP Management</div>](/docs/ip-management)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Auto Authorize IP</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/auto-authorize-ip)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[What are Legacy Resolvers](#what-are-legacy-resolvers)
+<ul>
+<li>[Example Devices](#example-devices)
+
+- [How to Use](#how-to-use)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

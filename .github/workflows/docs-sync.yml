@@ -1,0 +1,51 @@
+name: Documentation Sync
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # Run daily at midnight
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  sync-docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: |
+          npm install @mendable/firecrawl-js marked jsdom glob
+          
+      - name: Setup 1Password CLI
+        run: |
+          curl -sS https://downloads.1password.com/linux/keys/1password.asc | sudo gpg --dearmor --output /usr/share/keyrings/1password-archive-keyring.gpg
+          echo "deb [arch=amd64 signed-by=/usr/share/keyrings/1password-archive-keyring.gpg] https://downloads.1password.com/linux/debian/amd64 stable main" | sudo tee /etc/apt/sources.list.d/1password.list
+          sudo apt update && sudo apt install 1password-cli
+          
+      - name: Login to 1Password
+        run: |
+          op account add --address ${{ secrets.OP_SUBDOMAIN }}.1password.com --email ${{ secrets.OP_EMAIL }} --secret-key ${{ secrets.OP_SECRET_KEY }}
+          eval $(op signin)
+          
+      - name: Scrape documentation index
+        run: node .github/scripts/scrape-index.js
+        env:
+          OP_SESSION: ${{ secrets.OP_SESSION }}
+          
+      - name: Convert to Mintlify format
+        run: node .github/scripts/convert-to-mintlify.js
+        
+      - name: Validate documentation
+        run: node .github/scripts/validate-docs.js
+        
+      - name: Commit changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'actions@github.com'
+          git add docs/
+          git commit -m "docs: sync documentation [skip ci]" || exit 0
+          git push 

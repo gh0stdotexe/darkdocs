@@ -1,0 +1,138 @@
+---
+title: "Collect Activity Log"
+description: "How to collect and analyze activity logs for troubleshooting"
+icon: "file-text"
+---
+
+# Collect Activity Log
+
+<Note>
+Activity logs can help diagnose issues with Control D. Follow these steps to collect and analyze them.
+</Note>
+
+## 1. Enable Logging
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step>Open Command Prompt as Administrator</Step>
+      <Step>
+        Navigate to Control D directory:
+        <CodeBlock>
+          cd C:\ControlD
+        </CodeBlock>
+      </Step>
+      <Step>
+        Start logging:
+        <CodeBlock>
+          ctrld start --log activity.log
+        </CodeBlock>
+      </Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <Steps>
+      <Step>Open Terminal</Step>
+      <Step>
+        Start logging:
+        <CodeBlock>
+          sudo ctrld start --log activity.log
+        </CodeBlock>
+      </Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Linux">
+    <Steps>
+      <Step>Open Terminal</Step>
+      <Step>
+        Start logging:
+        <CodeBlock>
+          sudo ctrld start --log activity.log
+        </CodeBlock>
+      </Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 2. Reproduce the Issue
+
+<Steps>
+  <Step>Perform the actions that cause the problem</Step>
+  <Step>Note the exact time when the issue occurs</Step>
+  <Step>Continue using the service for a few minutes</Step>
+  <Step>Stop the logging process</Step>
+</Steps>
+
+## 3. Locate the Log File
+
+<Tabs>
+  <Tab title="Windows">
+    <CodeBlock>
+      C:\ControlD\activity.log
+    </CodeBlock>
+  </Tab>
+  
+  <Tab title="MacOS/Linux">
+    <CodeBlock>
+      ~/activity.log
+    </CodeBlock>
+  </Tab>
+</Tabs>
+
+## 4. Analyze the Log
+
+<Warning>
+Log files can contain sensitive information. Review them carefully before sharing.
+</Warning>
+
+<Steps>
+  <Step>Open the log file in a text editor</Step>
+  <Step>Look for error messages or warnings</Step>
+  <Step>Note any unusual patterns or repeated errors</Step>
+  <Step>Check timestamps around when the issue occurred</Step>
+</Steps>
+
+## 5. Common Log Patterns
+
+<Accordion title="DNS Resolution Issues">
+  <CodeBlock>
+    ERROR: Failed to resolve domain.com
+    WARNING: DNS query timeout
+    INFO: Using fallback resolver
+  </CodeBlock>
+</Accordion>
+
+<Accordion title="Connection Problems">
+  <CodeBlock>
+    ERROR: Connection refused
+    WARNING: Network unreachable
+    INFO: Reconnecting to server
+  </CodeBlock>
+</Accordion>
+
+<Accordion title="Authentication Issues">
+  <CodeBlock>
+    ERROR: Invalid credentials
+    WARNING: Session expired
+    INFO: Re-authenticating
+  </CodeBlock>
+</Accordion>
+
+## 6. Submit Logs to Support
+
+<Warning>
+Before submitting logs, remove any sensitive information.
+</Warning>
+
+<Steps>
+  <Step>Create a new support ticket</Step>
+  <Step>Attach the relevant log file</Step>
+  <Step>Include a description of the issue</Step>
+  <Step>Note the time when the problem occurred</Step>
+</Steps>
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) with your activity logs.
+</Card>

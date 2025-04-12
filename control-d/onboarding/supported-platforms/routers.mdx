@@ -1,0 +1,92 @@
+---
+title: "Routers"
+description: "How to configure Control D on most routers"
+icon: "router"
+---
+
+# Router Configuration
+
+Control D can be configured on most routers with variable degrees of ease, depending on what DNS protocols your router supports, and whether you have a Static IP or not.
+
+## Secure DNS
+
+If your router natively supports DNS-over-HTTPS or DNS-over-TLS, this is the easiest (and best) option. Simply input your Device's DNS resolvers into the router interface and you're done. This is the best and preferred method of using Control D, as it's not subject to any of the [Legacy DNS limitations](/docs/ip-not-authorized).
+
+Unfortunately, most routers do NOT support Secure DNS natively, in which case you have to use the other methods documented below.
+
+## Legacy DNS
+
+Most routers do not support Secure DNS protocols, so you're going to have to use Legacy DNS IP addresses associated with the Device you've created in the web panel (be sure to enable the [Legacy Resolver](/docs/legacy-resolver) Device setting).
+
+<Warning>
+**Dynamic IP Warning**
+
+This method is subject to your [source IP being registered](/docs/ip-management) on this Device in the web control panel, so this is best suited for networks with a static IP. If you have a Dynamic IP see [Legacy DNS limitations](/docs/ip-not-authorized) section for solution.
+</Warning>
+
+## DNS Proxy Daemon (ctrld)
+
+If your router is on a dynamic IP address, or if you wish to use Secure DNS protocols anyway (you really should), you can use the open source [Command Line Daemon](/docs/ctrld) in order to do this.
+
+### Supported Routers
+
+The `ctrld` daemon currently supports 1 liner installation command on the following routers / firmware:
+
+- ASUS Merlin
+- OpenWRT
+- DD-WRT
+- Fresh Tomato
+- Firewalla
+- Ubiquiti UDM, UDR, EdgeRouter
+- GL.iNet
+- Synology
+- pfSense / OPNsense
+
+Other routers may be supported, but you have to do some manual work, which involves:
+
+- Making sure `ctrld` launches on boot / runs as a system service
+- Steering DNS traffic to the listener
+
+### Automatic Install
+
+To do this in the quickest possible way, go to Devices -> Routers section and click the `+` button. Choose your router vendor or firmware.
+
+<Image 
+  src="https://files.readme.io/6818447-add_router.PNG" 
+  alt="Add router screen" 
+  width="auto" 
+  height="auto"
+/>
+
+Give it a name and set appropriate settings.
+
+<Image 
+  src="https://files.readme.io/ee2a226-add_router2.PNG" 
+  alt="Router settings" 
+  width="auto" 
+  height="auto"
+/>
+
+Once you add this Device, you will be presented with a Resolvers screen. If you know what to do with these - go do that. Otherwise read on.
+
+<Image 
+  src="https://files.readme.io/cfcef96-image.png" 
+  alt="Resolvers screen" 
+  width="auto" 
+  height="auto"
+/>
+
+From here, you can click **Automatic Setup** button which will kick off an incredibly uncomplicated 1-step setup process. Simply copy the command, and paste it into your router's SSH shell.
+
+<Image 
+  src="https://files.readme.io/a96d9e3-image.png" 
+  alt="Setup command" 
+  width="auto" 
+  height="auto"
+/>
+
+As soon as you do, you should see a checkmark in the bottom right corner. That means you're done.
+
+### Manual Install
+
+Simply download and run the binary that is appropriate for your router architecture, and follow the instructions in the [README on Github](https://github.com/Control-D-Inc/ctrld#readme). Alternatively, you can use a [1 liner command](/docs/ctrld#quick-install) to install `ctrld` automatically.

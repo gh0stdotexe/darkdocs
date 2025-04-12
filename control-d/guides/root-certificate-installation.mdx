@@ -1,0 +1,407 @@
+---
+title: "Root Certificate Installation"
+description: "How to install a custom root certificate in order to have skinned block pages."
+icon: "certificate"
+---
+
+# Root Certificate Installation
+
+<Info>
+Installation of the Control D root certificate is a requirement in order to see a customized block page in a browser when attempting to access blocked HTTPS resources as dictated by the configuration within the profile applied to a device or user.
+</Info>
+
+<Info>
+Without the root certificate a user will receive a TLS error in their browser when trying to visit a blocked webpage that uses HTTPS. With the root certificate installed the user will be presented with a webpage explaining that their request has been blocked by Control D per their configured rules.
+</Info>
+
+## Installation instructions
+
+<Info>
+Use the following instructions to install on your operating system or browser.
+</Info>
+
+## Operating Systems
+
+### Microsoft Windows
+
+#### GUI
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+  <Step>
+    Fourth step
+  </Step>
+</Steps>
+
+#### PowerShell
+
+<Info>
+Run the following PowerShell script as an administrator.
+</Info>
+
+<Note>
+You can also add this as a script in your favourite RMM to mass deploy the certificate to Windows machines.
+</Note>
+
+<CodeBlock language="powershell">
+# Define the URL and local file path
+$url = "https://deploy.controld.com/blockpage/Control-D-root-x1.cer"
+$localPath = "C:\Temp\Control-D-root-x1.cer"
+
+# Create directory if it doesn't exist
+if (!(Test-Path "C:\Temp")) {
+    New-Item -Path "C:\Temp" -ItemType Directory
+}
+
+# Download the certificate
+Invoke-WebRequest -Uri $url -OutFile $localPath
+
+# Import the certificate to the Trusted Root Certification Authorities store
+$cert = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+$cert.Import($localPath)
+
+$store = New-Object System.Security.Cryptography.X509Certificates.X509Store "Root", "LocalMachine"
+$store.Open("ReadWrite")
+$store.Add($cert)
+$store.Close()
+
+# Clean up the downloaded certificate file
+Remove-Item $localPath
+</CodeBlock>
+
+### Linux
+
+#### Debian-based distros
+
+<Info>
+The following steps are assuming you are logged into a root account and that you have the `ca-certificates` and `wget` packages installed.
+</Info>
+
+<CodeBlock language="shell">
+wget https://deploy.controld.com/blockpage/Control-D-root-x1.cer -O /usr/local/share/ca-certificates/Control-D-root-x1.cer
+update-ca-certificates
+</CodeBlock>
+
+#### Fedora-based distros
+
+<Info>
+The following steps are assuming you are logged into a root account and that you have the `p11-kit-trust` and `wget` packages installed.
+</Info>
+
+<CodeBlock language="shell">
+wget https://deploy.controld.com/blockpage/Control-D-root-x1.cer -O /tmp/Control-D-root-x1.cer
+trust anchor /tmp/Control-D-root-x1.cer
+</CodeBlock>
+
+### Apple MacOS
+
+#### GUI
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+  <Step>
+    Fourth step
+  </Step>
+  <Step>
+    Fifth step
+  </Step>
+</Steps>
+
+#### Shell
+
+<Info>
+Run the following script.
+</Info>
+
+<Note>
+You can also add this as a script in your favourite RMM to mass deploy the certificate to MacOS machines
+</Note>
+
+<CodeBlock language="shell">
+#!/bin/bash
+
+# Define URL and local path
+URL="https://deploy.controld.com/blockpage/Control-D-root-x1.cer"
+LOCAL_PATH="/tmp/Control-D-root-x1.cer"
+
+# Download the certificate
+curl -o $LOCAL_PATH $URL
+
+# Install the certificate
+sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain $LOCAL_PATH
+
+# Clean up
+rm $LOCAL_PATH
+</CodeBlock>
+
+### iOS / iPadOS
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+  <Step>
+    Fourth step
+  </Step>
+  <Step>
+    Fifth step
+  </Step>
+</Steps>
+
+### Android
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+</Steps>
+
+## Web Browsers
+
+### Firefox
+
+<Info>
+Firefox uses it's on internal certificate store, rather then relying on the system trust, therefore you need to install the cert directly in Firefox.
+</Info>
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+  <Step>
+    Fourth step
+  </Step>
+  <Step>
+    Fifth step
+  </Step>
+  <Step>
+    Sixth step
+  </Step>
+</Steps>
+
+### Chrome
+
+<Info>
+On Windows and Mac OS Chrome uses the system trust store by default, so adding the certificate to your OS trust as described above is sufficient.
+</Info>
+
+<Info>
+For Linux only, you may need to add our root cert manually on Chrome-based browsers:
+</Info>
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+  <Step>
+    Fourth step
+  </Step>
+  <Step>
+    Fifth step
+  </Step>
+  <Step>
+    Sixth step
+  </Step>
+</Steps>
+
+### Safari
+
+<Info>
+Safari uses the system certificate store on Mac OS, therefore following the Mac OS instructions above will allow Safari to trust our certificate.
+</Info>
+
+### Brave
+
+<Info>
+Like with other Chromium-based browsers, Brave will use the system certificate store by default.
+</Info>
+
+## Security Implications for your Organization
+
+<Warning>
+The installation of any third party root certificate into a root certificate store should only be done after careful consideration.
+</Warning>
+
+<Info>
+A third party root certificate is any root certificate entrusted by the operating system or browser that it does not ship or come with out of the box.
+</Info>
+
+<Warning>
+The implication in doing so is that you are potentially entrusting the certificate authority of that certificate with ALL data which is encrypted inside of ANY TLS connection made at either the OS or browser level.
+</Warning>
+
+<Warning>
+To be specific — An operator of a root certificate authority which is entrusted by an end user (browser or operating system) has the technical ability to impersonate any TLS-protected resource on the internet.
+</Warning>
+
+<Info>
+As an example, said operator could put together a fake login page for a bank, and anyone with their root certificate installed would be able to visit the fake website without any browser warning (which would otherwise appear if someone was trying to do this without the root certificate installed).
+</Info>
+
+<Warning>
+This carries some very serious consequences. As such, before installing a third party root certificate you should carefully consider if it's required for your organization to see custom block pages.
+</Warning>
+
+## Why is this even required in the first place?
+
+<Info>
+When using Control D the user has the ability to block or allow DNS records (and in turn, websites).
+</Info>
+
+<Info>
+When a DNS record is configured to be blocked we respond with a non-existent IP address (`0.0.0.0`) which results in a timeout error in your browser.
+</Info>
+
+<Info>
+If we were to point blocked DNS records to an IP address where we are serving a block page but **without** the end user having installed our third party root certificate the user would see a TLS error in their browser which is suggestive that there is a man in the middle attack taking place (this is a good thing under most circumstances — you want your browser to tell you this!)
+</Info>
+
+<Info>
+However In order to display a clear and concise block message (and not an error from the browser) when a DNS record is blocked while the user is trying to reach an HTTPS website the user **must install a third party root certificate.**
+</Info>
+
+<Note>
+Roll Your Own
+</Note>
+
+<Info>
+You can also create your own root certificate, and <Link href="https://dev.to/suntong/a-short-guide-on-squid-transparent-proxy-ssl-bumping-k5c">perform your own</Link> TLS interception. That way, you're entirely in control.
+</Info>
+
+## Example Request Flow
+
+### Normal Conditions (Without Control D Blocking, Pre-installed Root Certificates Only)
+
+<Info>
+Let's examine what happens when you try to visit <Link href="https://google.com">https://google.com</Link> in a web browser under normal conditions.
+</Info>
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+  <Step>
+    Fourth step
+  </Step>
+  <Step>
+    Fifth step
+  </Step>
+  <Step>
+    Sixth step
+  </Step>
+</Steps>
+
+<Info>
+With the browser trusting the server certificate per the last step, it will proceed to leverage the established TLS connection to pass encrypted HTTP requests inside of it **and then download and render the unmodified and original google.com webpage appropriately.**
+</Info>
+
+### Block Condition (Control D Configured to Block a DNS Record)
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+  <Step>
+    Third step
+  </Step>
+  <Step>
+    Fourth step
+  </Step>
+  <Step>
+    Fifth step
+  </Step>
+  <Step>
+    Sixth step
+  </Step>
+</Steps>
+
+<Info>
+With the browser trusting the server certificate per the last step, it will proceed to leverage the established TLS connection to pass encrypted HTTP requests inside of it **and then download and render the block page which is returned from Control D operated servers.**
+</Info>
+
+## Minimizing Operational Risk with our Root Certificate Authority
+
+<Info>
+Because we are asking for a high level of trust from our customers when installing our root certificate it is important to explain how our root certificate is used and the precautions we take to avoid misuse.
+</Info>
+
+<Info>
+We employ industry standard best practices for operating our PKI (Public Key Infrastructure):
+</Info>
+
+<Steps>
+  <Step>
+    Chained certificate authorities (Separate root and intermediate authorities)
+  </Step>
+  <Step>
+    Offline root certificate storage
+  </Step>
+  <Step>
+    The private key for our root certificate (the one you install) was generated offline and is stored on a thumb drive in a secure location offline (so called "cold storage").
+  </Step>
+  <Step>
+    It cannot be accessed without physically being in possession of the drive, and is not possible to obtain over the internet.
+  </Step>
+  <Step>
+    The server certificates used on our block page server are generated with short lifetimes of `72h` and only on demand/as needed.
+  </Step>
+  <Step>
+    When a request arrives for a blocked website on our block page server, if a server certificate matching a blocked domain does not already exist or has expired the block page server requests issuance of this certificate from the intermediate certificate authority in-line with your request.
+  </Step>
+  <Step>
+    It is only possible for the block page server to issue short lived certificates signed by the intermediate authority.
+  </Step>
+</Steps>
+
+__Updated 8 months ago
+
+<Divider />

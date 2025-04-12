@@ -1,0 +1,73 @@
+---
+title: "Block Internet on a Schedule"
+description: "How to disable Internet on an Endpoint based on a Schedule."
+icon: "network"
+---
+
+# Block Internet on a Schedule
+
+<Info>
+You may have a Wi-Fi network that should only be used during certain hours (when you're open), or maybe you're trying to enforce parental controls on your child's device. The Scheduler can make this easy.
+</Info>
+
+## Create Profile
+
+<Steps>
+  <Step>
+    First, make a new [Profile](/docs/profiles) and call it something like "Block Everything"
+  </Step>
+  <Step>
+    Go into this Profile and create a [Default Rule](/docs/default-rule) that blocks all traffic
+  </Step>
+</Steps>
+
+<Image src="https://files.readme.io/b5911cadef4cbd773e704c2d97168d51c9455f57ed0599110ae675025041dd2d-image.png" alt="Create Profile" />
+
+Now we will make a schedule that enables this Profile when the time is right.
+
+## Create Schedule
+
+<Steps>
+  <Step>
+    Go to the [Endpoints](https://controld.com/dashboard/endpoints) section and click the Edit button on an Endpoint that you wish to enable this feature on
+  </Step>
+  <Step>
+    Click the clock icon to add a Schedule
+  </Step>
+  <Step>
+    Choose your newly created "Block Everything" Profile from the "Enforced Profile" dropdown menu
+  </Step>
+  <Step>
+    Select the times you wish to have it enabled
+  </Step>
+</Steps>
+
+<Image src="https://files.readme.io/d72f3cc7cc53e00d93cb3f4a39ba01d0a47d1ef3c0fc97d069fca5fd8e8cee1b-image.png" alt="Edit Endpoint" />
+<Image src="https://files.readme.io/624e6457bf665021fc95e7eee15b216a122202de393e60e746a0a3200399f7fa-image.png" alt="Add Schedule" />
+<Image src="https://files.readme.io/60ce6a238be1e2f016205d54fd4ed800809c8ee46c562c64f0093cbf5121f92d-image.png" alt="Schedule Settings" />
+
+<Info>
+When the time you have selected starts, this Profile will be enforced on your chosen Endpoint, and all Internet access will be disabled. Once the time ends, the previous Profile that was enforced on this Endpoint will be restored.
+</Info>
+
+## Overnight Schedules
+
+<Warning>
+If your schedule starts in the evening, and ends in the morning of the next day (as would be the case for most scenarios described above) you would have to enforce the Profiles in reverse order.
+</Warning>
+
+If you wish to block Internet at 5pm and re-enable it at 9am the next day, reverse order of the 2 Profiles you have created. 
+
+Always enforce the "Block Everything" Profile on an Endpoint, by default. This would look something like this. 
+
+<Image src="https://files.readme.io/b517e00421f15fe8bd2dad4c9f82662f6dc0b0d53b7305c83d86fd307e8ea29d-image.png" alt="Default Block Everything Profile" />
+
+If you leave it like this, your Endpoint will never have Internet access, and won't be able to access anything. Now we create a Schedule that enforces your "normal" Profile, that allows access to things you want. 
+
+<Image src="https://files.readme.io/e742d820ac715ff53146951e3e8548dfcad55e57f2a65d29c2a3e5dab85a0521-image.png" alt="Schedule for Normal Profile" />
+
+This schedule (9am to 5pm) will allow access between those times, and then revert back to "Block Everything" schedule outside of this timeframe.
+
+__Updated 3 months ago
+
+<Divider />

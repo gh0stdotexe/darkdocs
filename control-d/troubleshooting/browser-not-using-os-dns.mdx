@@ -1,0 +1,66 @@
+---
+title: "Browser Not Using OS DNS"
+description: "Troubleshooting when your browser is not using the system DNS settings"
+icon: "browser"
+---
+
+# Browser Not Using OS DNS
+
+<Note>
+Some browsers may override your system DNS settings with their own DNS-over-HTTPS (DoH) configuration. This guide will help you check and fix this.
+</Note>
+
+## 1. Chrome/Chromium
+
+<Steps>
+  <Step>Go to `chrome://settings/security`</Step>
+  <Step>Scroll down to "Use secure DNS"</Step>
+  <Step>Set it to "With your current DNS provider" or disable it</Step>
+</Steps>
+
+<Image 
+  src="https://files.readme.io/9fc4adb-doh_chrome.PNG" 
+  alt="Chrome DNS settings" 
+  width="auto" 
+  height="auto"
+/>
+
+## 2. Firefox
+
+<Steps>
+  <Step>Go to `about:preferences#general`</Step>
+  <Step>Scroll down to "Network Settings"</Step>
+  <Step>Click "Settings..."</Step>
+  <Step>Uncheck "Enable DNS over HTTPS"</Step>
+</Steps>
+
+<Image 
+  src="https://files.readme.io/b51ad54-doh_firefox.PNG" 
+  alt="Firefox DNS settings" 
+  width="auto" 
+  height="auto"
+/>
+
+## 3. Best Practices
+
+<Info>
+If you want to use DNS-over-HTTPS:
+- Configure it in Control D instead of your browser
+- This ensures all DNS traffic goes through Control D's filters
+- Provides consistent filtering across all applications
+</Info>
+
+## 4. Troubleshooting
+
+<Accordion title="Common Issues">
+  <Steps>
+    <Step>Verify browser settings are saved</Step>
+    <Step>Restart the browser after changes</Step>
+    <Step>Check if other browsers are affected</Step>
+    <Step>Test DNS resolution after changes</Step>
+  </Steps>
+</Accordion>
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) for assistance with browser DNS settings.
+</Card>

@@ -1,0 +1,137 @@
+---
+title: "Linux"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to configure Control D on any Linux computer.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/linux-platform)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-cli&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-cli&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (CLI)</div><Link aria-label=&quot;Skip link to Automatic Setup (CLI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-cli&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Linux
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to configure Control D on any Linux computer.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/linux-platform)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-cli&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-cli&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (CLI)</div><Link aria-label=&quot;Skip link to Automatic Setup (CLI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-cli&quot;></Link>
+
+<p>Want to spend the least amount of time setting up Control D on a Linux device or looking to do a scripted deployment? Have no fear, there is an app for that. </p>
+<p><Link href=&quot;/docs/ctrld&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;ctrld&quot;>Command Line Daemon</Link> is what you&#x27;re looking for.</p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;manual-setup&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-manual-setup&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Manual Setup</div><Link aria-label=&quot;Skip link to Manual Setup&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#manual-setup&quot;></Link>
+
+<p>Want to update the DNS server in your favorite Linux distro? Well, there are *only* about 20 ways to do it. But in all seriousness, if you require a tutorial to do this, it may be a better idea to use the Automatic Setup method. It abstracts the setup to a single command. </p>
+<p>We&#x27;ll briefly go over some common ways to update DNS. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;systemd-resolve&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-systemd-resolve&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>systemd-resolve</div><Link aria-label=&quot;Skip link to systemd-resolve&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#systemd-resolve&quot;></Link>
+
+<p>If you are running a version of Linux that uses systemd-resolved, you can likely configure DNS-Over-TLS on it.</p>
+<p>Open Terminal and edit your resolved.conf file</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>nano /etc/systemd/resolved.conf
+</code></pre>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;premium-resolvers&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-premium-resolvers&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Premium Resolvers</div><Link aria-label=&quot;Skip link to Premium Resolvers&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#premium-resolvers&quot;></Link>
+
+<p>Update your config as follows if you are using a custom premium resolver. <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`abcd1234` will be different for you. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>[Resolve]
+
+DNS=76.76.2.22#abcd1234.dns.controld.com
+
+DNSOverTLS=yes
+</code></pre>
+<p>The value of <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`DNS` after the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`#` will be your DNS-over-TLS resolver for the chosen Endpoint. </p>
+<p>Save the file and restart the systemd-resolve service. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;free-resolvers&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-free-resolvers&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Free Resolvers</div><Link aria-label=&quot;Skip link to Free Resolvers&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#free-resolvers&quot;></Link>
+
+<p>Update your config templating <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`DNS` after the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`#` to the DNS-over-TLS hostname for the desired free resolver. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>[Resolve]
+
+DNS=76.76.2.11#p2.freedns.controld.com
+
+DNSOverTLS=yes
+</code></pre>
+<p>The above example assumes the Malware and Ads blocking resolver.</p>
+<p>Save the file and restart the systemd-resolve service.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;stubby&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-stubby&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>stubby</div><Link aria-label=&quot;Skip link to stubby&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#stubby&quot;></Link>
+
+<p>If you&#x27;re using stubby, edit the config file.</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>sudo nano /etc/stubby/stubby.yml
+</code></pre>
+<p>Find <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`round_robin_upstreams` and set this value to <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`0`. </p>
+<p>Then search for **DEFAULT UPSTREAMS** and and comment out all of them. Then add a new config block. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;premium-resolvers-1&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-premium-resolvers&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Premium Resolvers</div><Link aria-label=&quot;Skip link to Premium Resolvers&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#premium-resolvers-1&quot;></Link>
+
+<p>Add the following entry to your config file. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>- address_data: 76.76.2.22
+  tls_auth_name: &quot;abcd1234.dns.controld.com&quot;
+</code></pre>
+<p>The value of <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`tls_auth_name` will be your DNS-over-TLS resolver for the chosen Endpoint (<button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`abcd1234` will be different for you). If you need additional backup IPs or IPv6, refer to <Link href=&quot;/docs/control-d-ip-ranges&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;control-d-ip-ranges&quot;>Control D IP Ranges</Link>. </p>
+<p>Save this file and restart stubby.</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;free-resolvers-1&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-free-resolvers&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Free Resolvers</div><Link aria-label=&quot;Skip link to Free Resolvers&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#free-resolvers-1&quot;></Link>
+
+<p>Add the following entry to your config file.</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>- address_data: 76.76.2.11
+  tls_auth_name: &quot;p2.free.controld.com&quot;
+</code></pre>
+<p>The value of <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`tls_auth_name` will be the desired free resolver DNS-over-TLS hostname. The above example assumes the Malware and Ads blocking resolver. If you need additional backup IPs or IPv6, refer to <Link href=&quot;/docs/control-d-ip-ranges&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;control-d-ip-ranges&quot;>Control D IP Ranges</Link>.</p>
+<p>Save this file and restart stubby.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="automatic-setup-cli"></div><div class="heading-text"><div id="section-automatic-setup-cli" class="heading-anchor_backwardsCompatibility"></div>Automatic Setup (CLI)</div>[](#automatic-setup-cli)
+
+<p>Want to spend the least amount of time setting up Control D on a Linux device or looking to do a scripted deployment? Have no fear, there is an app for that. </p>
+<p>[Command Line Daemon](/docs/ctrld) is what you're looking for.</p>
+# <div class="heading-anchor anchor waypoint" id="manual-setup"></div><div class="heading-text"><div id="section-manual-setup" class="heading-anchor_backwardsCompatibility"></div>Manual Setup</div>[](#manual-setup)
+
+<p>Want to update the DNS server in your favorite Linux distro? Well, there are *only* about 20 ways to do it. But in all seriousness, if you require a tutorial to do this, it may be a better idea to use the Automatic Setup method. It abstracts the setup to a single command. </p>
+<p>We'll briefly go over some common ways to update DNS. </p>
+## <div class="heading-anchor anchor waypoint" id="systemd-resolve"></div><div class="heading-text"><div id="section-systemd-resolve" class="heading-anchor_backwardsCompatibility"></div>systemd-resolve</div>[](#systemd-resolve)
+
+<p>If you are running a version of Linux that uses systemd-resolved, you can likely configure DNS-Over-TLS on it.</p>
+<p>Open Terminal and edit your resolved.conf file</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">nano /etc/systemd/resolved.conf
+</span></code></pre>
+### <div class="heading-anchor anchor waypoint" id="premium-resolvers"></div><div class="heading-text"><div id="section-premium-resolvers" class="heading-anchor_backwardsCompatibility"></div>Premium Resolvers</div>[](#premium-resolvers)
+
+<p>Update your config as follows if you are using a custom premium resolver. <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">abcd1234</span>` will be different for you. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">[Resolve]
+
+DNS=76.76.2.22#abcd1234.dns.controld.com
+
+DNSOverTLS=yes
+</span></code></pre>
+<p>The value of <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">DNS</span>` after the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">#</span>` will be your DNS-over-TLS resolver for the chosen Endpoint. </p>
+<p>Save the file and restart the systemd-resolve service. </p>
+### <div class="heading-anchor anchor waypoint" id="free-resolvers"></div><div class="heading-text"><div id="section-free-resolvers" class="heading-anchor_backwardsCompatibility"></div>Free Resolvers</div>[](#free-resolvers)
+
+<p>Update your config templating <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">DNS</span>` after the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">#</span>` to the DNS-over-TLS hostname for the desired free resolver. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">[Resolve]
+
+DNS=76.76.2.11#p2.freedns.controld.com
+
+DNSOverTLS=yes
+</span></code></pre>
+<p>The above example assumes the Malware and Ads blocking resolver.</p>
+<p>Save the file and restart the systemd-resolve service.</p>
+## <div class="heading-anchor anchor waypoint" id="stubby"></div><div class="heading-text"><div id="section-stubby" class="heading-anchor_backwardsCompatibility"></div>stubby</div>[](#stubby)
+
+<p>If you're using stubby, edit the config file.</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo nano /etc/stubby/stubby.yml
+</span></code></pre>
+<p>Find <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">round_robin_upstreams</span>` and set this value to <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">0</span>`. </p>
+<p>Then search for **DEFAULT UPSTREAMS** and and comment out all of them. Then add a new config block. </p>
+### <div class="heading-anchor anchor waypoint" id="premium-resolvers-1"></div><div class="heading-text"><div id="section-premium-resolvers" class="heading-anchor_backwardsCompatibility"></div>Premium Resolvers</div>[](#premium-resolvers-1)
+
+<p>Add the following entry to your config file. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">- address_data: 76.76.2.22
+  tls_auth_name: "abcd1234.dns.controld.com"
+</span></code></pre>
+<p>The value of <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">tls_auth_name</span>` will be your DNS-over-TLS resolver for the chosen Endpoint (<button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">abcd1234</span>` will be different for you). If you need additional backup IPs or IPv6, refer to [Control D IP Ranges](/docs/control-d-ip-ranges). </p>
+<p>Save this file and restart stubby.</p>
+### <div class="heading-anchor anchor waypoint" id="free-resolvers-1"></div><div class="heading-text"><div id="section-free-resolvers" class="heading-anchor_backwardsCompatibility"></div>Free Resolvers</div>[](#free-resolvers-1)
+
+<p>Add the following entry to your config file.</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">- address_data: 76.76.2.11
+  tls_auth_name: "p2.free.controld.com"
+</span></code></pre>
+<p>The value of <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">tls_auth_name</span>` will be the desired free resolver DNS-over-TLS hostname. The above example assumes the Malware and Ads blocking resolver. If you need additional backup IPs or IPv6, refer to [Control D IP Ranges](/docs/control-d-ip-ranges).</p>
+<p>Save this file and restart stubby.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->6 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">MacOS</div>](/docs/macos-platform)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Android</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/android-platform)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[Automatic Setup (CLI)](#automatic-setup-cli)
+
+- 
+[Manual Setup](#manual-setup)
+<ul>
+<li>[systemd-resolve](#systemd-resolve)
+
+- [stubby](#stubby)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

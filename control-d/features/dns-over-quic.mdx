@@ -1,0 +1,69 @@
+---
+title: 'DNS-over-QUIC (DoQ)'
+description: 'Explore DNS-over-QUIC (DoQ), an experimental protocol that leverages TLS over QUIC for secure and efficient DNS resolution.'
+icon: 'bolt'
+---
+
+## What is DNS-over-QUIC?
+
+<Info>
+DNS-over-QUIC (DoQ) is an experimental protocol that combines the security benefits of TLS with the performance advantages of QUIC transport protocol. It provides encrypted DNS communication while reducing latency and improving connection reliability.
+</Info>
+
+## Key Benefits
+
+<Steps>
+  <Step title="Reduced Latency">
+    QUIC's multiplexing and connection migration features help reduce DNS query latency.
+  </Step>
+  <Step title="Enhanced Privacy">
+    Built-in encryption protects DNS queries from surveillance and tampering.
+  </Step>
+  <Step title="Better Performance">
+    Improved handling of packet loss and network changes compared to traditional protocols.
+  </Step>
+</Steps>
+
+## Using DoQ with Control D
+
+<Accordion title="Implementation Notes">
+  ### Current Status
+  - DoQ is an experimental protocol
+  - Limited client support currently available
+  - Ideal for testing and development environments
+
+  ### Requirements
+  - QUIC-capable DNS client
+  - Network allowing UDP traffic (port 853)
+  - Modern operating system with QUIC support
+</Accordion>
+
+<Warning>
+As an experimental protocol, DNS-over-QUIC support may be limited in production environments. Consider using DoH or DoT for production deployments.
+</Warning>
+
+## Technical Details
+
+<Card title="Protocol Specifications">
+  - Uses QUIC transport protocol
+  - Operates over UDP port 853
+  - Implements TLS 1.3 security
+  - Supports connection migration
+  - Enables 0-RTT connection establishment
+</Card>
+
+## Future Developments
+
+<Info>
+Control D continues to develop and improve DoQ support as the protocol matures and client adoption increases. Stay tuned to our changelog for updates on DoQ functionality.
+</Info>
+
+## Best Practices
+
+<Card title="Implementation Guidelines">
+  - Test thoroughly before deploying in production
+  - Monitor performance metrics
+  - Keep clients and servers updated
+  - Have fallback DNS protocols configured
+  - Follow security best practices for QUIC deployment
+</Card> 

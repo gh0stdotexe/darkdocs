@@ -1,0 +1,121 @@
+---
+title: "Expose IP via DNS"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Advertise source IP of last Secure protocol query via a Dynamic DNS record.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/expose-ip-via-dns)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>This is a unique feature that allows Control D to function as a Dynamic DNS service when you use a Secure DNS (DNS-over-HTTPS/TLS) supporting Device. </p>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Expose IP via DNS
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Advertise source IP of last Secure protocol query via a Dynamic DNS record.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/expose-ip-via-dns)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>This is a unique feature that allows Control D to function as a Dynamic DNS service when you use a Secure DNS (DNS-over-HTTPS/TLS) supporting Device. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-is-dynamic-dns&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-is-dynamic-dns&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What is Dynamic DNS?</div><Link aria-label=&quot;Skip link to What is Dynamic DNS?&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-is-dynamic-dns&quot;></Link>
+
+<p>Your home IP is usually dynamic, meaning it can change at any time, in many cases multiple times a day. If you have services hosted at your house (Plex server, NAS, BitTorrent client, etc) and you wish to reach them externally, you must know what your current IP address is. Traditionally, you would use a DDNS service that runs a piece of software on your network, or it may be directly built into your router. When your IP changes, it would notify a 3rd party DDNS service, which would then update a DNS record that points to your IP. This allows you to reach your home server via an easy to remember hostname, instead of a randomly changing IP address. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;issues-with-ddns-services&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-issues-with-ddns-services&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Issues with DDNS Services</div><Link aria-label=&quot;Skip link to Issues with DDNS Services&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#issues-with-ddns-services&quot;></Link>
+
+<p>There are multiple downside to existing DDNS services, these include:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+<p>Using Expose IP via DNS solves all these problems. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;how-this-works&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-how-this-works&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>How This Works</div><Link aria-label=&quot;Skip link to How This Works&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#how-this-works&quot;></Link>
+
+<span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/b6c8dbd-expose_dns.PNG&quot; align=&quot;center&quot; class=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span>
+
+1. $1
+
+2. $1
+
+3. $1
+
+<p>When a DNS query is made through this Device, the source IP will be reflected as an A or AAAA record on your personal Hostname.</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>test@Desktop:~$ dig whatever.controld.live
+
+; <<>> DiG 9.11.3-1ubuntu1.15-Ubuntu <<>> whatever.controld.live
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8138
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 13, ADDITIONAL: 27
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;whatever.controld.live.      IN      A
+
+;; ANSWER SECTION:
+whatever.controld.live. 20    IN      A       104.168.34.156
+</code></pre>
+<p>This has the following advantages:</p>
+
+- Any router or device that supports DNS-over-HTTPS or DNS-over-TLS can update your IP simply by making a DNS query.
+
+- There is no software or scripting required. Although you can totally script a manual DNS-over-HTTPS/TLS resolution using your Device specific resolver, same way you would make an API call against a traditional DDNS service.<br/>
+Most networks are very chatty, and DNS queries are made constantly, so this will update your IP almost instantly. 
+
+- There is no update interval to wait for.
+
+" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"><p>This is a unique feature that allows Control D to function as a Dynamic DNS service when you use a Secure DNS (DNS-over-HTTPS/TLS) supporting Device. </p>
+# <div class="heading-anchor anchor waypoint" id="what-is-dynamic-dns"></div><div class="heading-text"><div id="section-what-is-dynamic-dns" class="heading-anchor_backwardsCompatibility"></div>What is Dynamic DNS?</div>[](#what-is-dynamic-dns)
+
+<p>Your home IP is usually dynamic, meaning it can change at any time, in many cases multiple times a day. If you have services hosted at your house (Plex server, NAS, BitTorrent client, etc) and you wish to reach them externally, you must know what your current IP address is. Traditionally, you would use a DDNS service that runs a piece of software on your network, or it may be directly built into your router. When your IP changes, it would notify a 3rd party DDNS service, which would then update a DNS record that points to your IP. This allows you to reach your home server via an easy to remember hostname, instead of a randomly changing IP address. </p>
+## <div class="heading-anchor anchor waypoint" id="issues-with-ddns-services"></div><div class="heading-text"><div id="section-issues-with-ddns-services" class="heading-anchor_backwardsCompatibility"></div>Issues with DDNS Services</div>[](#issues-with-ddns-services)
+
+<p>There are multiple downside to existing DDNS services, these include:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+<p>Using Expose IP via DNS solves all these problems. </p>
+# <div class="heading-anchor anchor waypoint" id="how-this-works"></div><div class="heading-text"><div id="section-how-this-works" class="heading-anchor_backwardsCompatibility"></div>How This Works</div>[](#how-this-works)
+
+<span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/b6c8dbd-expose_dns.PNG" align="center" class="" caption="" height="auto" title="" width="auto"></span></span>
+
+1. $1
+
+2. $1
+
+3. $1
+
+<p>When a DNS query is made through this Device, the source IP will be reflected as an A or AAAA record on your personal Hostname.</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">test@Desktop:~$ dig whatever.controld.live
+
+; <<>> DiG 9.11.3-1ubuntu1.15-Ubuntu <<>> whatever.controld.live
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 8138
+;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 13, ADDITIONAL: 27
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 4096
+;; QUESTION SECTION:
+;whatever.controld.live.      IN      A
+
+;; ANSWER SECTION:
+whatever.controld.live. 20    IN      A       104.168.34.156
+</span></code></pre>
+<p>This has the following advantages:</p>
+
+- Any router or device that supports DNS-over-HTTPS or DNS-over-TLS can update your IP simply by making a DNS query.
+
+- There is no software or scripting required. Although you can totally script a manual DNS-over-HTTPS/TLS resolution using your Device specific resolver, same way you would make an API call against a traditional DDNS service.<br>
+Most networks are very chatty, and DNS queries are made constantly, so this will update your IP almost instantly. 
+
+- There is no update interval to wait for.
+
+</div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->over 1 year ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Dynamic DNS</div>](/docs/dynamic-dns)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Analytics</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/analytics-levels)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[What is Dynamic DNS?](#what-is-dynamic-dns)
+<ul>
+<li>[Issues with DDNS Services](#issues-with-ddns-services)
+
+</li>
+<li>
+[How This Works](#how-this-works)
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

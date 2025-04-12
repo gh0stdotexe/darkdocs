@@ -1,0 +1,76 @@
+---
+title: "Prevent Deactivation"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Set a password that is required to deactivate Control D if apps are used.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/prevent-deactivation)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overview&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overview&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overview</div><Link aria-label=&quot;Skip link to Overview&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overview&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Prevent Deactivation
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Set a password that is required to deactivate Control D if apps are used.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/prevent-deactivation)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overview&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overview&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overview</div><Link aria-label=&quot;Skip link to Overview&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overview&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Minimum Version</p>
+
+- v1.3.5+ of the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` command line utility
+
+- Latest version of GUI apps
+
+<p>This Device Setting allows you to set a numeric PIN (password) which will be required to deactivate Control D when our GUI or CLI apps are used. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/035e4a2-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>This is useful in school environments or anywhere else where you wish to lock down the deactivation of Control D. </p>
+<p>A PIN can be updated (or removed) from the Web Control Panel, however the associated physical device will need to be restarted in order for this change to propagate.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;change-or-remove-pin&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-change-or-remove-pin&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Change or Remove Pin</div><Link aria-label=&quot;Skip link to Change or Remove Pin&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#change-or-remove-pin&quot;></Link>
+
+<p>In order to change the PIN or remove it, simply edit the Device that has a PIN and update the value in the form field, or toggle the feature OFF. Be mindful, that the physical device would need to be restarted in order for the PIN change/removal to take effect. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;uninstall-with-pin&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-uninstall-with-pin&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Uninstall with PIN</div><Link aria-label=&quot;Skip link to Uninstall with PIN&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#uninstall-with-pin&quot;></Link>
+
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;gui-apps&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-gui-apps&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>GUI Apps</div><Link aria-label=&quot;Skip link to GUI Apps&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#gui-apps&quot;></Link>
+
+<p>If the configured Control D device has a deactivation PIN enabled, you will be asked for it to disable Control D. Simply type it into the box that pops up.</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;cli-apps&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-cli-apps&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>CLI Apps</div><Link aria-label=&quot;Skip link to CLI Apps&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#cli-apps&quot;></Link>
+
+<p>To uninstall a PIN locked CLI installation, simply append <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`--pin xxxxx`  to the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`stop` or <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`uninstall` commands, for example:</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>C:\WINDOWS\system32>ctrld uninstall
+Apr  3 15:51:23.000 ERR deactivation pin is required to stop or uninstall the service
+
+C:\WINDOWS\system32>ctrld uninstall --pin 1234
+Apr  3 15:51:32.012 NTC Service uninstalled
+</code></pre>
+<p>Uninstallation on MacOS and Linux would work identically.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="overview"></div><div class="heading-text"><div id="section-overview" class="heading-anchor_backwardsCompatibility"></div>Overview</div>[](#overview)
+
+> ## <span class="callout-icon">🚧</span><p>Minimum Version</p>
+
+- v1.3.5+ of the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` command line utility
+
+- Latest version of GUI apps
+
+<p>This Device Setting allows you to set a numeric PIN (password) which will be required to deactivate Control D when our GUI or CLI apps are used. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/035e4a2-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>This is useful in school environments or anywhere else where you wish to lock down the deactivation of Control D. </p>
+<p>A PIN can be updated (or removed) from the Web Control Panel, however the associated physical device will need to be restarted in order for this change to propagate.</p>
+## <div class="heading-anchor anchor waypoint" id="change-or-remove-pin"></div><div class="heading-text"><div id="section-change-or-remove-pin" class="heading-anchor_backwardsCompatibility"></div>Change or Remove Pin</div>[](#change-or-remove-pin)
+
+<p>In order to change the PIN or remove it, simply edit the Device that has a PIN and update the value in the form field, or toggle the feature OFF. Be mindful, that the physical device would need to be restarted in order for the PIN change/removal to take effect. </p>
+## <div class="heading-anchor anchor waypoint" id="uninstall-with-pin"></div><div class="heading-text"><div id="section-uninstall-with-pin" class="heading-anchor_backwardsCompatibility"></div>Uninstall with PIN</div>[](#uninstall-with-pin)
+
+### <div class="heading-anchor anchor waypoint" id="gui-apps"></div><div class="heading-text"><div id="section-gui-apps" class="heading-anchor_backwardsCompatibility"></div>GUI Apps</div>[](#gui-apps)
+
+<p>If the configured Control D device has a deactivation PIN enabled, you will be asked for it to disable Control D. Simply type it into the box that pops up.</p>
+### <div class="heading-anchor anchor waypoint" id="cli-apps"></div><div class="heading-text"><div id="section-cli-apps" class="heading-anchor_backwardsCompatibility"></div>CLI Apps</div>[](#cli-apps)
+
+<p>To uninstall a PIN locked CLI installation, simply append <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">--pin xxxxx</span>`  to the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">stop</span>` or <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">uninstall</span>` commands, for example:</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">C:\WINDOWS\system32>ctrld uninstall
+Apr  3 15:51:23.000 ERR deactivation pin is required to stop or uninstall the service
+
+C:\WINDOWS\system32>ctrld uninstall --pin 1234
+Apr  3 15:51:32.012 NTC Service uninstalled
+</span></code></pre>
+<p>Uninstallation on MacOS and Linux would work identically.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->about 1 year ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Status</div>](/docs/device-status)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Device Clients</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/device-clients)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[Overview](#overview)
+<ul>
+<li>[Change or Remove Pin](#change-or-remove-pin)
+
+- [Uninstall with PIN](#uninstall-with-pin)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

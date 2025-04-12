@@ -1,0 +1,51 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+
+# Your rule content
+
+- You can @ files here
+- You can use markdown but dont have to
+ACTION: Perform a full repository scan, validation, and refactoring operation exclusively on `.mdx` files.
+
+TARGET FILES: All files ending with `.mdx` in the entire current repository.
+
+TASKS TO PERFORM AUTOMATICALLY ON EACH `.mdx` FILE:
+
+1.  **Core MDX/JSX Syntax Validation & Correction:**
+    *   Ensure all JSX elements are correctly closed (`<Tag>...</Tag>`) or self-closed (`<Tag />`). Fix any mismatches or unclosed tags.
+    *   Ensure JSX elements are nested correctly according to standard rules. Fix invalid nesting.
+    *   Validate JSX attribute syntax (using quotes for strings `prop="value"`, curly braces for expressions `prop={variable}`). Correct malformed attributes.
+
+2.  **HTML to Markdown/Mintlify Component Replacement:**
+    *   Replace `<img>` tags with Mintlify `<Image src='...' alt='...' />` components, transferring `src` and `alt`.
+    *   Replace simple `<a>` hyperlink tags with Markdown links `[text](mdc:url)`, preserving `href` and text.
+    *   Replace HTML lists (`<ul>`, `<ol>`, `<li>`) with equivalent Markdown list syntax.
+    *   Replace HTML tables (`<table>`, `<thead>`, `<tbody>`, `<tr>`, `<th>`, `<td>`) with equivalent Markdown table syntax.
+    *   Replace `<p>` tags with standard Markdown paragraphs (ensure content separation with blank lines).
+    *   Replace `<pre><code>...</code></pre>` blocks with Markdown fenced code blocks (```), attempting to add the language identifier if found in HTML classes (e.g., ```javascript).
+    *   Replace inline `<code>...</code>` tags with Markdown backticks `` `code` ``.
+    *   Replace `<b>`/`<strong>` tags with Markdown `**bold**`.
+    *   Replace `<i>`/`<em>` tags with Markdown `*italic*` or `_italic_`.
+
+EXECUTION MODE: **Strictly Non-Interactive Batch Processing**
+
+*   **CRITICAL:** You MUST process ALL `.mdx` files in the repository in one continuous operation without stopping or pausing.
+*   **DO NOT** stop after processing a few files.
+*   **DO NOT** ask me if you should continue or fix more files at any point.
+*   **COMPLETE** the entire set of tasks for all files automatically.
+
+ERROR HANDLING:
+*   If you encounter an unrecoverable error while processing a specific file that prevents you from applying fixes or replacements:
+    *   Output the error log line: `❌ [filename] - error processing`
+    *   Skip that specific file entirely.
+    *   Immediately continue processing the next `.mdx` file without halting the overall operation.
+
+OUTPUT LOGGING:
+*   For **only** the files that you successfully modify (apply syntax fixes or HTML replacements): Output a single line exactly matching: `✅ [filename] - fixed`
+*   Do not output any messages for files that are scanned but require no changes.
+*   Do not output any other conversational text, summaries, or confirmations.
+
+Proceed now with the automated validation and refactoring of all `.mdx` files according to these instructions.

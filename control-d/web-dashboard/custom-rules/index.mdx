@@ -1,0 +1,107 @@
+---
+title: "Custom Rules"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Fine grained control over individual domain names.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/custom-rules)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="> ## <span class=&quot;callout-icon&quot;>📘</span><p>TLDR</p>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Custom Rules
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Fine grained control over individual domain names.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/custom-rules)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="> ## <span class=&quot;callout-icon&quot;>📘</span><p>TLDR</p>
+
+<p>Custom Rules are basically a hosts file, with wildcard support. Block, redirect or spoof any domain to any IP.</p>
+
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-are-custom-rules&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-are-custom-rules&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What are Custom Rules</div><Link aria-label=&quot;Skip link to What are Custom Rules&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-are-custom-rules&quot;></Link>
+
+<p>Custom Rules are the basic building blocks of Control D, and allow you to create fine grained rules for specific domain names. Think of these as a hosts file in the cloud, with wildcard support. </p>
+<p>You can have up to 10,000 Custom Rules.</p>
+<p>To create a custom rule, choose a Profile and click Edit. Then navigate to the Custom Rules section.</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/ccb7b09-small-custoim_rulesv2.PNG&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;rule-actions&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-rule-actions&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Rule Actions</div><Link aria-label=&quot;Skip link to Rule Actions&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#rule-actions&quot;></Link>
+
+<p>Much like with Services (which are just collections of Custom Rules), one of 3 rule types can be attached to any domain name.</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;block&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-block&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Block</div><Link aria-label=&quot;Skip link to Block&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#block&quot;></Link>
+
+<p>A BLOCK action will prevent the domain from loading, and will effectively make it inaccessible from a Device that enforces a Profile.  </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;bypass&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-bypass&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Bypass</div><Link aria-label=&quot;Skip link to Bypass&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#bypass&quot;></Link>
+
+<p>A BYPASS rule will resolve the domain to its true IP address from Authoritative DNS. This is useful to override Filters, Services, or the Default Rule. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;redirect&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-redirect&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Redirect</div><Link aria-label=&quot;Skip link to Redirect&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#redirect&quot;></Link>
+
+<p>A REDIRECT rule will spoof the domain via a proxy location or specific IP address chosen by you.</p>
+<p>Custom Rules can be grouped into Folders, which can have their own actions.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;create-private-domains&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-create-private-domains&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Create Private Domains</div><Link aria-label=&quot;Skip link to Create Private Domains&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#create-private-domains&quot;></Link>
+
+<p>If you wish to create a private domain, when you make a Custom Rule, choose Redirect and then select **IP or Hostname** instead of **Proxies**.</p>
+<p>This is very useful for those who are using Active Directory and need to make their domain controllers still function while Control D is used as the primary DNS resolver. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/95478e4-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>This will allow you to input your own IPv4 and IPv6 (or CNAME) records. Any Device that enforces this Profile will be able to resolve these custom domains, which do not exist in public DNS. </p>
+<p>If you&#x27;re in an AD environment, simply replicate the domain controller hostnames and the IPs they point to. Any device that enforces this profile will now be able to resolve your domain controllers. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overlapping-rules&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overlapping-rules&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overlapping Rules</div><Link aria-label=&quot;Skip link to Overlapping Rules&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overlapping-rules&quot;></Link>
+
+<p>Control D will match the most specific rule first. With that in mind, you can create overlapping rules, for example:</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/4e13d49-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>The above will block <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`live.com` and all subdomains on <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`live.com`. However if a user accesses <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`outlook.live.com` specifically, this will be allowed to resolve. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;rule-format&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-rule-format&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Rule Format</div><Link aria-label=&quot;Skip link to Rule Format&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#rule-format&quot;></Link>
+
+<p>Custom rules can be exact or use wildcards. All of the following are valid:</p>
+
+<div class=&quot;rdmd-table&quot;><div class=&quot;rdmd-table-inner&quot;>| Domain and Rule | Action |
+| <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`domain.com` -> BLOCK | Blocks domain.com and all subdomains |
+| <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`*.domain.com` -> BLOCK | Blocks all subdomains of domain.com but NOT domain.com |
+| <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`server-*.domain.com` -> BLOCK | Blocks  <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`server-01.domain.com` and <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`server-anything-goes-here.domain.com` |</div></div>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD">> ## <span class="callout-icon">📘</span><p>TLDR</p>
+
+<p>Custom Rules are basically a hosts file, with wildcard support. Block, redirect or spoof any domain to any IP.</p>
+
+# <div class="heading-anchor anchor waypoint" id="what-are-custom-rules"></div><div class="heading-text"><div id="section-what-are-custom-rules" class="heading-anchor_backwardsCompatibility"></div>What are Custom Rules</div>[](#what-are-custom-rules)
+
+<p>Custom Rules are the basic building blocks of Control D, and allow you to create fine grained rules for specific domain names. Think of these as a hosts file in the cloud, with wildcard support. </p>
+<p>You can have up to 10,000 Custom Rules.</p>
+<p>To create a custom rule, choose a Profile and click Edit. Then navigate to the Custom Rules section.</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/ccb7b09-small-custoim_rulesv2.PNG" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+## <div class="heading-anchor anchor waypoint" id="rule-actions"></div><div class="heading-text"><div id="section-rule-actions" class="heading-anchor_backwardsCompatibility"></div>Rule Actions</div>[](#rule-actions)
+
+<p>Much like with Services (which are just collections of Custom Rules), one of 3 rule types can be attached to any domain name.</p>
+### <div class="heading-anchor anchor waypoint" id="block"></div><div class="heading-text"><div id="section-block" class="heading-anchor_backwardsCompatibility"></div>Block</div>[](#block)
+
+<p>A BLOCK action will prevent the domain from loading, and will effectively make it inaccessible from a Device that enforces a Profile.  </p>
+### <div class="heading-anchor anchor waypoint" id="bypass"></div><div class="heading-text"><div id="section-bypass" class="heading-anchor_backwardsCompatibility"></div>Bypass</div>[](#bypass)
+
+<p>A BYPASS rule will resolve the domain to its true IP address from Authoritative DNS. This is useful to override Filters, Services, or the Default Rule. </p>
+### <div class="heading-anchor anchor waypoint" id="redirect"></div><div class="heading-text"><div id="section-redirect" class="heading-anchor_backwardsCompatibility"></div>Redirect</div>[](#redirect)
+
+<p>A REDIRECT rule will spoof the domain via a proxy location or specific IP address chosen by you.</p>
+<p>Custom Rules can be grouped into Folders, which can have their own actions.</p>
+## <div class="heading-anchor anchor waypoint" id="create-private-domains"></div><div class="heading-text"><div id="section-create-private-domains" class="heading-anchor_backwardsCompatibility"></div>Create Private Domains</div>[](#create-private-domains)
+
+<p>If you wish to create a private domain, when you make a Custom Rule, choose Redirect and then select **IP or Hostname** instead of **Proxies**.</p>
+<p>This is very useful for those who are using Active Directory and need to make their domain controllers still function while Control D is used as the primary DNS resolver. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/95478e4-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>This will allow you to input your own IPv4 and IPv6 (or CNAME) records. Any Device that enforces this Profile will be able to resolve these custom domains, which do not exist in public DNS. </p>
+<p>If you're in an AD environment, simply replicate the domain controller hostnames and the IPs they point to. Any device that enforces this profile will now be able to resolve your domain controllers. </p>
+## <div class="heading-anchor anchor waypoint" id="overlapping-rules"></div><div class="heading-text"><div id="section-overlapping-rules" class="heading-anchor_backwardsCompatibility"></div>Overlapping Rules</div>[](#overlapping-rules)
+
+<p>Control D will match the most specific rule first. With that in mind, you can create overlapping rules, for example:</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/4e13d49-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>The above will block <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">live.com</span>` and all subdomains on <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">live.com</span>`. However if a user accesses <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">outlook.live.com</span>` specifically, this will be allowed to resolve. </p>
+# <div class="heading-anchor anchor waypoint" id="rule-format"></div><div class="heading-text"><div id="section-rule-format" class="heading-anchor_backwardsCompatibility"></div>Rule Format</div>[](#rule-format)
+
+<p>Custom rules can be exact or use wildcards. All of the following are valid:</p>
+
+<div class="rdmd-table"><div class="rdmd-table-inner">| Domain and Rule | Action |
+| <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">domain.com</span>` -> BLOCK | Blocks domain.com and all subdomains |
+| <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">*.domain.com</span>` -> BLOCK | Blocks all subdomains of domain.com but NOT domain.com |
+| <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">server-*.domain.com</span>` -> BLOCK | Blocks  <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">server-01.domain.com</span>` and <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">server-anything-goes-here.domain.com</span>` |</div></div></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->about 1 year ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Services</div>](/docs/services)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Folders</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/folder-rules)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[What are Custom Rules](#what-are-custom-rules)
+<ul>
+<li>[Rule Actions](#rule-actions)
+
+- [Create Private Domains](#create-private-domains)
+
+- [Overlapping Rules](#overlapping-rules)
+
+</li>
+<li>
+[Rule Format](#rule-format)
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

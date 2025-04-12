@@ -1,0 +1,163 @@
+---
+title: "Organizations"
+description: "Manage multi-user access and organizational settings in Control D"
+icon: "building"
+---
+
+## Overview
+
+Organizations in Control D enable centralized management of users, devices, and policies across teams or businesses.
+
+## Features
+
+### Members and Permissions
+```yaml
+roles:
+  admin:
+    - full_access
+    - user_management
+    - billing_control
+  manager:
+    - profile_management
+    - device_management
+    - analytics_view
+  user:
+    - device_configuration
+    - profile_view
+    - analytics_self
+```
+
+### Sub Organizations
+- Hierarchical structure
+- Independent management
+- Resource allocation
+- Policy inheritance
+
+### Billing Management
+```yaml
+billing:
+  subscription:
+    plan: "enterprise"
+    billing_cycle: "monthly"
+    payment_method: "credit_card"
+  usage:
+    devices: 100
+    queries: "unlimited"
+```
+
+#### Connected Devices
+- Device tracking
+- Usage monitoring
+- License management
+- Deployment status
+
+### API Access
+```yaml
+api_config:
+  enabled: true
+  keys:
+    - name: "production"
+      scope: "full"
+    - name: "readonly"
+      scope: "read"
+```
+
+## Administration
+
+### User Management
+1. Role assignment
+2. Access control
+3. Activity monitoring
+4. Security policies
+
+### Organization Settings
+```yaml
+org_settings:
+  name: "Example Corp"
+  domain: "example.com"
+  security:
+    mfa_required: true
+    session_timeout: 3600
+    ip_whitelist: true
+```
+
+### Resource Management
+- Device allocation
+- Profile sharing
+- Analytics access
+- Billing distribution
+
+## Profiles
+
+### Global Profile
+```yaml
+global_profile:
+  enabled: true
+  priority: "high"
+  enforced: true
+  exceptions:
+    - development
+    - testing
+```
+
+### Profile Sharing
+- Cross-team access
+- Template creation
+- Policy inheritance
+- Override management
+
+## Best Practices
+
+### Setup
+1. Define hierarchy
+2. Assign roles
+3. Configure policies
+4. Document structure
+
+### Security
+- Enable MFA
+- Regular audits
+- Access reviews
+- Policy updates
+
+### Management
+- Clear ownership
+- Regular reviews
+- Policy documentation
+- Change control
+
+## Common Configurations
+
+### Enterprise Setup
+```yaml
+enterprise_config:
+  sso:
+    enabled: true
+    provider: "okta"
+  compliance:
+    audit_logs: true
+    data_retention: 90
+  security:
+    ip_restrictions: true
+    device_approval: true
+```
+
+### Team Structure
+```yaml
+team_structure:
+  departments:
+    - name: "IT"
+      access_level: "admin"
+    - name: "Development"
+      access_level: "manager"
+    - name: "Sales"
+      access_level: "user"
+```
+
+<Warning>
+Changes to organization settings may affect all users and devices. Plan and communicate changes carefully.
+</Warning>
+
+<Tip>
+Use sub-organizations to maintain separate environments for development, staging, and production.
+</Tip> 

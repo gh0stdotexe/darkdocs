@@ -1,0 +1,93 @@
+---
+title: "Profiles"
+description: "Learn how to manage profiles in the Control D web dashboard"
+icon: "users"
+---
+
+# Profiles
+
+Profiles in Control D allow you to create and manage different sets of rules and configurations for your devices and networks.
+
+## Creating a Profile
+
+1. Navigate to the Profiles section
+2. Click "Create New Profile"
+3. Configure the following settings:
+   - Profile name
+   - Description
+   - Default action
+   - Custom rules
+   - Services
+
+## Profile Settings
+
+### Basic Settings
+- **Name**: Unique identifier for the profile
+- **Description**: Brief explanation of the profile's purpose
+- **Default Action**: What happens to traffic not matching any rules
+- **DNS Rebind Protection**: Prevents DNS rebinding attacks
+- **IPv6 Compatibility**: Enable/disable IPv6 support
+
+### Security Settings
+- **Malware Protection**: Enable/disable malware blocking
+- **Phishing Protection**: Enable/disable phishing prevention
+- **AI Malware Filter**: Enable/disable AI-powered protection
+- **Safe Search**: Force safe search on search engines
+
+### Advanced Settings
+- **Custom DNS**: Configure custom DNS servers
+- **Logging Level**: Set the detail level of logs
+- **Analytics**: Enable/disable analytics collection
+- **Time Zone**: Set the profile's time zone
+
+## Example Configuration
+
+```yaml
+# Example profile configuration
+profile:
+  name: "Office Network"
+  description: "Standard office network profile"
+  settings:
+    default_action: "allow"
+    dns_rebind_protection: true
+    ipv6_compatibility: true
+  security:
+    malware_protection: true
+    phishing_protection: true
+    ai_malware_filter: true
+    safe_search: true
+  rules:
+    - category: "social"
+      action: "block"
+    - category: "gaming"
+      action: "block"
+  services:
+    - name: "Microsoft 365"
+      action: "allow"
+    - name: "Zoom"
+      action: "allow"
+```
+
+## Best Practices
+
+1. **Profile Organization**
+   - Use descriptive names
+   - Group similar profiles
+   - Document changes
+   - Regular reviews
+
+2. **Rule Management**
+   - Start with basic rules
+   - Test new rules
+   - Monitor effectiveness
+   - Update as needed
+
+3. **Security Settings**
+   - Enable essential protections
+   - Configure appropriately
+   - Regular updates
+   - Monitor alerts
+
+<Tip>
+Create a test profile to experiment with new configurations before applying them to production profiles.
+</Tip> 

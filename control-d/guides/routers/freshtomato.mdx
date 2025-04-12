@@ -1,0 +1,105 @@
+---
+title: "FreshTomato Router Guide"
+description: "📘 DNS Daemon: This router is supported by the ctrld Command Line Daemon . This is the best and simplest way to onboard. Legacy DNS Follow the steps below to configure Control D on a router with Tomato firmware. This guide is for FreshTomato which is currently the only maintained version of the Toma..."
+icon: "network"
+---
+
+> ## 📘
+> 
+> DNS Daemon
+> 
+> This router is supported by the ctrld [Command Line Daemon](/docs/ctrld). This is the best and simplest way to onboard.
+
+# 
+
+Legacy DNS
+
+Follow the steps below to configure Control D on a router with Tomato firmware. This guide is for [FreshTomato](http://freshtomato.org/) which is currently the only maintained version of the Tomato firmware.
+
+Keep in mind that Tomato only uses legacy DNS at the moment.
+
+## 
+
+Step 1
+
+Open the router interface by navigating to it in your browser. You can typically reach it via `192.168.1.1`
+
+![](https://files.readme.io/d653d46-image.png)
+
+## 
+
+Step 2
+
+From the Tomato home screen, open the **Basic** settings menu on the left, and click the **Network** option.
+
+![](https://files.readme.io/9b2f8e0-image.png)
+
+## 
+
+Step 3
+
+Next, change the **“DNS Server”** option from Automatic to **Manual**. Once you do that, you will see two **DNS Server** fields appear.
+
+![](https://files.readme.io/60d2851-image.png)
+
+## 
+
+Step 4
+
+Now determine which DNS resolver you want to use. 
+
+### 
+
+Free Resolver
+
+If you are configuring our free DNS resolvers, you can get the IPs from this page: <https://controld.com/free-dns>
+
+  1. Select the configuration you want to use from the list:  
+![](https://files.readme.io/f86c0c1-image.png)
+
+  2. Then copy the Legacy Resolver IP address that appears at the bottom of the page:  
+![](https://files.readme.io/c1b2ca6-image.png)
+
+### 
+
+Custom Resolver
+
+If you are configuring a custom Legacy DNS resolver: 
+
+  1. Create a new "**FreshTomato** " Router Device on your [Control D Dashboard](https://controld.com/dashboard/devices). Link it to a Profile (or [create a new Profile if you don't have one](/docs/profiles)) and finally make sure to enable the **Legacy Resolver** option under **Advanced Settings**. Then press **Add Device** :  
+![](https://files.readme.io/708cf50-image.png)
+
+  2. Expand the **Legacy DNS** section where you will see the IP addresses to use for the setup. Do NOT copy the same IPs from the screenshot, copy the ones from your account specifically.  
+![](https://files.readme.io/6796a58-image.png)
+
+## 
+
+Step 5
+
+Now back in the router interface, enter the resolver IPs from the last step into the **DNS 1** and **DNS 2** fields. 
+
+The router will use DNS 1 for resolving queries, and DNS 2 as a backup.
+
+![](https://files.readme.io/071bd19-image.png)
+
+## 
+
+Step 6
+
+Finally, scroll to the bottom of the page and press **Save**. 
+
+![](https://files.readme.io/e78f4f2-image.png)
+
+Once the router saves the configuration, reboot it. After it restarts, you are using Control D on your network! 
+
+Keep in mind that if you configure a custom DNS on any of the individual devices connected to this router, those devices will not be using the DNS you configured here.
+
+> ## 🚧
+> 
+> Dynamic IP Warning
+> 
+> This method is subject to your [source IP being registered](/docs/ip-management) on this Device in the web control panel, so this is best suited for networks with a static IP. If you have a Dynamic IP see [Legacy DNS limitations](/docs/ip-not-authorized) section for solution.
+
+__Updated over 1 year ago
+
+* * *

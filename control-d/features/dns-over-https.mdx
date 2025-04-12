@@ -1,0 +1,59 @@
+---
+title: 'DNS-over-HTTPS (DoH)'
+description: 'Learn about DNS-over-HTTPS (DoH), one of the most secure DNS protocols supported by Control D and modern operating systems.'
+icon: 'shield-check'
+---
+
+## What is DNS-over-HTTPS?
+
+<Info>
+DNS-over-HTTPS (DoH) is a protocol for performing DNS resolution via the HTTPS protocol. This protocol is designed to increase user privacy and security by preventing eavesdropping and manipulation of DNS data by man-in-the-middle attacks.
+</Info>
+
+## Key Benefits
+
+<Steps>
+  <Step title="Enhanced Security">
+    All DNS queries are encrypted using HTTPS, making it difficult for attackers to intercept or modify DNS requests.
+  </Step>
+  <Step title="Modern OS Support">
+    DoH is widely supported by modern operating systems including Windows, macOS, iOS, and Android.
+  </Step>
+  <Step title="Firewall Friendly">
+    Since DoH uses standard HTTPS (port 443), it works well with existing firewalls and network configurations.
+  </Step>
+</Steps>
+
+## Using DoH with Control D
+
+<Accordion title="Configuration Steps">
+  ### Windows
+  1. Open Windows Settings
+  2. Navigate to Network & Internet > DNS
+  3. Select "Choose a DNS server template"
+  4. Enter your Control D DoH endpoint
+
+  ### macOS/iOS
+  1. Open System Settings/Preferences
+  2. Go to Network settings
+  3. Configure DNS settings
+  4. Add your Control D DoH endpoint
+
+  ### Linux
+  1. Configure your preferred DNS client (e.g., systemd-resolved)
+  2. Add Control D's DoH endpoint to your configuration
+  3. Restart the DNS service
+</Accordion>
+
+<Warning>
+Make sure to use the correct DoH endpoint URL provided in your Control D dashboard. Using incorrect endpoints may result in resolution failures.
+</Warning>
+
+## Best Practices
+
+<Card title="Recommended Settings">
+  - Enable DNS-over-HTTPS whenever possible for maximum security
+  - Configure fallback DNS servers in case of connectivity issues
+  - Regularly verify that DoH is working correctly through your Control D dashboard
+  - Monitor analytics to ensure proper resolution and filtering
+</Card> 

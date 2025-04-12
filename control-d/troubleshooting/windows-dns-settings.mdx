@@ -1,0 +1,107 @@
+---
+title: "Windows DNS Settings"
+description: "How to configure DNS settings on Windows for Control D"
+icon: "windows"
+---
+
+# Windows DNS Settings
+
+<Note>
+Follow these steps to configure DNS settings on Windows for Control D.
+</Note>
+
+## Using Windows Settings
+
+<Steps>
+  <Step>Open Windows Settings (Windows key + I)</Step>
+  <Step>Click on "Network & Internet"</Step>
+  <Step>Select your active network connection</Step>
+  <Step>Click "Edit" under IP assignment</Step>
+  <Step>Switch "Edit IP settings" to Manual</Step>
+  <Step>Enable IPv4</Step>
+  <Step>
+    Enter Control D's DNS servers:
+    - Preferred DNS: `76.76.2.0`
+    - Alternate DNS: `76.76.10.0`
+  </Step>
+  <Step>Click "Save"</Step>
+</Steps>
+
+## Using Control Panel
+
+<Steps>
+  <Step>Open Control Panel</Step>
+  <Step>Go to "Network and Internet"</Step>
+  <Step>Click "Network and Sharing Center"</Step>
+  <Step>Click on your active connection</Step>
+  <Step>Click "Properties"</Step>
+  <Step>Select "Internet Protocol Version 4 (TCP/IPv4)"</Step>
+  <Step>Click "Properties"</Step>
+  <Step>Select "Use the following DNS server addresses"</Step>
+  <Step>
+    Enter Control D's DNS servers:
+    - Preferred DNS: `76.76.2.0`
+    - Alternate DNS: `76.76.10.0`
+  </Step>
+  <Step>Click "OK" to save changes</Step>
+</Steps>
+
+## Using Command Prompt
+
+<Warning>
+Make sure to run Command Prompt as Administrator for these commands to work.
+</Warning>
+
+<Steps>
+  <Step>Open Command Prompt as Administrator</Step>
+  <Step>
+    Type the following commands:
+    <CodeBlock>
+      netsh interface ipv4 set dns name="YOUR_NETWORK_ADAPTER" static 76.76.2.0
+      netsh interface ipv4 add dns name="YOUR_NETWORK_ADAPTER" 76.76.10.0 index=2
+    </CodeBlock>
+  </Step>
+</Steps>
+
+<Note>
+Replace `YOUR_NETWORK_ADAPTER` with your actual network adapter name (e.g., "Wi-Fi" or "Ethernet").
+</Note>
+
+## Verify DNS Settings
+
+<Steps>
+  <Step>Open Command Prompt</Step>
+  <Step>
+    Type:
+    <CodeBlock>
+      ipconfig /all
+    </CodeBlock>
+  </Step>
+  <Step>Look for "DNS Servers" under your active connection</Step>
+  <Step>Confirm Control D's IP addresses are listed</Step>
+</Steps>
+
+## Troubleshooting
+
+<Accordion title="Common Issues">
+  <Steps>
+    <Step>
+      Flush DNS cache:
+      <CodeBlock>
+        ipconfig /flushdns
+      </CodeBlock>
+    </Step>
+    <Step>
+      Reset network settings:
+      <CodeBlock>
+        netsh winsock reset
+        netsh int ip reset
+      </CodeBlock>
+    </Step>
+    <Step>Restart your computer</Step>
+  </Steps>
+</Accordion>
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) for assistance.
+</Card> 

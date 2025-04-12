@@ -1,0 +1,52 @@
+name: Mintlify Validation
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install Mintlify CLI
+        run: npm install -g @mintlify/cli
+        
+      - name: Validate Documentation
+        run: |
+          # Check for required files
+          if [ ! -f "mint.json" ]; then
+            echo "Error: mint.json file is missing"
+            exit 1
+          fi
+          
+          # Validate frontmatter in all .mdx files
+          find . -name "*.mdx" -type f | while read file; do
+            if ! grep -q "^---" "$file" || ! grep -q "^title:" "$file" || ! grep -q "^description:" "$file"; then
+              echo "Error: $file is missing required frontmatter"
+              exit 1
+            fi
+          done
+          
+          # Validate image tags
+          if grep -r "<img" --include="*.mdx" .; then
+            echo "Error: Found HTML img tags. Use <Image> component instead."
+            exit 1
+          fi
+          
+          # Validate component usage
+          if grep -r "<Tip>" --include="*.mdx" . | grep -v "</Tip>"; then
+            echo "Error: Found unclosed Tip components"
+            exit 1
+          fi
+          
+          # Run Mintlify CLI validation
+          mintlify validate 

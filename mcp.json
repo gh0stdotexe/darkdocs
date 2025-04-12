@@ -1,0 +1,51 @@
+{
+  "version": "1.0",
+  "name": "Control D Documentation MCP",
+  "description": "Multi-Content Processor for Control D documentation using Firecrawl",
+  "processors": [
+    {
+      "name": "firecrawl",
+      "type": "web-scraper",
+      "config": {
+        "apiKey": "op://stecmqyblx7syjfcwwmzpuyeym/Firecrawl/API Key",
+        "baseUrl": "https://docs.controld.com",
+        "paths": [
+          "/docs/getting-started",
+          "/reference/get-started",
+          "/reference",
+          "/docs/ctrld",
+          "/docs/business/industries/startups",
+          "/docs/business/industries/smbs",
+          "/docs/business/industries/msps",
+          "/docs/business/solutions/secure-end-user-devices",
+          "/docs/business/solutions/protect-whole-networks",
+          "/docs/business/solutions/block-unwanted-content"
+        ],
+        "outputDir": "scraped-docs",
+        "batchSize": 3,
+        "delay": 1000,
+        "formats": ["markdown", "html"],
+        "metadata": {
+          "extractTitle": true,
+          "extractSections": true,
+          "contentLength": true,
+          "timestamp": true
+        }
+      },
+      "validation": {
+        "requiredFields": ["markdown", "html"],
+        "minContentLength": 100
+      },
+      "errorHandling": {
+        "retryAttempts": 3,
+        "retryDelay": 2000,
+        "continueOnError": true
+      }
+    }
+  ],
+  "postProcessing": {
+    "generateSummary": true,
+    "createIndex": true,
+    "formatOutput": "json"
+  }
+} 

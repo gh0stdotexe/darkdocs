@@ -1,0 +1,69 @@
+---
+title: "Tailscale Integration"
+description: "Using Control D with Tailscale is very easy, this guide will show you how."
+icon: "network"
+---
+
+# Tailscale Integration
+
+<Info>
+You can use Control D as a <Link href="https://tailscale.com/kb/1403/control-d">Global Nameserver</Link> in Tailscale, and take control of your DNS for your entire tailnet.
+</Info>
+
+## Create an Endpoint
+
+<Info>
+Head over to the Control D web panel, and create an Endpoint. The type does not matter, but we recommend using "Other" type device from the Routers section.
+</Info>
+
+<Image src="https://files.readme.io/99d20f5-image.png" alt="Create Endpoint" />
+
+<Info>
+You will be presented with the Resolvers screen. What you will need from here is the **Resolver ID**. Copy it.
+</Info>
+
+## Configure Nameserver
+
+<Info>
+Now, head over to the <Link href="https://login.tailscale.com/admin/dns">Tailscale Console -> DNS</Link> section, and scroll down to Global Nameservers.
+</Info>
+
+<Image src="https://files.readme.io/cf17eba-image.png" alt="Tailscale DNS Settings" />
+
+<Info>
+Choose "Control D" from the dropdown menu. You will see a popup box.
+</Info>
+
+<Image src="https://files.readme.io/3fc499d-image.png" alt="Control D Configuration" />
+
+<Info>
+Paste your **Resolver ID** into the box and press Save. Make sure **Override local DNS** is toggled on.
+</Info>
+
+<Info>
+You're done here.
+</Info>
+
+## Confirm it Works
+
+<Info>
+The Device you created earlier should have flipped to active state.
+</Info>
+
+<Image src="https://files.readme.io/a271ac0-image.png" alt="Active Device" />
+
+<Info>
+You can now head over to Analytics section to view the DNS logs.
+</Info>
+
+<Image src="https://files.readme.io/7909099-image.png" alt="Analytics View" />
+
+<Info>
+Keep in mind that each machine in your tailnet will appear as a distinct client in the Control D dashboard, and you can filter the query data by each machine.
+</Info>
+
+<Image src="https://files.readme.io/4d79c36-image.png" alt="Client Filtering" />
+
+__Updated 5 months ago
+
+<Divider />

@@ -1,0 +1,53 @@
+---
+title: "Tailscale Integration"
+description: "Using Control D with Tailscale is very easy, this guide will show you how."
+icon: "network"
+---
+
+You can use Control D as a [Global Nameserver](https://tailscale.com/kb/1403/control-d) in Tailscale, and take control of your DNS for your entire tailnet.
+
+# 
+
+Create an Endpoint
+
+Head over to the Control D web panel, and create an Endpoint. The type does not matter, but we recommend using "Other" type device from the Routers section. 
+
+![](https://files.readme.io/99d20f5-image.png)
+
+You will be presented with the Resolvers screen. What you will need from here is the **Resolver ID**. Copy it. 
+
+# 
+
+Configure Nameserver
+
+Now, head over to the [Tailscale Console -> DNS](https://login.tailscale.com/admin/dns) section, and scroll down to Global Nameservers.
+
+![](https://files.readme.io/cf17eba-image.png)
+
+Choose "Control D" from the dropdown menu. You will see a popup box.
+
+![](https://files.readme.io/3fc499d-image.png)
+
+Paste your **Resolver ID** into the box and press Save. Make sure **Override local DNS** is toggled on. 
+
+You're done here.
+
+# 
+
+Confirm it Works
+
+The Device you created earlier should have flipped to active state. 
+
+![](https://files.readme.io/a271ac0-image.png)
+
+You can now head over to Analytics section to view the DNS logs. 
+
+![](https://files.readme.io/7909099-image.png)
+
+Keep in mind that each machine in your tailnet will appear as a distinct client in the Control D dashboard, and you can filter the query data by each machine.
+
+![](https://files.readme.io/4d79c36-image.png)
+
+__Updated 5 months ago
+
+* * *

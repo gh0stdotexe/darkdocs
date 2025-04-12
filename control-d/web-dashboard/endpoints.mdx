@@ -1,0 +1,124 @@
+---
+title: "Endpoints (Devices)"
+description: "Manage and configure your Control D endpoints and devices"
+icon: "computer"
+---
+
+## Overview
+
+Endpoints in Control D represent devices or networks that use your DNS filtering service. Each endpoint can have its own configuration, profiles, and monitoring settings.
+
+## Features
+
+### Multiple Enforced Profiles
+- Apply multiple filtering profiles to a single endpoint
+- Set profile priorities
+- Configure profile schedules
+- Override specific rules
+
+### IP Management
+```yaml
+ip_settings:
+  auto_authorize: true
+  whitelist:
+    - "192.168.1.0/24"
+    - "10.0.0.0/8"
+  dynamic_ip: true
+```
+
+### Legacy Resolver
+- Support for older DNS protocols
+- Backward compatibility
+- Custom port configuration
+- Protocol-specific settings
+
+### Auto Authorize IP
+1. Enable automatic IP authorization
+2. Set trusted networks
+3. Configure authorization rules
+4. Monitor access logs
+
+### Dynamic DNS
+```yaml
+ddns:
+  enabled: true
+  hostname: "device.example.com"
+  update_interval: 300
+  provider: "controld"
+```
+
+### Expose IP via DNS
+- Query endpoint IP through DNS
+- Custom DNS record configuration
+- IP update propagation
+- Access control settings
+
+### Analytics
+- Query statistics
+- Traffic patterns
+- Blocked requests
+- Performance metrics
+
+### Status
+- Real-time endpoint status
+- Connection health
+- Profile activation
+- Update status
+
+### Prevent Deactivation
+```yaml
+security:
+  prevent_deactivation: true
+  require_auth: true
+  notify_admin: true
+```
+
+### Device Clients
+- Monitor connected clients
+- Client-specific rules
+- Usage statistics
+- Access control
+
+## Organization Features
+
+### Restricted Resolver
+- Limit endpoint access
+- IP-based restrictions
+- Profile enforcement
+- Audit logging
+
+### Add Multiple Devices
+```yaml
+bulk_add:
+  prefix: "office-"
+  count: 10
+  profile: "default"
+  auto_authorize: true
+```
+
+## Best Practices
+
+1. **Security**
+   - Enable auto-authorization only for trusted networks
+   - Regularly review connected devices
+   - Monitor unauthorized access attempts
+   - Keep endpoint configurations updated
+
+2. **Management**
+   - Use descriptive device names
+   - Group similar devices
+   - Document custom configurations
+   - Regular backup of device settings
+
+3. **Monitoring**
+   - Set up alerts for device status
+   - Review analytics regularly
+   - Track profile changes
+   - Monitor client activity
+
+<Warning>
+Always verify endpoint configurations before deployment to prevent accidental exposure or misconfiguration.
+</Warning>
+
+<Tip>
+Use device tags and groups to manage multiple endpoints efficiently and apply bulk configurations. 

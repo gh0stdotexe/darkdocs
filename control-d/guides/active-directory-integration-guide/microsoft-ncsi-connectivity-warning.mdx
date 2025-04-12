@@ -1,0 +1,67 @@
+---
+title: "Microsoft NCSI / Connectivity Warning"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Windows will sometimes claim that there is no Internet connectivity. Do not believe its lies.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/microsoft-ncsi-connectivity-warning)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;no-internet-access&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-no-internet-access&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>&quot;No Internet Access&quot;</div><Link aria-label=&quot;Skip link to &quot;No Internet Access&quot;&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#no-internet-access&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Microsoft NCSI / Connectivity Warning
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Windows will sometimes claim that there is no Internet connectivity. Do not believe its lies.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/microsoft-ncsi-connectivity-warning)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;no-internet-access&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-no-internet-access&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>&quot;No Internet Access&quot;</div><Link aria-label=&quot;Skip link to &quot;No Internet Access&quot;&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#no-internet-access&quot;></Link>
+
+<p>If you&#x27;re in an Active Directory environment and installed the <Link href=&quot;/docs/ctrld&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;ctrld&quot;>Command Line Daemon</Link> manually or using the <Link href=&quot;/docs/provisioning&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;provisioning&quot;>Org: Mass Provisioning</Link> flows, and you&#x27;re unlucky, you see Windows claim that there is no Internet access after you reboot the machine, despite there being Internet access. Thanks Microsoft! </p>
+<span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/c3702c7-windows_lies.png&quot; title=&quot;&quot; align=&quot;center&quot; class=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; width=&quot;auto&quot;/></span></span>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;solutions&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-solutions&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Solutions</div><Link aria-label=&quot;Skip link to Solutions&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#solutions&quot;></Link>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;delegate-to-domain-controller&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-delegate-to-domain-controller&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Delegate to Domain Controller</div><Link aria-label=&quot;Skip link to Delegate to Domain Controller&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#delegate-to-domain-controller&quot;></Link>
+
+<p>Use the <Link href=&quot;/docs/active-directory-integration-guide#2-split-horizon-dns&quot; target=&quot;&quot; title=&quot;&quot;>Split Horizon DNS</Link> method you used for making your local domains work, and add the following rules to the **Control D Bypass** folder:</p>
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`*.msftncsi.com` -> BYPASS
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`*.msftconnecttest.com` -> BYPASS
+
+<p>Then reboot the machine and your issue is *likely* to be resolved. If not, use the 2nd method. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;global-dns&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-global-dns&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Global DNS</div><Link aria-label=&quot;Skip link to Global DNS&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#global-dns&quot;></Link>
+
+<p>Open **admin cmd** and execute the following command:</p>
+<div class=&quot;CodeTabs CodeTabs_initial theme-light&quot;><div class=&quot;CodeTabs-toolbar&quot; role=&quot;tablist&quot;><button aria-selected=&quot;true&quot; class=&quot;CodeTabs_active&quot; role=&quot;tab&quot; type=&quot;button&quot;>cmd</button></div><div class=&quot;CodeTabs-inner&quot; role=&quot;tabpanel&quot;><pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang-Text theme-light&quot; data-lang=&quot;Text&quot; name=&quot;cmd&quot; tabindex=&quot;0&quot;>reg add &quot;HKEY_LOCAL_MACHINE\SOFTWARE\POLICIES\MICROSOFT\Windows\NetworkConnectivityStatusIndicator&quot; /v UseGlobalDNS /t REG_DWORD /d 1 /f
+</code></pre></div></div>
+<p>This command configures Windows to use global DNS servers for its internet connectivity checks, which should help avoid the issue, if you encounter it. After running the command reboot the machine to validate the fix.</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;group-policy&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-group-policy&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Group Policy</div><Link aria-label=&quot;Skip link to Group Policy&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#group-policy&quot;></Link>
+
+<p>Alternatively, you can do this using Group Policy. Head over to <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`Computer Configuration > Administrative Templates > Network > Network Connectivity Status Indicator`, enable the &quot;Specify Global DNS&quot; option and run <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`gpupdate /force`. Then reboot the target machine.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="no-internet-access"></div><div class="heading-text"><div id="section-no-internet-access" class="heading-anchor_backwardsCompatibility"></div>"No Internet Access"</div>[](#no-internet-access)
+
+<p>If you're in an Active Directory environment and installed the [Command Line Daemon](/docs/ctrld) manually or using the [Org: Mass Provisioning](/docs/provisioning) flows, and you're unlucky, you see Windows claim that there is no Internet access after you reboot the machine, despite there being Internet access. Thanks Microsoft! </p>
+<span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/c3702c7-windows_lies.png" title="" align="center" class="" caption="" height="auto" width="auto"></span></span>
+# <div class="heading-anchor anchor waypoint" id="solutions"></div><div class="heading-text"><div id="section-solutions" class="heading-anchor_backwardsCompatibility"></div>Solutions</div>[](#solutions)
+
+## <div class="heading-anchor anchor waypoint" id="delegate-to-domain-controller"></div><div class="heading-text"><div id="section-delegate-to-domain-controller" class="heading-anchor_backwardsCompatibility"></div>Delegate to Domain Controller</div>[](#delegate-to-domain-controller)
+
+<p>Use the [Split Horizon DNS](/docs/active-directory-integration-guide#2-split-horizon-dns) method you used for making your local domains work, and add the following rules to the **Control D Bypass** folder:</p>
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">*.msftncsi.com</span>` -> BYPASS
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">*.msftconnecttest.com</span>` -> BYPASS
+
+<p>Then reboot the machine and your issue is *likely* to be resolved. If not, use the 2nd method. </p>
+## <div class="heading-anchor anchor waypoint" id="global-dns"></div><div class="heading-text"><div id="section-global-dns" class="heading-anchor_backwardsCompatibility"></div>Global DNS</div>[](#global-dns)
+
+<p>Open **admin cmd** and execute the following command:</p>
+<div class="CodeTabs CodeTabs_initial theme-light"><div class="CodeTabs-toolbar" role="tablist"><button aria-selected="true" class="CodeTabs_active" role="tab" type="button">cmd</button></div><div class="CodeTabs-inner" role="tabpanel"><pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang-Text theme-light" data-lang="Text" name="cmd" tabindex="0"><div class="cm-s-neo" data-testid="SyntaxHighlighter">reg add "HKEY_LOCAL_MACHINE\SOFTWARE\POLICIES\MICROSOFT\Windows\NetworkConnectivityStatusIndicator" /v UseGlobalDNS /t REG_DWORD /d 1 /f
+</div></code></pre></div></div>
+<p>This command configures Windows to use global DNS servers for its internet connectivity checks, which should help avoid the issue, if you encounter it. After running the command reboot the machine to validate the fix.</p>
+### <div class="heading-anchor anchor waypoint" id="group-policy"></div><div class="heading-text"><div id="section-group-policy" class="heading-anchor_backwardsCompatibility"></div>Group Policy</div>[](#group-policy)
+
+<p>Alternatively, you can do this using Group Policy. Head over to <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">Computer Configuration > Administrative Templates > Network > Network Connectivity Status Indicator</span>`, enable the "Specify Global DNS" option and run <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">gpupdate /force</span>`. Then reboot the target machine.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->10 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Active Directory Integration Guide</div>](/docs/active-directory-integration-guide)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Log Streaming and Exporting</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/siem-integration)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+["No Internet Access"](#no-internet-access)
+
+- 
+[Solutions](#solutions)
+<ul>
+<li>[Delegate to Domain Controller](#delegate-to-domain-controller)
+
+- [Global DNS](#global-dns)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

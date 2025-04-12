@@ -1,0 +1,124 @@
+---
+title: "Custom Rules"
+description: "Create and manage custom DNS filtering rules"
+icon: "code"
+---
+
+## Overview
+
+Custom Rules provide granular control over domain-level filtering and traffic management. These rules take precedence over Filters and Services.
+
+## Features
+
+### Folders
+- Group related rules together
+- Organize by purpose or category
+- Share folders across profiles
+- Bulk rule management
+
+### Geo Custom Rules
+```yaml
+geo_rule:
+  domain: "*.example.com"
+  action: "redirect"
+  country: "US"
+  redirect_ip: "203.0.113.1"
+```
+
+### Magic Folders
+- Automatic rule categorization
+- Smart rule suggestions
+- Pattern-based grouping
+- Dynamic updates
+
+## Rule Types
+
+### Domain Rules
+```yaml
+domain_rule:
+  pattern: "example.com"
+  action: "block"
+  description: "Block specific domain"
+```
+
+### Wildcard Rules
+```yaml
+wildcard_rule:
+  pattern: "*.example.com"
+  action: "allow"
+  description: "Allow all subdomains"
+```
+
+### Regex Rules
+```yaml
+regex_rule:
+  pattern: "^(api|dev)\..*\.example\.com$"
+  action: "redirect"
+  redirect: "localhost"
+```
+
+## Actions
+
+### Available Actions
+1. Block - Prevent access
+2. Allow - Explicitly permit
+3. Redirect - Send to different IP/domain
+4. Monitor - Log access without blocking
+
+### Action Configuration
+```yaml
+rule_action:
+  type: "redirect"
+  target: "safe.example.com"
+  response_code: 301
+  preserve_path: true
+```
+
+## Organization
+
+### Rule Structure
+- Priority ordering
+- Inheritance
+- Override settings
+- Conflict resolution
+
+### Folder Management
+```yaml
+folder:
+  name: "Development"
+  description: "Rules for dev environments"
+  shared: true
+  rules:
+    - pattern: "*.dev.local"
+      action: "allow"
+    - pattern: "*.staging.example.com"
+      action: "redirect"
+```
+
+## Best Practices
+
+### Rule Creation
+1. Use specific patterns
+2. Document rule purpose
+3. Test before deployment
+4. Review periodically
+
+### Maintenance
+- Regular audits
+- Remove unused rules
+- Update documentation
+- Monitor effectiveness
+
+### Organization
+- Use descriptive names
+- Group related rules
+- Maintain hierarchy
+- Document exceptions
+
+<Warning>
+Custom Rules take precedence over other filtering methods. Be careful when creating rules that might override important security filters.
+</Warning>
+
+<Tip>
+Use Magic Folders to automatically organize and maintain your custom rules based on common patterns and usage.
+</Tip> 

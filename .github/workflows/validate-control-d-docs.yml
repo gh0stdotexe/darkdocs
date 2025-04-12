@@ -1,0 +1,40 @@
+name: Validate Control D Documentation
+
+on:
+  pull_request:
+    branches: [ main, master ]
+    paths:
+      - 'control-d/**'
+      - '.github/workflows/validate-control-d-docs.yml'
+      - 'scripts/validate-docs.js'
+  push:
+    branches: [ main, master ]
+    paths:
+      - 'control-d/**'
+      - '.github/workflows/validate-control-d-docs.yml'
+      - 'scripts/validate-docs.js'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install dependencies
+        run: npm install axios
+        
+      - name: Validate Documentation Completeness
+        run: node scripts/validate-docs.js
+        
+      - name: Check for Documentation Updates
+        if: failure()
+        run: |
+          echo "Documentation validation failed!"
+          echo "Please ensure all Control D documentation is up to date and matches their official index."
+          echo "Missing or outdated documents will be listed above."
+          exit 1 

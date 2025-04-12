@@ -1,0 +1,106 @@
+---
+title: "Magic Folders"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Some folders are special and can unlock advanced behaviors.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/magic-folders)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-are-magic-folders&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-are-magic-folders&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What are Magic Folders</div><Link aria-label=&quot;Skip link to What are Magic Folders&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-are-magic-folders&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Magic Folders
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Some folders are special and can unlock advanced behaviors.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/magic-folders)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-are-magic-folders&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-are-magic-folders&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What are Magic Folders</div><Link aria-label=&quot;Skip link to What are Magic Folders&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-are-magic-folders&quot;></Link>
+
+<p>There are special folders that you can create that allow you to enforce advanced behaviors. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;control-d-bypass&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-control-d-bypass&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Control D Bypass</div><Link aria-label=&quot;Skip link to Control D Bypass&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#control-d-bypass&quot;></Link>
+
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/1cba0e7316f523d2f337e108ba01dbd4c2edc4f13d29ad5ec493025c0056853f-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>This Magic Folder allows you to split route DNS queries from ever reaching the Control D. Instead, these would be handled by the default DNS server on your network (domain controller, captive portal, etc). In order to do this, create a folder with this exact name in a Profile enforced by your roaming devices: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`Control D Bypass`. </p>
+<p>Any **enabled** BYPASS rule that you put into this folder will get excluded from using your Control D DNS resolver. Rules can be exact hostnames (<button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`wifi.airline.com`), or wildcards (<button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`*.airline.com`).</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;why-use-this&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-why-use-this&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Why Use This</div><Link aria-label=&quot;Skip link to Why Use This&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#why-use-this&quot;></Link>
+
+<p>This is handy in several scenarios, which include but not limited to:</p>
+
+- Split route local domains and delegate resolution to an <Link href=&quot;/docs/active-directory-integration-guide&quot; target=&quot;&quot; title=&quot;&quot;>AD domain controller</Link> (or any other local DNS server)
+
+- Bypass captive portals 
+
+> ## <span class=&quot;callout-icon&quot;>📘</span><p>Common Captive Portals</p>
+
+<p>We&#x27;re already excluding common captive portals for major airlines and those that were reported to us by users. There is a good chance you don&#x27;t need to worry about this. However if you encounter a captive portal that indeed does not work, then read on!</p><p>**NEW: If you&#x27;re using <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` v1.3.10 or newer, you no longer have to manually bypass captive portals, as this happens automatically (in most cases). **</p>
+
+<p>These rules are not instantly applied, since a configuration has to be re-fetched from Control D in order to be enforced locally on the relevant physical devices. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;gui-app-or-ctrld-daemon&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-gui-app-or-ctrld-daemon&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>GUI app or ctrld daemon</div><Link aria-label=&quot;Skip link to GUI app or ctrld daemon&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#gui-app-or-ctrld-daemon&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>FYI</p>
+
+<p>This works only if you&#x27;re using <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` in default mode, using the 1 liner installer. If you&#x27;re using a custom config, you have to edit it manually.</p>
+
+<p>If you use our apps (GUI or CLI), in order for newly added bypass rules to be enforced, local settings must be reloaded. This can be done one of 3 ways:</p>
+
+- **Visit the <Link href=&quot;https://controld.com/status&quot; target=&quot;&quot; title=&quot;&quot;>Status</Link> page** - changes will be instantly applied 
+
+- **Wait up to 1 hour** - changes are re-fetched from API every hour automatically
+
+- **Run command** - fetch + reload the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` config file using the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld reload` command 
+
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;apple-dns-profile&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-apple-dns-profile&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Apple DNS Profile</div><Link aria-label=&quot;Skip link to Apple DNS Profile&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#apple-dns-profile&quot;></Link>
+
+<p>These cannot be updated, as rules are baked in into the DNS profile (.mobileconfig) itself. You will have to re-download and re-install the DNS profile. Sorry about that.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;do-not-log&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-do-not-log&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Do Not Log</div><Link aria-label=&quot;Skip link to Do Not Log&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#do-not-log&quot;></Link>
+
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/1fb1ed7953ed2ccb2e02353a4a5953fb33701c0f1368ec94cdbdb98744badb76-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>This magic folder allows you to exclude domains from being logged into Analytics. Create a folder with this exact name in a Profile enforced by relevant Endpoints: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`Do Not Log`. Any custom rule you put into this folder will be acted upon, but will not be logged into Analytics. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;why-use-this-1&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-why-use-this&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Why Use This</div><Link aria-label=&quot;Skip link to Why Use This&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#why-use-this-1&quot;></Link>
+
+<p>This is handy if you see a &quot;spammy&quot; domain polluting your Analytics, or want to mask the activity for that one special domain that you access a lot. Whatever that domain is... 😉</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="what-are-magic-folders"></div><div class="heading-text"><div id="section-what-are-magic-folders" class="heading-anchor_backwardsCompatibility"></div>What are Magic Folders</div>[](#what-are-magic-folders)
+
+<p>There are special folders that you can create that allow you to enforce advanced behaviors. </p>
+## <div class="heading-anchor anchor waypoint" id="control-d-bypass"></div><div class="heading-text"><div id="section-control-d-bypass" class="heading-anchor_backwardsCompatibility"></div>Control D Bypass</div>[](#control-d-bypass)
+
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/1cba0e7316f523d2f337e108ba01dbd4c2edc4f13d29ad5ec493025c0056853f-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>This Magic Folder allows you to split route DNS queries from ever reaching the Control D. Instead, these would be handled by the default DNS server on your network (domain controller, captive portal, etc). In order to do this, create a folder with this exact name in a Profile enforced by your roaming devices: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">Control D Bypass</span>`. </p>
+<p>Any **enabled** BYPASS rule that you put into this folder will get excluded from using your Control D DNS resolver. Rules can be exact hostnames (<button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">wifi.airline.com</span>`), or wildcards (<button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">*.airline.com</span>`).</p>
+### <div class="heading-anchor anchor waypoint" id="why-use-this"></div><div class="heading-text"><div id="section-why-use-this" class="heading-anchor_backwardsCompatibility"></div>Why Use This</div>[](#why-use-this)
+
+<p>This is handy in several scenarios, which include but not limited to:</p>
+
+- Split route local domains and delegate resolution to an [AD domain controller](/docs/active-directory-integration-guide) (or any other local DNS server)
+
+- Bypass captive portals 
+
+> ## <span class="callout-icon">📘</span><p>Common Captive Portals</p>
+
+<p>We're already excluding common captive portals for major airlines and those that were reported to us by users. There is a good chance you don't need to worry about this. However if you encounter a captive portal that indeed does not work, then read on!</p><p>**NEW: If you're using <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` v1.3.10 or newer, you no longer have to manually bypass captive portals, as this happens automatically (in most cases). **</p>
+
+<p>These rules are not instantly applied, since a configuration has to be re-fetched from Control D in order to be enforced locally on the relevant physical devices. </p>
+### <div class="heading-anchor anchor waypoint" id="gui-app-or-ctrld-daemon"></div><div class="heading-text"><div id="section-gui-app-or-ctrld-daemon" class="heading-anchor_backwardsCompatibility"></div>GUI app or ctrld daemon</div>[](#gui-app-or-ctrld-daemon)
+
+> ## <span class="callout-icon">🚧</span><p>FYI</p>
+
+<p>This works only if you're using <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` in default mode, using the 1 liner installer. If you're using a custom config, you have to edit it manually.</p>
+
+<p>If you use our apps (GUI or CLI), in order for newly added bypass rules to be enforced, local settings must be reloaded. This can be done one of 3 ways:</p>
+
+- **Visit the [Status](https://controld.com/status) page** - changes will be instantly applied 
+
+- **Wait up to 1 hour** - changes are re-fetched from API every hour automatically
+
+- **Run command** - fetch + reload the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` config file using the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld reload</span>` command 
+
+### <div class="heading-anchor anchor waypoint" id="apple-dns-profile"></div><div class="heading-text"><div id="section-apple-dns-profile" class="heading-anchor_backwardsCompatibility"></div>Apple DNS Profile</div>[](#apple-dns-profile)
+
+<p>These cannot be updated, as rules are baked in into the DNS profile (.mobileconfig) itself. You will have to re-download and re-install the DNS profile. Sorry about that.</p>
+## <div class="heading-anchor anchor waypoint" id="do-not-log"></div><div class="heading-text"><div id="section-do-not-log" class="heading-anchor_backwardsCompatibility"></div>Do Not Log</div>[](#do-not-log)
+
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/1fb1ed7953ed2ccb2e02353a4a5953fb33701c0f1368ec94cdbdb98744badb76-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>This magic folder allows you to exclude domains from being logged into Analytics. Create a folder with this exact name in a Profile enforced by relevant Endpoints: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">Do Not Log</span>`. Any custom rule you put into this folder will be acted upon, but will not be logged into Analytics. </p>
+### <div class="heading-anchor anchor waypoint" id="why-use-this-1"></div><div class="heading-text"><div id="section-why-use-this" class="heading-anchor_backwardsCompatibility"></div>Why Use This</div>[](#why-use-this-1)
+
+<p>This is handy if you see a "spammy" domain polluting your Analytics, or want to mask the activity for that one special domain that you access a lot. Whatever that domain is... 😉</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->4 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Geo Custom Rules</div>](/docs/geo-custom-rules)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Default Rule</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/default-rule)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[What are Magic Folders](#what-are-magic-folders)
+<ul>
+<li>[Control D Bypass](#control-d-bypass)
+
+- [Do Not Log](#do-not-log)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

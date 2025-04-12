@@ -1,0 +1,77 @@
+---
+title: "IP not authorized"
+description: "When using Legacy DNS, client's IP address must be known to Control D."
+icon: "network"
+---
+
+If you're using IPv4 Legacy DNS (UDP 53), Control D must keep track of the client's IP address in order to enforce the Profile (configuration). If the IP suddenly changes (moved to a new network, or ISP changed the dynamic IP), the Device will no longer enforce your selected Profile. 
+
+> ## 📘
+> 
+> Legacy IPv6 and Secure DNS
+> 
+> Legacy DNS over IPv6 and Secure DNS protocols are immune to this limitation, and are the preferred method of using Control D.
+
+# 
+
+Symptom
+
+If this issue occurs, your rules will stop being applied. Anything you had blocked or redirected will resolve normally, as if you're using a standard DNS resolver. You will start seeing ads again (if you had them blocked), and redirected services will load using your true IP. 
+
+A definitive check for this would be visiting the [Status Page](/docs/status-page). It will tell you if you're using Control D or not, and what the Resolver (Device) is. If Resolver = N/A, then you have this problem. 
+
+## 
+
+Non-Browser Devices
+
+If you've configured Control D on a device that does not have a browser (Android TV box, or similar), please make sure that whatever IP your physical device uses appears on the [IP Management](/docs/ip-management) page. Only IPs that show up here will be able to communicate with Control D and enforce your rules. 
+
+# 
+
+Solution
+
+There are several ways this issue can be resolved, or prevented in the first place. 
+
+## 
+
+Add IP Manually
+
+![](https://files.readme.io/f6b3c84254f75ce9e7c2a528da6bea78d3516b68092021989f7da5cd5be76ea6-image.png)
+
+The source IP of the client must be [manually added](https://controld.com/dashboard/ips) to a Device by the owner of the Control D account (that's you). As soon as this is done, the Device will be able to enforce your Profile, until the IP changes again. 
+
+## 
+
+Use API
+
+Same as the above method, except using the API, which can be scripted. See the [Learn New IP](/reference/post_access) method. 
+
+## 
+
+Heartbeat Browser
+
+If you deployed legacy DNS on Windows 10 (all other OSes should be using Secure DNS protocols), or a router that uses Legacy DNS (UDP 53) and did not use the [ctrld utility](https://github.com/Control-D-Inc/ctrld), you can still prevent this issue from occurring by configuring Secure DNS directly in the [browser](/docs/browsers-platform) that is used on daily basis. All modern browsers (except Safari) support DNS-over-HTTPS natively. 
+
+One can follow the setup tutorial for the specific browser during the self-onboarding, or simply open browser settings, and search for "DNS". Open the relevant option, and paste the DNS-over-HTTPS resolver into the box. Be sure to use the same Control D Device as you used on your physical device. 
+
+This will configure DOH directly in the browser, and as a bonus, will automatically authorize the source IP if it ever changes, simply by the virtue of it making DNS queries. 
+
+Learn more about [Update IP via Heartbeat Device](/docs/update-ip-via-heartbeat-device). 
+
+## 
+
+Dynamic DNS
+
+If the above (preferred) option doesn't work for you, there is an alternative you can use: [Dynamic DNS](/docs/dynamic-dns).
+
+Setup any Dynamic DNS client on the machine, take the DDNS hostname you selected for it, and input into the Device Settings in the web panel. You will find the appropriately named "Dynamic DNS" Setting there, where you can paste your hostname. Control D will authorize any IP that appears in this DNS record, on the Device. This will allow Legacy DNS to function as expected (and enforce your Profile).
+
+## 
+
+ctrld Utility
+
+You can install the [ctrld utility](/docs/ctrld) on any device (including most routers) and benefit from Secure DNS protocols which are not subject to this limitation. This option is highly recommended.
+
+__Updated about 2 months ago
+
+* * *

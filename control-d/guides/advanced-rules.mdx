@@ -1,0 +1,76 @@
+---
+title: "Advanced rules creation guide"
+description: "Control D can be configured in a variety of different ways to allow for complex behaviors"
+icon: "network"
+---
+
+# 
+
+Matching Order
+
+When a DNS query arrives on a [Device's](/docs/devices) resolver, it's subject to a Profile(s) enforced on that Device. Within the context of a single [Profile](/docs/profiles), the matching behaves as follows:
+
+  1. [Custom Rules](/docs/custom-rules) are matched first. If there is no Custom Rule (Block, Bypass, or Redirect) that matches the DNS query, we proceed to the next scope. 
+  2. [Service Rules](/docs/services) are matched second. If there is no matching rule within this context, we proceed further. 
+  3. [Filters](/docs/filters) are matched third. Unlike the first 2 scopes, these can only block things. If no Filter matched the DNS query, we proceed to the 4th and final scope.
+  4. [Default Rule](/docs/default-rule) matches everything that wasn't affected by any of the 3 previous scopes. This will either resolve a domain to its true IP (BYPASS), spoof to a location (REDIRECT) or block the query entirely (BLOCK). 
+
+If you happen to use [Multiple Enforced Profiles](/docs/multiple-enforced-profiles) feature, your 2nd Enforced profile would then follow the same logic as above, however the Default Rule in the first Profile **must** be set to BYPASS. If it's set to REDIRECT or BLOCK, the 2nd Profile will be ignored. 
+
+# 
+
+Common Examples
+
+Once you wrap your head around the above, you can create highly customizable behaviors. For example. 
+
+## 
+
+Redirect Everything Except...
+
+Your Default Rule is set to REDIRECT mode, which will spoof all domains you resolve to Control D IPs and mask your source IP from websites you visit. This may not be desirable for everything, and you may want to access certain websites and services (like your bank, or a game) using your true source IP. 
+
+### 
+
+Bypass Rule
+
+Since **Custom Rules** and **Service Rules** are always consulted before **Default Rule** , you can create an overriding record that will be matched first. Simply choose your desired Service from the Services section, and create a BYPASS rule for it. Alternatively, you can do the same for any domain name in the Custom Rules section. 
+
+Now, your chosen services and domain names will always resolve to their true IPs, same as any other DNS resolver, while all other traffic is going to be redirected. 
+
+## 
+
+Override Services
+
+Control D supports over 800 different web services and apps in the Services section. These are essentially collections of domains that we painstakingly curated for your convenience. Toggling a single switch that assigns is a rule type, does so for dozens (and sometimes hundreds) of different domains which could be used to deliver a single service. Some of these services may require certain tracking domains to be loaded, otherwise the service may not work in all scenarios. Since Service Rules are matched before Filters, they will supersede them and allow for trackers to load. If this is not desirable, you can create a Custom Rule to re-block the desired tracking domain. As Custom Rules are matched first, these will supersede Service Rules. 
+
+## 
+
+Alter Rule Matching Order
+
+> ## ❗️
+> 
+> Deprecated
+> 
+> This work-around is no longer possible, as multiple Profiles are now enforced at the same time, instead of sequentially like before. 
+> 
+> We plan to add a configurable option in the future, where you can define the exact matching order inside each Profile, allowing you to override this behavior.
+
+If you recall, the default matching order is: Custom Rules -> Service Rules -> _Filters_ -> Default Rule. What if you wanted to enforce these scopes in a different order, say.... _Filters_ -> Custom Rules -> Service Rules -> Default Rule. One way to achieve that is to leverage [Multiple Enforced Profiles](/docs/multiple-enforced-profiles) feature. 
+
+### 
+
+Profile 1
+
+Enable all the Filters you wish to enforce, and don't create any Service or Custom Rules inside this profile. Default Rule should be set to BYPASS. 
+
+### 
+
+Profile 2
+
+In your 2nd Enforced Profile, create your Service and Custom Rules, and don't enable any Filters here (since they exist in your first profile). 
+
+Now when a query arrives, it's matched against your first profile first, since here are no Service or Custom Rules, there is nothing else to do except try to match the Filters. If there is a match, the query is blocked. If there is no match, then the 2nd profile will be consulted.
+
+__Updated 10 months ago
+
+* * *

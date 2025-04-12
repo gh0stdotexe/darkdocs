@@ -1,0 +1,120 @@
+---
+title: "Captive Portals"
+description: "How to handle captive portals with Control D"
+icon: "wifi"
+---
+
+# Captive Portals
+
+<Note>
+Captive portals are common in public WiFi networks and can sometimes interfere with Control D. Follow these steps to handle them properly.
+</Note>
+
+## 1. Understanding Captive Portals
+
+<Info>
+A captive portal is a web page that requires authentication before granting access to the internet. They are commonly found in:
+- Hotels
+- Airports
+- Coffee shops
+- Public WiFi networks
+</Info>
+
+## 2. Initial Connection
+
+<Steps>
+  <Step>Connect to the WiFi network</Step>
+  <Step>Wait for the captive portal page to appear</Step>
+  <Step>Complete the authentication process</Step>
+  <Step>Verify internet access</Step>
+</Steps>
+
+## 3. Using Control D
+
+<Warning>
+Some captive portals may not work properly with Control D enabled. You may need to temporarily disable it.
+</Warning>
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step>Open Control Panel</Step>
+      <Step>Go to Network and Internet > Network and Sharing Center</Step>
+      <Step>Click on your active connection</Step>
+      <Step>Click Properties</Step>
+      <Step>Select Internet Protocol Version 4 (TCP/IPv4)</Step>
+      <Step>Click Properties</Step>
+      <Step>Select "Obtain DNS server address automatically"</Step>
+      <Step>Click OK to save changes</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <Steps>
+      <Step>Open System Preferences</Step>
+      <Step>Go to Network</Step>
+      <Step>Select your active connection</Step>
+      <Step>Click Advanced</Step>
+      <Step>Go to DNS tab</Step>
+      <Step>Set DNS servers to automatic</Step>
+      <Step>Click OK to save changes</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Linux">
+    <Steps>
+      <Step>Open Network Settings</Step>
+      <Step>Select your active connection</Step>
+      <Step>Go to IPv4 settings</Step>
+      <Step>Set DNS to automatic</Step>
+      <Step>Save changes</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 4. Re-enabling Control D
+
+<Steps>
+  <Step>After successfully connecting to the captive portal</Step>
+  <Step>Re-enable Control D using your preferred method</Step>
+  <Step>Verify that Control D is working correctly</Step>
+</Steps>
+
+## 5. Troubleshooting
+
+<Accordion title="Common Issues">
+  <Steps>
+    <Step>
+      If the captive portal doesn't appear:
+      - Try opening a browser
+      - Visit a non-HTTPS website
+      - Clear your browser cache
+    </Step>
+    <Step>
+      If authentication fails:
+      - Check your credentials
+      - Try a different browser
+      - Restart your device
+    </Step>
+    <Step>
+      If Control D doesn't work after re-enabling:
+      - Check DNS settings
+      - Restart Control D service
+      - Verify network connectivity
+    </Step>
+  </Steps>
+</Accordion>
+
+## 6. Best Practices
+
+<Info>
+To avoid issues with captive portals:
+- Always connect to the network first
+- Complete authentication before enabling Control D
+- Keep a backup DNS configuration ready
+- Test connectivity after making changes
+</Info>
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) for assistance with captive portals.
+</Card> 

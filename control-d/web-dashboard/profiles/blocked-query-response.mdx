@@ -1,0 +1,153 @@
+---
+title: "Blocked Query Response (Custom Block Pages)"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Customize how Control D responds to blocked queries.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/blocked-query-response)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-is-this&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-is-this&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What is this?</div><Link aria-label=&quot;Skip link to What is this?&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-is-this&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Blocked Query Response (Custom Block Pages)
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Customize how Control D responds to blocked queries.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/blocked-query-response)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-is-this&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-is-this&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What is this?</div><Link aria-label=&quot;Skip link to What is this?&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-is-this&quot;></Link>
+
+<p>When Control D blocks a domain via a Filter, Service, or Custom Rule, by default it returns the following DNS records:</p>
+
+- A: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`0.0.0.0`
+
+- AAAA: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`::`
+
+<p>This feature allows you to change this behavior and return a different response.</p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;how-to-use-it&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-how-to-use-it&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>How to Use it</div><Link aria-label=&quot;Skip link to How to Use it&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#how-to-use-it&quot;></Link>
+
+<p>Edit your desired Profile and go to **Profile Options**. </p>
+<span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/a4b62ac-Screenshot_2023-10-31_132447.png&quot; title=&quot;&quot; align=&quot;center&quot; class=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; width=&quot;auto&quot;/></span></span>
+<p>Toggle this feature ON and choose the desired response type. There are several to choose from:</p>
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`0.0.0.0 / ::` (Default)
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`NXDOMAIN` - return this RCODE
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`REFUSED` - return this RCODE
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`Custom` - choose your own IPs to respond with or use custom block page
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`Branded` - Use a branded and customizable block page
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;custom-block-page&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-custom-block-page&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Custom Block Page</div><Link aria-label=&quot;Skip link to Custom Block Page&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#custom-block-page&quot;></Link>
+
+<p>Here you can input your own IPv4 and IPv6 addresses. When a website is blocked, Control D will spoof to IP addresses you have chosen here. This can be used with a self-hosted block page + your own Root Certificate. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/ac48a5f-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;branded-block-page&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-branded-block-page&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Branded Block Page</div><Link aria-label=&quot;Skip link to Branded Block Page&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#branded-block-page&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>❗️</span><p>Root Certificate Installation Required</p>
+
+<p>In order for this to work with HTTPS websites, <Link href=&quot;/docs/root-certificate-installation&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;root-certificate-installation&quot;>Root Certificate Installation</Link> is required. Check the linked document to learn more.</p>
+
+<p>This option allows you to use a Control D hosted block page, which you can optionally customize with:</p>
+
+- Your own logo
+
+- Custom block Title
+
+- Custom block message
+
+- External Link Title
+
+- External Link URL
+
+<p>By default, with no custom settings, a branded page will look like this. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/d4d3324-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Now, you can customize it using the 5 fields.</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/2cafc28-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>When a website is blocked, it will look something like this. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/e729e22-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;unblock-request-button&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-unblock-request-button&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Unblock Request Button</div><Link aria-label=&quot;Skip link to Unblock Request Button&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#unblock-request-button&quot;></Link>
+
+<p>If you omit the &quot;External Link Title&quot; and &quot;External Link URL&quot; fields, a default reporting button will be added to the block page. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/068ccac75bccd6d88507970d37ac66ffdff42443c2f739bb3c78648ffba80820-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Clicking this button will reveal a small form where the end user can request for this page to be unblocked. Account owner or admin will receive this request via email, and an action can be performed. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;hostname-variable&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-hostname-variable&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Hostname Variable</div><Link aria-label=&quot;Skip link to Hostname Variable&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#hostname-variable&quot;></Link>
+
+<p>In the **External Link URL** you can use a variable <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`{domain}` which will template your link with the website FQDN that was blocked. For example, if you use: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`https://reporting-url-example.com?hostname={domain}` and access pornhub.com, and it&#x27;s blocked, the link will become <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`https://reporting-url-example.com?hostname=pornhub.com`</p>
+<br/>
+> ## <span class=&quot;callout-icon&quot;>🍎</span><p>If the physical device in use is an Apple platform, the Shortcuts url scheme can be used as the link on the branded block page.</p>
+
+<p>Using this neat trick, a shortcut can be built to send pertinent information to the “family IT admin” along with something like &quot;I need something unblocked,&quot; all in the background.</p>
+" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="what-is-this"></div><div class="heading-text"><div id="section-what-is-this" class="heading-anchor_backwardsCompatibility"></div>What is this?</div>[](#what-is-this)
+
+<p>When Control D blocks a domain via a Filter, Service, or Custom Rule, by default it returns the following DNS records:</p>
+
+- A: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">0.0.0.0</span>`
+
+- AAAA: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">::</span>`
+
+<p>This feature allows you to change this behavior and return a different response.</p>
+# <div class="heading-anchor anchor waypoint" id="how-to-use-it"></div><div class="heading-text"><div id="section-how-to-use-it" class="heading-anchor_backwardsCompatibility"></div>How to Use it</div>[](#how-to-use-it)
+
+<p>Edit your desired Profile and go to **Profile Options**. </p>
+<span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/a4b62ac-Screenshot_2023-10-31_132447.png" title="" align="center" class="" caption="" height="auto" width="auto"></span></span>
+<p>Toggle this feature ON and choose the desired response type. There are several to choose from:</p>
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">0.0.0.0 / ::</span>` (Default)
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">NXDOMAIN</span>` - return this RCODE
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">REFUSED</span>` - return this RCODE
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">Custom</span>` - choose your own IPs to respond with or use custom block page
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">Branded</span>` - Use a branded and customizable block page
+
+## <div class="heading-anchor anchor waypoint" id="custom-block-page"></div><div class="heading-text"><div id="section-custom-block-page" class="heading-anchor_backwardsCompatibility"></div>Custom Block Page</div>[](#custom-block-page)
+
+<p>Here you can input your own IPv4 and IPv6 addresses. When a website is blocked, Control D will spoof to IP addresses you have chosen here. This can be used with a self-hosted block page + your own Root Certificate. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/ac48a5f-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+## <div class="heading-anchor anchor waypoint" id="branded-block-page"></div><div class="heading-text"><div id="section-branded-block-page" class="heading-anchor_backwardsCompatibility"></div>Branded Block Page</div>[](#branded-block-page)
+
+> ## <span class="callout-icon">❗️</span><p>Root Certificate Installation Required</p>
+
+<p>In order for this to work with HTTPS websites, [Root Certificate Installation](/docs/root-certificate-installation) is required. Check the linked document to learn more.</p>
+
+<p>This option allows you to use a Control D hosted block page, which you can optionally customize with:</p>
+
+- Your own logo
+
+- Custom block Title
+
+- Custom block message
+
+- External Link Title
+
+- External Link URL
+
+<p>By default, with no custom settings, a branded page will look like this. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/d4d3324-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Now, you can customize it using the 5 fields.</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/2cafc28-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>When a website is blocked, it will look something like this. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/e729e22-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+### <div class="heading-anchor anchor waypoint" id="unblock-request-button"></div><div class="heading-text"><div id="section-unblock-request-button" class="heading-anchor_backwardsCompatibility"></div>Unblock Request Button</div>[](#unblock-request-button)
+
+<p>If you omit the "External Link Title" and "External Link URL" fields, a default reporting button will be added to the block page. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/068ccac75bccd6d88507970d37ac66ffdff42443c2f739bb3c78648ffba80820-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Clicking this button will reveal a small form where the end user can request for this page to be unblocked. Account owner or admin will receive this request via email, and an action can be performed. </p>
+## <div class="heading-anchor anchor waypoint" id="hostname-variable"></div><div class="heading-text"><div id="section-hostname-variable" class="heading-anchor_backwardsCompatibility"></div>Hostname Variable</div>[](#hostname-variable)
+
+<p>In the **External Link URL** you can use a variable <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">{domain}</span>` which will template your link with the website FQDN that was blocked. For example, if you use: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">https://reporting-url-example.com?hostname={domain}</span>` and access pornhub.com, and it's blocked, the link will become <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">https://reporting-url-example.com?hostname=pornhub.com</span>`</p>
+<br>
+> ## <span class="callout-icon">🍎</span><p>If the physical device in use is an Apple platform, the Shortcuts url scheme can be used as the link on the branded block page.</p>
+
+<p>Using this neat trick, a shortcut can be built to send pertinent information to the “family IT admin” along with something like "I need something unblocked," all in the background.</p>
+</div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->6 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Lock Profile</div>](/docs/lock-profile)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">EDNS Client Subnet Options</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/ecs-custom-subnet)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[What is this?](#what-is-this)
+
+- 
+[How to Use it](#how-to-use-it)
+<ul>
+<li>[Custom Block Page](#custom-block-page)
+
+- [Branded Block Page](#branded-block-page)
+
+- [Hostname Variable](#hostname-variable)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

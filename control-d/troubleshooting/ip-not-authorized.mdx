@@ -1,0 +1,102 @@
+---
+title: "IP Not Authorized"
+description: "How to resolve IP authorization issues with Control D"
+icon: "shield"
+---
+
+# IP Not Authorized
+
+<Note>
+If you're seeing an "IP Not Authorized" error, follow these steps to resolve the issue.
+</Note>
+
+## 1. Check Your IP Address
+
+<Steps>
+  <Step>
+    Visit [https://api.controld.com/ip/nullroutecheck](https://api.controld.com/ip/nullroutecheck) to verify your current IP address
+  </Step>
+  <Step>
+    Compare this with the IP address shown in your Control D dashboard
+  </Step>
+  <Step>
+    If they don't match, your IP address may have changed
+  </Step>
+</Steps>
+
+## 2. Update Your IP Address
+
+<Tabs>
+  <Tab title="Automatic Update">
+    <Steps>
+      <Step>Wait for the automatic IP update (usually within 5 minutes)</Step>
+      <Step>Refresh your Control D dashboard</Step>
+      <Step>Check if the IP address has been updated</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Manual Update">
+    <Steps>
+      <Step>Log in to your Control D dashboard</Step>
+      <Step>Go to the Endpoints section</Step>
+      <Step>Click on your endpoint</Step>
+      <Step>Click "Update IP"</Step>
+      <Step>Confirm the update</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 3. Check Network Configuration
+
+<Warning>
+If your IP address keeps changing frequently, you may need to configure a static IP or use a heartbeat device.
+</Warning>
+
+<Steps>
+  <Step>Verify your network settings</Step>
+  <Step>Check if you're using a VPN or proxy</Step>
+  <Step>Ensure your router is properly configured</Step>
+  <Step>Consider setting up a static IP if possible</Step>
+</Steps>
+
+## 4. Troubleshooting
+
+<Accordion title="Common Issues">
+  <Steps>
+    <Step>
+      If using a VPN:
+      - Disconnect from the VPN
+      - Update your IP address
+      - Reconnect to the VPN
+    </Step>
+    <Step>
+      If using a proxy:
+      - Disable the proxy
+      - Update your IP address
+      - Re-enable the proxy
+    </Step>
+    <Step>
+      If using a router:
+      - Check router configuration
+      - Verify DHCP settings
+      - Consider setting a static IP
+    </Step>
+  </Steps>
+</Accordion>
+
+## 5. Collect Diagnostic Information
+
+<Warning>
+If the issue persists, collect the following information before contacting support:
+</Warning>
+
+<Steps>
+  <Step>Your current IP address</Step>
+  <Step>Control D dashboard IP address</Step>
+  <Step>Network configuration details</Step>
+  <Step>Any error messages received</Step>
+</Steps>
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) with the information collected above.
+</Card>

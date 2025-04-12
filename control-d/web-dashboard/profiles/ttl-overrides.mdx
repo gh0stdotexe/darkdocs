@@ -1,0 +1,56 @@
+---
+title: "TTL Overrides"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Override default DNS record TTLs with your own.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/ttl-overrides)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-is-dns-ttl&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-is-dns-ttl&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What is DNS TTL</div><Link aria-label=&quot;Skip link to What is DNS TTL&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-is-dns-ttl&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># TTL Overrides
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Override default DNS record TTLs with your own.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/ttl-overrides)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-is-dns-ttl&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-is-dns-ttl&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What is DNS TTL</div><Link aria-label=&quot;Skip link to What is DNS TTL&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-is-dns-ttl&quot;></Link>
+
+<p>Every DNS record has a TTL, which instructs the OS to cache the DNS record for that period of time (in seconds) and not contact the DNS server for at least that long. This is used to reduce the amount of DNS queries clients make, and can have positive performance implications. </p>
+<p>This Profile Option allows you to override the TTLs to whatever values you wish. This feature can sometimes be called &quot;Cache Boost&quot;, if you increase the TTLs to non-default values. By doing so, you instruct your OS to cache DNS records for longer periods of time. </p>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Know what you&#x27;re doing</p>
+
+<p>Don&#x27;t change these randomly, or set them too high as this can have adverse consequences with CDNs. By high we mean &quot;measured in days&quot;.</p>
+
+<p>There are 3 TTLs that you can tweak in Profile Options. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/9452257-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;block-ttl&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-block-ttl&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Block TTL</div><Link aria-label=&quot;Skip link to Block TTL&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#block-ttl&quot;></Link>
+
+<p>This overrides the TTL for DNS records that were blocked by Control D. The **default block TTL is 10s.** Increasing this value will result in fewer DNS lookups (for things that are blocked), but will also increase the time between you unblocking the domain and it actually becoming unblocked. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;redirect-ttl&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-redirect-ttl&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Redirect TTL</div><Link aria-label=&quot;Skip link to Redirect TTL&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#redirect-ttl&quot;></Link>
+
+<p>This overrides the default TTLs on DNS responses that were redirected by a Service, Custom Rule or Default Rule. The **default redirect TTL is 20s**. Increasing this value will result in fewer DNS lookups, but will also increase the time between you changing locations and your new location settings being actually enforced on a Device.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;bypass-ttl&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-bypass-ttl&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Bypass TTL</div><Link aria-label=&quot;Skip link to Bypass TTL&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#bypass-ttl&quot;></Link>
+
+<p>This overrides the TTL for all DNS records that were bypassed (not subject to any BLOCK or REDIRECT rule) and sent to the upstream resolver. Increasing this value will result in fewer DNS lookups, but can break websites if you set this too high. Values above 1 day are not recommended.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="what-is-dns-ttl"></div><div class="heading-text"><div id="section-what-is-dns-ttl" class="heading-anchor_backwardsCompatibility"></div>What is DNS TTL</div>[](#what-is-dns-ttl)
+
+<p>Every DNS record has a TTL, which instructs the OS to cache the DNS record for that period of time (in seconds) and not contact the DNS server for at least that long. This is used to reduce the amount of DNS queries clients make, and can have positive performance implications. </p>
+<p>This Profile Option allows you to override the TTLs to whatever values you wish. This feature can sometimes be called "Cache Boost", if you increase the TTLs to non-default values. By doing so, you instruct your OS to cache DNS records for longer periods of time. </p>
+> ## <span class="callout-icon">🚧</span><p>Know what you're doing</p>
+
+<p>Don't change these randomly, or set them too high as this can have adverse consequences with CDNs. By high we mean "measured in days".</p>
+
+<p>There are 3 TTLs that you can tweak in Profile Options. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/9452257-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+## <div class="heading-anchor anchor waypoint" id="block-ttl"></div><div class="heading-text"><div id="section-block-ttl" class="heading-anchor_backwardsCompatibility"></div>Block TTL</div>[](#block-ttl)
+
+<p>This overrides the TTL for DNS records that were blocked by Control D. The **default block TTL is 10s.** Increasing this value will result in fewer DNS lookups (for things that are blocked), but will also increase the time between you unblocking the domain and it actually becoming unblocked. </p>
+## <div class="heading-anchor anchor waypoint" id="redirect-ttl"></div><div class="heading-text"><div id="section-redirect-ttl" class="heading-anchor_backwardsCompatibility"></div>Redirect TTL</div>[](#redirect-ttl)
+
+<p>This overrides the default TTLs on DNS responses that were redirected by a Service, Custom Rule or Default Rule. The **default redirect TTL is 20s**. Increasing this value will result in fewer DNS lookups, but will also increase the time between you changing locations and your new location settings being actually enforced on a Device.</p>
+## <div class="heading-anchor anchor waypoint" id="bypass-ttl"></div><div class="heading-text"><div id="section-bypass-ttl" class="heading-anchor_backwardsCompatibility"></div>Bypass TTL</div>[](#bypass-ttl)
+
+<p>This overrides the TTL for all DNS records that were bypassed (not subject to any BLOCK or REDIRECT rule) and sent to the upstream resolver. Increasing this value will result in fewer DNS lookups, but can break websites if you set this too high. Values above 1 day are not recommended.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->3 days ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Disable DNSSEC</div>](/docs/disable-dnssec-option)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">AI Malware Filter</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/ai-malware-filter)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[What is DNS TTL](#what-is-dns-ttl)
+<ul>
+<li>[Block TTL](#block-ttl)
+
+- [Redirect TTL](#redirect-ttl)
+
+- [Bypass TTL](#bypass-ttl)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

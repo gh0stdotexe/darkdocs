@@ -1,0 +1,404 @@
+---
+title: "Integration: Splunk"
+description: "Streaming logs to Splunk Enterprise or Splunk Cloud (fluentbit output) using our pre-built docker container"
+icon: "shield"
+---
+
+# 
+
+Overview
+
+Splunk integration using [Fluentbit outputs](https://dash.readme.com/project/controld/v1.0/docs/guides/siem-integration/%3Chttps://docs.fluentbit.io/manual/pipeline/outputs%3E) is virtually identical to the Generic SIEM integration instructions -- by deploying our **pre-built docker container.**
+
+This container securely terminates log data sent from our network to yours, and forwards it on to a SIEM tool within your network.
+
+We've provided complete and detailed information here for your convenience, including:
+
+  * **Installation**
+    * Configuring a Splunk HEC (HTTP Event Collector)
+    * Configuring Fluentbit Outputs for Splunk
+  * **Fluentbit Splunk Output Advanced Reference**
+    * If you need to make advanced alterations for your environment
+
+This container securely terminates log data sent from our network to yours, and forwards it on to a SIEM tool within your network.
+
+# 
+
+Pre-Requisites
+
+SIEM log streaming is only available for select organizational customers at this time.
+
+## 
+
+Customer Side
+
+Category| Requirements  
+---|---  
+Hardware| \- Virtual Machine  
+\- VPS  
+\- Baremetal Server (X86 architecture)  
+Operating System| Linux Distribution (capable of running Docker Containers / Docker CE)  
+Networking| \- Public Static IP address (For securely receiving logs from our SIEM integration output over the internet)  
+\- TCP/TLS Traffic Capability (If you use a proxy at the edge of your network it must support bare TCP/TLS connections -- this is not HTTP/S!)  
+\- Internal network access to your SIEM system (For forwarding logs received into your system)  
+Firewall / Container Port Mappings| Permit inbound traffic on `tcp/24224` to the docker container  
+SIEM / Log Streaming Software| [FluentBit Supported Outputs](https://docs.fluentbit.io/manual/pipeline/outputs) (Splunk, Elasticsearch, Azure, etc)  
+  
+## 
+
+Submitting Details to Support
+
+During the Alpha phase you must contact us in order to enroll.
+
+Our system will generate a docker config bundle file for you which you'll use in the successive instructions.
+
+Send an e-mail to [Control D Support](/cdn-cgi/l/email-protection#a3cbc6cfd3e3c0cccdd7d1cccfc78dc0ccce) asking for the SIEM Integration config bundle with your:
+
+  * Org ID
+  * Public IP address
+  * [**Optional**] DNS record (if the public IP is prone to changing / dynamic)
+
+# 
+
+Installation
+
+## 
+
+Splunk HTTP Event Collector (**Log Receiver**)
+
+First we must setup Splunk to enable its HTTP Event Collector before we can send it logs.
+
+Multiple editions and versions of Splunk exist, including Enterprise and Cloud. Splunk 9.x documentation has been provided below.
+
+> ## 📘
+> 
+> See [this link](https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/UsetheHTTPEventCollector) for the most up to date instructions referenced below, including versions 7, 8 and 9.
+
+### 
+
+Splunk Cloud Platform
+
+#### 
+
+Enable HTTP Event Collector on Splunk Cloud Platform
+
+HTTP Event Collector is enabled by default on Splunk Cloud Platform.
+
+#### 
+
+Create an Event Collector token on Splunk Cloud Platform
+
+To use HEC, you must configure at least one token. Splunk Cloud Platform distributes the token across the deployment. The token is not ready for use until distribution has completed.
+
+  1. Click Settings > Add Data.
+  2. Click monitor.
+  3. Click HTTP Event Collector.
+  4. In the Name field, enter a name for the token.
+  5. (**Optional**) In the Source name override field, enter a name for a source to be assigned to events that this endpoint generates.
+  6. (**Optional**) In the Description field, enter a description for the input.
+  7. (**Optional**) If you want to enable indexer acknowledgment for this token, click the Enable indexer acknowledgment checkbox.
+  8. Click Next.
+  9. (**Optional**) Make edits to source type and confirm the index where you want HEC events to be stored. See Modify input settings.
+  10. Click Review.
+  11. Confirm that all settings for the endpoint are what you want.
+  12. If all settings are what you want, click Submit. Otherwise, click < to make changes.
+  13. (**Optional**) Copy the token value that Splunk Web displays and paste it into another document for reference later.
+  14. (**Optional**) Click Track deployment progress to see progress on how the token has been deployed to the rest of the Splunk Cloud Platform deployment. When you see a status of "Done", you can then use the token to send data to HEC.
+
+For more details, head to: <https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/UsetheHTTPEventCollector>
+
+### 
+
+Splunk Enterprise
+
+You can enable HEC and create, modify, delete, enable, and disable HEC tokens in Splunk Enterprise.
+
+#### 
+
+Enable HTTP Event Collector on Splunk Enterprise
+
+Before you can use Event Collector to receive events through HTTP, you must enable it. For Splunk Enterprise, enable HEC through the Global Settings dialog box.
+
+  1. Click Settings > Data Inputs.
+  2. Click HTTP Event Collector.
+  3. Click Global Settings.
+  4. In the All Tokens toggle button, select Enabled.
+  5. (**Optional**) Choose a Default Source Type for all HEC tokens. You can also type in the name of the source type in the text field above the drop-down list box before choosing the source type.
+  6. (**Optional**) Choose a Default Index for all HEC tokens.
+  7. (**Optional**) Choose a Default Output Group for all HEC tokens.
+  8. (**Optional**) To use a deployment server to handle configurations for HEC tokens, click the Use Deployment Server check box.
+  9. (**Optional**) To have HEC listen and communicate over HTTPS rather than HTTP, click the Enable SSL checkbox.
+  10. (**Optional**) Enter a number in the HTTP Port Number field for HEC to listen on. 
+
+> Confirm that no firewall blocks the port number that you specified in the '''HTTP Port Number''' field, either on the clients or the Splunk instance that hosts HEC.
+
+  11. Click Save.
+
+#### 
+
+Create an Event Collector token on Splunk Enterprise
+
+To use HEC, you must configure at least one token.
+
+  1. Click Settings > Add Data.
+  2. Click monitor.
+  3. Click HTTP Event Collector.
+  4. In the Name field, enter a name for the token.
+  5. (**Optional**) In the Source name override field, enter a source name for events that this input generates.
+  6. (**Optional**) In the Description field, enter a description for the input.
+  7. (**Optional**) In the Output Group field, select an existing forwarder output group.
+  8. (**Optional**) If you want to enable indexer acknowledgment for this token, click the Enable indexer acknowledgment checkbox.
+  9. Click Next.
+  10. (**Optional**) Confirm the source type and the index for HEC events.
+  11. Click Review.
+  12. Confirm that all settings for the endpoint are what you want.
+  13. If all settings are what you want, click Submit. Otherwise, click < to make changes.
+  14. (**Optional**) Copy the token value that Splunk Web displays and paste it into another document for reference later.
+
+For more details, head to: <https://docs.splunk.com/Documentation/Splunk/9.3.2/Data/UsetheHTTPEventCollector>
+
+## 
+
+Fluentbit Docker Container (**Log Forwarder**)
+
+Next we configure the log forwarder (Fluentbit) to forward logs into your Splunk HTTP Event Collector.
+
+The configuration bundle we supplied you after you contacted Control D support (above pre-requisite) will be utilized here.
+
+  1. Install Docker Engine on the host. [Instructions Link](https://docs.docker.com/engine/install/)
+
+  2. Upload the config bundle to the host
+
+Shell
+    
+        scp yourbundle.tar.gz your-linux-host.example.com:/tmp/	
+    
+
+  3. Extract the config + container bundle:
+
+Shell
+    
+        mkdir logs-receiver
+    tar -xvf /tmp/yourbundle.tar.gz -C logs-receiver
+    
+
+  4. Start the container (interactively at first for testing)
+
+Shell
+    
+        cd logs-receiver
+    docker compose up
+    
+
+  5. Confirm that logs are arriving (they won't be going anywhere yet!)
+
+  6. Modify the configuration `logs-receiver/fluent-bit.yaml` and update the `outputs:` section to add your desired logs destination.
+
+> See <https://docs.fluentbit.io/manual/pipeline/outputs> for instructions for other outputs!
+> 
+> fluent-bit supports a wide variety of log collectors, including ELK, Datadog and Splunk 
+> 
+> Example: Splunk
+
+Example: Splunk
+    
+        outputs:
+      - name: splunk
+        host: splunk.example.com                           # Modify 
+        splunk_token: 55555555-5555-5555-5555-555555555555 # Modify
+        port: 8088                                         # Modify
+        tls: on                                            # Modify
+        tls.verify: on                                     # Modify
+    
+
+  7. Start the container in `daemon` mode so it continues running when you close your shell: 
+
+Shell
+    
+        docker compose up --detach
+    
+
+  8. Please notify the Control D support team to confirm that you are receiving logs successfully!
+
+### 
+
+Troubleshooting
+
+  * If your destination system does not receive logs, check the running fluent-bit instance for errors: 
+    
+        docker compose logs --follow
+    
+
+  * If needed, `restart` the `container` with: 
+
+Bash
+    
+        docker compose up --force-recreate --detach
+    
+
+### 
+
+Example Config
+
+Here is a sample docker compose file and fluent-bit config that you can use to start a fluentbit receiver on your end. Be mindful this not a working sample. It lists templated components that you will need to comment out or provide. 
+
+More importantly it will not actually receive anything from Control D until we create a custom configuration. Once you're ready to proceed, provide us with the org IDs you wish to receive status for and we'll send you a final config bundles.
+
+docker-compose.yamlfluent-bit.yaml
+    
+    
+    version: "3.7"
+    
+    services:
+      fluent-bit:
+        image: fluent/fluent-bit
+        command: ["/fluent-bit/bin/fluent-bit", "-c", "/fluent-bit/etc/fluent-bit.yaml"]
+        volumes:
+          - ./fluent-bit.yaml:/fluent-bit/etc/fluent-bit.yaml
+          - ./certs:/etc/ssl/fluent-bit-certs
+        ports:
+          - "24224:24224"
+    
+    
+    
+    
+    ---
+    pipeline:
+      inputs:
+        - name: forward
+          tls: on
+          tls.verify: "on"
+          tls.ca_file: /etc/ssl/fluent-bit-certs/${CN}-ca.pem
+          tls.crt_file: /etc/ssl/fluent-bit-certs/${CN}-cert.pem
+          tls.key_file: /etc/ssl/fluent-bit-certs/${CN}-privkey.pem
+      outputs:
+        # Edit this!
+        # See https://docs.fluentbit.io/manual/pipeline/outputs for a full list of supported outputs
+    
+        # Output logs in JSON format to the container's standard output
+        # Can be used to validate logs are being received, but typically should be disabled in production
+        - name: stdout
+          match: '*'
+          format: json
+    
+        # Splunk Example
+        # https://docs.fluentbit.io/manual/pipeline/outputs/splunk
+        # - name: splunk
+        #   host: splunk.example.com # change me
+        #   splunk_token: 55555555-5555-5555-5555-555555555555 # change me
+        #   match: '*'
+        #   port: 8088
+        #   tls: on
+        #   tls.verify: on
+    
+    
+
+# 
+
+Fluentbit Splunk Output Advanced Reference
+
+If you need to make advanced modifications to your Fluentbit installation, you may be interested in the following reference material.
+
+We've provided snippets of the original Fluentbit Splunk Output for your convenience.
+
+> ## ❗️
+> 
+> It's not necessary to change anything with the default config provided above for typical installations!
+
+> ## 📘
+> 
+> See [this link](https://docs.fluentbit.io/manual/pipeline/outputs/splunk) for the most up to date instructions referenced below.
+
+## 
+
+Configuration Parameters
+
+Connectivity, transport and authentication configuration properties:
+
+Key| Description| Default  
+---|---|---  
+`host`| IP address or hostname of the target Splunk service.| 127.0.0.1  
+`port`| TCP port of the target Splunk service.| 8088  
+`splunk_token`| Specify the Authentication Token for the HTTP Event Collector interface.|   
+`http_user`| Optional username for Basic Authentication on HEC|   
+`http_passwd`| Password for user defined in HTTP_User|   
+`http_buffer_size`| Buffer size used to receive Splunk HTTP responses| 2M  
+`compress`| Set payload compression mechanism. The only available option is `gzip`.|   
+`channel`| Specify X-Splunk-Request-Channel Header for the HTTP Event Collector interface.|   
+`http_debug_bad_request`| If the HTTP server response code is 400 (bad request) and this flag is enabled, it will print the full HTTP request and response to the stdout interface. This feature is available for debugging purposes.|   
+`workers`| The number of [workers](../../administration/multithreading.md#outputs) to perform flush operations for this output.| `2`  
+  
+Content and Splunk metadata (fields) handling configuration properties:
+
+Key| Description| Default  
+---|---|---  
+`splunk_send_raw`| When enabled, the record keys and values are set in the top level of the map instead of under the event key. Refer to the _Sending Raw Events_ section from the docs for more details to make this option work properly.| off  
+`event_key`| Specify the key name that will be used to send a single value as part of the record.|   
+`event_host`| Specify the key name that contains the host value. This option allows a record accessors pattern.|   
+`event_source`| Set the source value to assign to the event data.|   
+`event_sourcetype`| Set the sourcetype value to assign to the event data.|   
+`event_sourcetype_key`| Set a record key that will populate 'sourcetype'. If the key is found, it will have precedence over the value set in `event_sourcetype`.|   
+`event_index`| The name of the index by which the event data is to be indexed.|   
+`event_index_key`| Set a record key that will populate the `index` field. If the key is found, it will have precedence over the value set in `event_index`.|   
+`event_field`| Set event fields for the record. This option can be set multiple times and the format is `key_name record_accessor_pattern`.|   
+  
+### 
+
+TLS / SSL
+
+Splunk output plugin supports TLS/SSL, for more details about the properties available and general configuration, please refer to the [TLS/SSL](<https://docs.fluentbit.io/manual/administration/>  
+transport-security) section.
+
+### 
+
+Data format
+
+By default, the Splunk output plugin nests the record under the `event` key in the payload sent to the HEC. It will also append the time of the record to a top level `time` key.
+
+If you would like to customize any of the Splunk event metadata, such as the host or target index, you can set `Splunk_Send_Raw On` in the plugin configuration, and add the metadata as keys/  
+values in the record. _Note_ : with `Splunk_Send_Raw` enabled, you are responsible for creating and populating the `event` section of the payload.
+
+For example, to add a custom index and hostname:
+
+This will create a payload that looks like:
+
+JSON
+    
+    
+    {
+        "time": "1535995058.003385189",
+        "index": "my-splunk-index", 
+        "host": "my-host",
+        "event": {
+            "date": 1729806278.703771,
+            "time": "2024-10-24T21:44:38Z",
+            "query": "google.com",
+            "query_type": "HTTPS",
+            "src_ip": "2606:2800:21f:cb07:6820:80da:af6b:8b2c",
+            "reply_code_id": 0,
+            "protocol": "doh",
+            "organisation": {
+                "id": "150afkl05z",
+                "name": ""
+            },
+            "device": {
+                "id": "bbhgdi840",
+                "name": ""
+            },
+            "controld_action": 1,
+            "controld_trigger": "default",
+            "source_ip": {
+                "countryCode": "US",
+                "city": "Los Angeles", 
+                "isp": "Edgecast Inc",
+                "asn": 14153
+            }
+        }
+    }
+    
+
+For more information on the Splunk HEC payload format and all event metadata Splunk accepts, see here: <http://docs.splunk.com/Documentation/Splunk/latest/Data/AboutHEC>
+
+__Updated 30 days ago
+
+* * *

@@ -1,0 +1,105 @@
+---
+title: 'Create a DNS Stamp'
+description: 'Learn how to create and use DNS stamps for secure DNS configuration with Control D'
+icon: 'stamp'
+---
+
+## What is a DNS Stamp?
+
+A DNS stamp is a compact, encoded string that contains all the necessary information to configure a DNS client. It includes details such as the server address, protocol type, public key (if applicable), and other properties in a single, shareable format.
+
+## DNS Stamp Format
+
+DNS stamps follow this general structure:
+```
+sdns://<base64url-encoded-parameters>
+```
+
+The encoded parameters include:
+- Protocol (DoH, DoT, DNSCrypt)
+- Server address and port
+- Public key (for DNSCrypt)
+- Provider name
+- Path (for DoH)
+
+## Creating DNS Stamps
+
+### For DoH (DNS-over-HTTPS)
+
+```bash
+# Format
+sdns://AgcAAAAAAAAACzc2Ljc2LjIuMjQ0AA9kb2guY29udHJvbGQuY29tCi9kbnMtcXVlcnk
+
+# Components:
+# Ag = DoH
+# Properties flags
+# Server IP (76.76.2.244)
+# Hostname (doh.controld.com)
+# Path (/dns-query)
+```
+
+### For DoT (DNS-over-TLS)
+
+```bash
+# Format
+sdns://AwcAAAAAAAAACzc2Ljc2LjIuMjQ0ABNkb3QuY29udHJvbGQuY29tOjg1Mw
+
+# Components:
+# Aw = DoT
+# Properties flags
+# Server IP (76.76.2.244)
+# Hostname and port (dot.controld.com:853)
+```
+
+## Using DNS Stamps
+
+1. Copy the appropriate DNS stamp for your desired protocol
+2. Configure your DNS client using the stamp
+3. Verify the connection is working properly
+
+<Warning>
+Always verify DNS stamps before using them. Incorrect stamps can lead to connection issues or security vulnerabilities.
+</Warning>
+
+## Implementation Examples
+
+### Command Line Verification
+
+```bash
+# Decode a DNS stamp
+echo "sdns://AgcAAAAAAAAACzc2Ljc2LjIuMjQ0AA9kb2guY29udHJvbGQuY29tCi9kbnMtcXVlcnk" | base64 -d
+```
+
+### Client Configuration
+
+```yaml
+dns:
+  stamp: "sdns://AgcAAAAAAAAACzc2Ljc2LjIuMjQ0AA9kb2guY29udHJvbGQuY29tCi9kbnMtcXVlcnk"
+  protocol: "doh"
+```
+
+## Best Practices
+
+1. **Security**: Always use HTTPS/TLS for secure transmission
+2. **Validation**: Verify stamps before deployment
+3. **Backup**: Keep a copy of your DNS stamps in a secure location
+4. **Documentation**: Document which stamps are used in your configuration
+
+<Tip>
+You can use online DNS stamp generators to create stamps for your specific needs, but always verify the output before using in production.
+</Tip>
+
+## Troubleshooting
+
+If you encounter issues with DNS stamps:
+
+1. Verify the stamp is correctly encoded
+2. Check if the protocol matches your client's capabilities
+3. Ensure the server address is accessible
+4. Confirm the hostname matches your SSL certificate (for DoH/DoT)
+
+## Additional Resources
+
+- [DNSCrypt Protocol Specification](https://dnscrypt.info/protocol)
+- [DNS-over-HTTPS RFC 8484](https://tools.ietf.org/html/rfc8484)
+- [DNS-over-TLS RFC 7858](https://tools.ietf.org/html/rfc7858) 

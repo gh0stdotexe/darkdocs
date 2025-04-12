@@ -1,0 +1,99 @@
+---
+title: "NETGEAR Router Guide"
+description: "Legacy DNS Follow the steps below to configure Control D on your NETGEAR router. Keep in mind that NETGEAR routers use legacy DNS at the moment. Step 1 Open the NETGEAR router interface by navigating to it in your browser. You can reach it via routerlogin.net or 192.168.1.1 . Step 2 Navigate to the ..."
+icon: "network"
+---
+
+# 
+
+Legacy DNS
+
+Follow the steps below to configure Control D on your NETGEAR router. 
+
+Keep in mind that NETGEAR routers use legacy DNS at the moment.
+
+## 
+
+Step 1
+
+Open the NETGEAR router interface by navigating to it in your browser. You can reach it via `routerlogin.net` or `192.168.1.1`.
+
+![](https://files.readme.io/cdbddc3-image.png)
+
+![](https://files.readme.io/2ad4c80-image.png)
+
+## 
+
+Step 2
+
+Navigate to the **Internet** section in the sidebar.
+
+![](https://files.readme.io/ade2aea-image.png)
+
+## 
+
+Step 3
+
+Next, enable the "**Use These DNS Servers** " option.
+
+![](https://files.readme.io/683b099-image.png)
+
+## 
+
+Step 4
+
+Now determine which DNS resolver you want to use. 
+
+### 
+
+Free Resolver
+
+If you are configuring our free DNS resolvers, you can get the IPs from this page: <https://controld.com/free-dns>
+
+  1. Select the configuration you want to use from the list:  
+![](https://files.readme.io/f86c0c1-image.png)
+
+  2. Then copy the Legacy Resolver IP address that appears at the bottom of the page:  
+![](https://files.readme.io/c1b2ca6-image.png)
+
+### 
+
+Custom Resolver
+
+If you are configuring a custom Legacy DNS resolver: 
+
+  1. Create a new "Other" Router Device on your [Control D Dashboard](https://controld.com/dashboard/devices). Link it to a Profile (or [create a new Profile if you don't have one](/docs/profiles)) and finally make sure to enable the **Legacy Resolver** option under **Advanced Settings**. Then press **Add Device** :  
+![](https://files.readme.io/708cf50-image.png)
+
+  2. Expand the **Legacy DNS** section where you will see the IP addresses to use for the setup. Do NOT copy the same IPs from the screenshot, copy the ones from your account specifically.  
+![](https://files.readme.io/6796a58-image.png)
+
+## 
+
+Step 5
+
+Once you have selected the DNS IP you want to use, you can enter it in the **Primary** and **Secondary DNS** fields.
+
+![](https://files.readme.io/09b27c1-image.png)
+
+## 
+
+Step 6
+
+Finally, press **Apply** near the bottom of the page.
+
+![](https://files.readme.io/3fce18f-image.png)
+
+Once the router saves the configuration, you are using Control D on your network! 
+
+Keep in mind that if you configure a custom DNS on any of the individual devices connected to this router, those devices will not be using the DNS you configured here.
+
+> ## 🚧
+> 
+> Dynamic IP Warning
+> 
+> This method is subject to your [source IP being registered](/docs/ip-management) on this Device in the web control panel, so this is best suited for networks with a static IP. If you have a Dynamic IP see [Legacy DNS limitations](/docs/ip-not-authorized) section for solution.
+
+__Updated over 1 year ago
+
+* * *

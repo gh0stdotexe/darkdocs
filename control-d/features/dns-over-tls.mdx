@@ -1,0 +1,59 @@
+---
+title: 'DNS-over-TLS (DoT)'
+description: 'Learn about DNS-over-TLS (DoT), a secure DNS protocol that encrypts DNS queries using TLS encryption.'
+icon: 'lock'
+---
+
+## What is DNS-over-TLS?
+
+<Info>
+DNS-over-TLS (DoT) is a security protocol that provides privacy for DNS queries by establishing a TLS encrypted connection between the client and the DNS server, preventing eavesdropping and tampering of DNS traffic.
+</Info>
+
+## Key Benefits
+
+<Steps>
+  <Step title="Encrypted Communication">
+    All DNS queries and responses are encrypted using TLS, ensuring privacy and security.
+  </Step>
+  <Step title="Native Support">
+    DoT is supported natively by many modern operating systems and devices.
+  </Step>
+  <Step title="Authentication">
+    TLS certificates provide authentication of the DNS server, preventing spoofing attacks.
+  </Step>
+</Steps>
+
+## Using DoT with Control D
+
+<Accordion title="Configuration Steps">
+  ### Android
+  1. Open Settings
+  2. Navigate to Network & Internet > Private DNS
+  3. Select "Private DNS provider hostname"
+  4. Enter your Control D DoT hostname
+
+  ### iOS
+  1. Install a DoT-compatible DNS client
+  2. Configure the client with Control D's DoT endpoint
+  3. Enable DNS encryption
+
+  ### Linux
+  1. Configure systemd-resolved or your preferred DNS client
+  2. Add Control D's DoT endpoint
+  3. Enable DoT encryption
+</Accordion>
+
+<Warning>
+Ensure your network allows traffic on port 853, which is the standard port for DNS-over-TLS. Some networks may block this port by default.
+</Warning>
+
+## Best Practices
+
+<Card title="Recommended Settings">
+  - Use DoT in environments where DoH might not be suitable
+  - Configure proper certificate validation
+  - Set up fallback DNS servers for reliability
+  - Monitor your Control D dashboard for connection status
+  - Regularly update your DNS client software
+</Card> 

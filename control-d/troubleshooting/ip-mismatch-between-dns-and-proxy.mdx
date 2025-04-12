@@ -1,0 +1,83 @@
+---
+title: "IP mismatch between DNS and Proxy"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Redirected traffic will not work if you're using multiple IPs at the same time.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/ip-mismatch-between-dns-and-proxy)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overview&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overview&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overview</div><Link aria-label=&quot;Skip link to Overview&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overview&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># IP mismatch between DNS and Proxy
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Redirected traffic will not work if you're using multiple IPs at the same time.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/ip-mismatch-between-dns-and-proxy)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overview&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overview&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overview</div><Link aria-label=&quot;Skip link to Overview&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overview&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Do you have redirect rules?</p>
+
+<p>If **not**, there is no problem here. You can safely ignore this warning, as it has no impact on you.</p>
+
+<p>On the <Link href=&quot;/docs/status-page&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;status-page&quot;>Status Page</Link> you are presented with all IPs that Control D detected on your device. If you see that your **DNS Source IP** differs from **Proxy Source IP**, this is an unusual situation, but can happen on some cellular networks. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;the-issue&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-the-issue&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>The Issue</div><Link aria-label=&quot;Skip link to The Issue&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#the-issue&quot;></Link>
+
+<p>If you notice an IP mismatch, anything you redirect via a Proxy will fail to load. If you used Default Rule -> Redirect, this will effectively break your Internet. If you&#x27;re not redirecting any Service, or Custom Rule then this mismatch would not cause any issues. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;cause&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-cause&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Cause</div><Link aria-label=&quot;Skip link to Cause&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#cause&quot;></Link>
+
+<p>In order to access proxies that redirect your traffic, your source IP must be authorized in the global firewall. When you make DNS queries, whatever source IP those queries come from, will get authorized automatically and everything will work as expected. However if the DNS server sees one IP, but you communicate with proxies using another, we cannot authorize your &quot;other&quot; IP, as we never saw it until you tried to proxy something, and this request will fail as the IP is not in the global firewall. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;solutions&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-solutions&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Solutions</div><Link aria-label=&quot;Skip link to Solutions&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#solutions&quot;></Link>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;disable-ipv6&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-disable-i-pv-6&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Disable IPv6</div><Link aria-label=&quot;Skip link to Disable IPv6&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#disable-ipv6&quot;></Link>
+
+<p>If you&#x27;re on an IPv6 network, and find that your IPv6 addresses differ, you can disable IPv6 on your network which will resolved the problem with 99% certainty. However this may not be desirable, in which case read on.</p>
+> ## <span class=&quot;callout-icon&quot;>📘</span><p>Caveat</p>
+
+<p>If you&#x27;re using IPv6, a mismatch is only a factor if the 2 IPs don&#x27;t fall within a /64 network. Different IPs within a single /64 network would not cause any issues as we authorize a whole /64 in the global firewall.</p>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;manually-authorize-ip&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-manually-authorize-ip&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Manually Authorize IP</div><Link aria-label=&quot;Skip link to Manually Authorize IP&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#manually-authorize-ip&quot;></Link>
+
+<p>You can use the <Link href=&quot;/docs/ip-management&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;ip-management&quot;>IP Management</Link> section to manually authorize your **Proxy Source IP**.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;disable-redirect-rules&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-disable-redirect-rules&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Disable Redirect Rules</div><Link aria-label=&quot;Skip link to Disable Redirect Rules&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#disable-redirect-rules&quot;></Link>
+
+<p>You can stop using the redirection features and stick to just blocking. This may not be ideal for most.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="overview"></div><div class="heading-text"><div id="section-overview" class="heading-anchor_backwardsCompatibility"></div>Overview</div>[](#overview)
+
+> ## <span class="callout-icon">🚧</span><p>Do you have redirect rules?</p>
+
+<p>If **not**, there is no problem here. You can safely ignore this warning, as it has no impact on you.</p>
+
+<p>On the [Status Page](/docs/status-page) you are presented with all IPs that Control D detected on your device. If you see that your **DNS Source IP** differs from **Proxy Source IP**, this is an unusual situation, but can happen on some cellular networks. </p>
+# <div class="heading-anchor anchor waypoint" id="the-issue"></div><div class="heading-text"><div id="section-the-issue" class="heading-anchor_backwardsCompatibility"></div>The Issue</div>[](#the-issue)
+
+<p>If you notice an IP mismatch, anything you redirect via a Proxy will fail to load. If you used Default Rule -> Redirect, this will effectively break your Internet. If you're not redirecting any Service, or Custom Rule then this mismatch would not cause any issues. </p>
+## <div class="heading-anchor anchor waypoint" id="cause"></div><div class="heading-text"><div id="section-cause" class="heading-anchor_backwardsCompatibility"></div>Cause</div>[](#cause)
+
+<p>In order to access proxies that redirect your traffic, your source IP must be authorized in the global firewall. When you make DNS queries, whatever source IP those queries come from, will get authorized automatically and everything will work as expected. However if the DNS server sees one IP, but you communicate with proxies using another, we cannot authorize your "other" IP, as we never saw it until you tried to proxy something, and this request will fail as the IP is not in the global firewall. </p>
+# <div class="heading-anchor anchor waypoint" id="solutions"></div><div class="heading-text"><div id="section-solutions" class="heading-anchor_backwardsCompatibility"></div>Solutions</div>[](#solutions)
+
+## <div class="heading-anchor anchor waypoint" id="disable-ipv6"></div><div class="heading-text"><div id="section-disable-i-pv-6" class="heading-anchor_backwardsCompatibility"></div>Disable IPv6</div>[](#disable-ipv6)
+
+<p>If you're on an IPv6 network, and find that your IPv6 addresses differ, you can disable IPv6 on your network which will resolved the problem with 99% certainty. However this may not be desirable, in which case read on.</p>
+> ## <span class="callout-icon">📘</span><p>Caveat</p>
+
+<p>If you're using IPv6, a mismatch is only a factor if the 2 IPs don't fall within a /64 network. Different IPs within a single /64 network would not cause any issues as we authorize a whole /64 in the global firewall.</p>
+
+## <div class="heading-anchor anchor waypoint" id="manually-authorize-ip"></div><div class="heading-text"><div id="section-manually-authorize-ip" class="heading-anchor_backwardsCompatibility"></div>Manually Authorize IP</div>[](#manually-authorize-ip)
+
+<p>You can use the [IP Management](/docs/ip-management) section to manually authorize your **Proxy Source IP**.</p>
+## <div class="heading-anchor anchor waypoint" id="disable-redirect-rules"></div><div class="heading-text"><div id="section-disable-redirect-rules" class="heading-anchor_backwardsCompatibility"></div>Disable Redirect Rules</div>[](#disable-redirect-rules)
+
+<p>You can stop using the redirection features and stick to just blocking. This may not be ideal for most.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->11 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Doesn't work on captive portals</div>](/docs/doesnt-work-on-captive-portals)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Lost Password/2FA</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/lost-password2fa)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[Overview](#overview)
+
+- 
+[The Issue](#the-issue)
+<ul>
+<li>[Cause](#cause)
+
+</li>
+<li>
+[Solutions](#solutions)
+
+- [Disable IPv6](#disable-ipv6)
+
+- [Manually Authorize IP](#manually-authorize-ip)
+
+- [Disable Redirect Rules](#disable-redirect-rules)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

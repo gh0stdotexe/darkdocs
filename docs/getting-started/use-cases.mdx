@@ -1,0 +1,157 @@
+---
+title: 'Use Cases'
+description: 'Common use cases for Control D'
+icon: 'use-cases'
+---
+
+# Use Cases
+
+Control D can be used in various scenarios, from personal use to large-scale business deployments.
+
+## Personal Use Cases
+
+### Content Filtering
+- Block unwanted content
+- Filter ads and trackers
+- Protect against malware
+- Manage children's internet access
+
+### Privacy Protection
+- Prevent tracking
+- Block analytics
+- Stop data collection
+- Maintain anonymity
+
+### Parental Controls
+- Filter inappropriate content
+- Set time limits
+- Monitor usage
+- Create safe browsing environments
+
+### Gaming and Streaming
+- Optimize gaming traffic
+- Reduce latency
+- Block unwanted ads
+- Improve streaming quality
+
+## Business Use Cases
+
+### Network Security
+- Block malicious domains
+- Prevent data exfiltration
+- Stop phishing attempts
+- Protect against malware
+
+### Content Management
+- Control access to websites
+- Manage bandwidth usage
+- Filter inappropriate content
+- Enforce company policies
+
+### Compliance
+- Meet regulatory requirements
+- Maintain audit logs
+- Protect sensitive data
+- Ensure data privacy
+
+### Multi-tenant Management
+- Manage multiple networks
+- Set different policies
+- Monitor usage
+- Generate reports
+
+## Industry-specific Use Cases
+
+### Education
+- CIPA compliance
+- Safe browsing for students
+- Content filtering
+- Usage monitoring
+
+### Healthcare
+- HIPAA compliance
+- Patient data protection
+- Secure access
+- Audit logging
+
+### Hospitality
+- Guest network management
+- Content filtering
+- Bandwidth control
+- Usage monitoring
+
+### Small Business
+- Network security
+- Content filtering
+- Employee monitoring
+- Cost control
+
+## Implementation Examples
+
+### Home Network
+```yaml
+profile:
+  name: 'Home Network'
+  filters:
+    - malware
+    - ads
+    - adult
+  services:
+    - social_media: 'allow'
+    - streaming: 'allow'
+    - gaming: 'allow'
+```
+
+### Business Network
+```yaml
+profile:
+  name: 'Business Network'
+  filters:
+    - malware
+    - phishing
+    - ads
+  services:
+    - social_media: 'block'
+    - streaming: 'block'
+    - file_sharing: 'block'
+```
+
+### School Network
+```yaml
+profile:
+  name: 'School Network'
+  filters:
+    - malware
+    - adult
+    - gambling
+    - social_media
+  services:
+    - educational: 'allow'
+    - research: 'allow'
+```
+
+## Best Practices
+
+1. **Start Simple**
+   - Begin with basic filters
+   - Add complexity gradually
+   - Monitor effectiveness
+
+2. **Monitor and Adjust**
+   - Review logs regularly
+   - Adjust filters as needed
+   - Update policies
+
+3. **Prioritize Security**
+   - Enable malware protection
+   - Use strong authentication
+   - Regular updates
+
+4. **Communicate with Users**
+   - Explain policies
+   - Provide alternatives
+   - Address concerns
+
+<Tip>
+Consider running a trial period to test your configuration before full deployment.
+</Tip> 

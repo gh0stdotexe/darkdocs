@@ -1,0 +1,95 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Control D Documentation",
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "favicon": "/favicon.png",
+  "colors": {
+    "primary": "#6e34e9",
+    "light": "#8257ff",
+    "dark": "#5317d3"
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "https://controld.com/support"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Dashboard",
+    "url": "https://controld.com/dashboard"
+  },
+  "anchors": [
+    {
+      "name": "API Reference",
+      "icon": "code",
+      "url": "api"
+    },
+    {
+      "name": "Changelog",
+      "icon": "clock",
+      "url": "changelog"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": [
+        "getting-started/introduction",
+        "getting-started/use-cases",
+        "getting-started/deployment",
+        "getting-started/limitations",
+        "getting-started/free-dns-resolvers",
+        "getting-started/ip-ranges"
+      ]
+    },
+    {
+      "group": "Business",
+      "pages": [
+        "business/overview",
+        {
+          "group": "Solutions",
+          "pages": [
+            "business/solutions/secure-devices",
+            "business/solutions/protect-networks",
+            "business/solutions/content-filtering",
+            "business/solutions/analytics",
+            "business/solutions/privacy",
+            "business/solutions/cipa",
+            "business/solutions/hipaa",
+            "business/solutions/kcsie"
+          ]
+        },
+        {
+          "group": "Industries",
+          "pages": [
+            "business/industries/smb",
+            "business/industries/msp",
+            "business/industries/startups",
+            "business/industries/schools",
+            "business/industries/non-profits",
+            "business/industries/public-wifi",
+            "business/industries/airbnb"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "api/getting-started",
+        "api/authentication",
+        "api/endpoints",
+        "api/rate-limits",
+        "api/error-handling"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "twitter": "https://twitter.com/controldns",
+    "github": "https://github.com/Control-D-Inc",
+    "linkedin": "https://www.linkedin.com/company/control-d"
+  }
+} 

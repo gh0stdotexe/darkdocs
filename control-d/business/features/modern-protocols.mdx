@@ -1,0 +1,46 @@
+---
+title: "Modern Protocols"
+description: "All DNS protocols are supported, and can be deployed to any operating system, even legacy ones that don't support them."
+icon: "shield"
+---
+
+# 
+
+Overview
+
+Control D embraces state-of-the-art technology by supporting all modern DNS protocols, placing a clear focus on secure, encrypted DNS options. This approach ensures the integrity and privacy of DNS queries in an era where cyber threats are increasingly sophisticated.
+
+# 
+
+Problem Solved
+
+Modern Protocols in DNS, especially encrypted ones, solve the issue of unsecured traditional DNS traffic that can be susceptible to interception and manipulation. By implementing these protocols, Control D protects its users from potential attacks such as eavesdropping and DNS hijacking. 
+
+# 
+
+Supported DNS Protocols
+
+Control D supports dual stack (IPv4/IPv6) legacy DNS protocols, but we strongly encourage the use of their modern and encrypted counterparts. These include: 
+
+  * **DNS-over-HTTPS (DoH)** : Encapsulates DNS in HTTPS traffic, providing encryption and authentication via the HTTP protocol. HTTP/1 and HTTP/2 are supported. 
+  * **DNS-over-TLS (DoT)** : Operates similarly to DoH, securing the DNS by utilizing the TLS protocol, much like secure web traffic.
+  * **DNS-over-QUIC (DoQ)** : A novel protocol that combines the security of DoT or DoH with the performance improvements of QUIC.
+  * **DNS-over-HTTPS/3 (DoH3)** : Implements the latest advancements by integrating HTTP/3 into DoH, offering enhanced performance and security.
+
+# 
+
+Benefits of Secure DNS Protocols
+
+  * **Privacy Assurance** : Encrypted DNS protocols protect DNS queries from being monitored or modified by third parties.
+  * **Security Enhancement** : Using modern DNS protocols reduces the risk of cyber attacks related to DNS such as spoofing or pharming.
+  * **Future-Proof Infrastructure** : By supporting cutting-edge protocols, Control D prepares users for next-generation internet standards.
+
+# 
+
+Using Modern Protocols with Control D
+
+Most modern operating systems, and all browsers support DNS-over-HTTPS or DNS-over-TLS, and can be natively deployed. For software based deployments, [Command Line Daemon](/docs/ctrld) is available which runs on every operating system and utilizes Secure DNS protocols by default. Intuitive tutorials make deployment a breeze.
+
+__Updated over 1 year ago
+
+* * *

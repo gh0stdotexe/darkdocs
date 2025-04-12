@@ -1,0 +1,81 @@
+---
+title: "Update IP via Heartbeat Device"
+description: "How to automatically update IPs using a browser and DNS-over-HTTPS."
+icon: "network"
+---
+
+# Update IP via Heartbeat Device
+
+<Info>
+If you're forced to use Legacy DNS on your router, and unable to use the <Link href="/docs/ctrld">Command Line Daemon</Link> which eliminates the need to do any of the following, then your best bet is using a Heartbeat Device.
+</Info>
+
+## What is Heartbeat Device
+
+<Info>
+If you recall, when you use Secure DNS protocols like DNS-over-HTTPS/TLS/QUIC your source IP doesn't matter, Control D will just work regardless of what your IP is, and how often it changes. You may not be able to use these protocols on your router, but if you have desktop computers on your network that are on 24/7, you can use them as a method of updating your network's IP address automatically.
+</Info>
+
+## How to Setup
+
+<Info>
+You probably created a Device for your router, and configured the Legacy IPv4 resolvers on it. Let's assume it's called `my-router`. Simply copy the DNS-over-HTTPS resolver from the same Device, and configure it in a <Link href="/docs/browsers-platform">Browser</Link> of your choice, ideally on a machine that's online 24/7, and has a bunch of browser tabs open. Once you do this, the browser you chose will disregard your router's DNS, and use the Control D Device's resolver directly. Since browsers emit DNS queries on their own, especially if you have several tabs open, as soon as your network's IP address changes, the very first DNS query emitted from your browser will automatically authorize your new IP.
+</Info>
+
+<Info>
+You can find a list of all authorized IPs <Link href="https://controld.com/dashboard/ips">here</Link>.
+</Info>
+
+<Note>
+Not just browsers
+</Note>
+
+<Info>
+The above example suggests that you use a browser, but you don't have to. Any Internet connected device that supports Secure DNS (Android, iOS, MacOS, Windows 11) can do the same task.
+</Info>
+
+## Different Devices
+
+<Info>
+The above example assumes you're using the same Control D Device both on your router AND in the browser of a chosen Heartbeat Device. We suggest doing this, as it's the simplest option. If you wish to use 2 separate Control D Devices, you can still do this but with a few extra steps.
+</Info>
+
+<Info>
+For the purposes of this example we're going to assume the following 2 Devices that you created:
+</Info>
+
+- `my-router` -> setup on your router using Legacy DNS
+- `my-chrome-browser` -> setup in Google Chrome on some machine on your network using DNS-over-HTTPS.
+
+<Info>
+In the `my-chrome-browser` Device Settings, enable the <Link href="/docs/expose-ip-via-dns">Expose IP via DNS</Link> feature. When your browser makes DNS queries, the last seen source IP will be exposed via this DNS record, in a similar fashion to standard DDNS services.
+</Info>
+
+<Image src="https://files.readme.io/4300864-expose-ip-1.JPG" alt="Expose IP Settings" />
+
+<Info>
+secret-browser-ip.controld.live is your (example) personal DDNS record.
+</Info>
+
+<Info>
+Then go into the `my-router` Device Settings, and configure the hostname you saw above as a Dynamic DNS hostname.
+</Info>
+
+<Image src="https://files.readme.io/bcdf4b4-expose-ip-2.JPG" alt="Dynamic DNS Configuration" />
+
+<Info>
+Once you do the above, the following things will happen:
+</Info>
+
+<Steps>
+  <Step>
+    First step
+  </Step>
+  <Step>
+    Second step
+  </Step>
+</Steps>
+
+__Updated 12 months ago
+
+<Divider />

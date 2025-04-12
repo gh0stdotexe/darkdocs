@@ -1,0 +1,197 @@
+---
+title: "DD-WRT Router Guide"
+description: "📘 DNS Daemon: This router is supported by the ctrld Command Line Daemon . This is the best and simplest way to onboard. Legacy DNS Keep in mind that you can only setup Legacy DNS in the DD-WRT interface. To use Secure DNS, click here and follow these steps instead . Step 1 Open the router interface..."
+icon: "network"
+---
+
+> ## 📘
+> 
+> DNS Daemon
+> 
+> This router is supported by the ctrld [Command Line Daemon](/docs/ctrld). This is the best and simplest way to onboard.
+
+# 
+
+Legacy DNS
+
+Keep in mind that you can only setup Legacy DNS in the DD-WRT interface. To use Secure DNS, [click here and follow these steps instead](/docs/dd-wrt-router-guide#secure-resolver-dns-over-https).
+
+## 
+
+Step 1
+
+Open the router interface by navigating to it in your browser. By default you can reach it via `192.168.1.1`
+
+![](https://files.readme.io/3ba7b1a-image.png)
+
+## 
+
+Step 2
+
+Navigate to the **Setup** tab followed by the **Basic Setup** section.
+
+![](https://files.readme.io/d98f9ca-image.png)
+
+## 
+
+Step 3
+
+Now determine which DNS resolver you want to use. 
+
+### 
+
+Free Resolver
+
+If you are configuring our free DNS resolvers, you can get the IPs from this page: <https://controld.com/free-dns>
+
+  1. Select the configuration you want to use from the list:  
+![](https://files.readme.io/f86c0c1-image.png)
+
+  2. Then copy the Legacy Resolver IP address that appears at the bottom of the page:  
+![](https://files.readme.io/c1b2ca6-image.png)
+
+### 
+
+Custom Resolver
+
+If you are configuring a custom Legacy DNS resolver: 
+
+  1. Create a new "DD-WRT" Router Device on your [Control D Dashboard](https://controld.com/dashboard/devices). Link it to a Profile (or [create a new Profile if you don't have one](/docs/profiles)) and finally make sure to enable the **Legacy Resolver** option under **Advanced Settings**. Then press **Add Device** :  
+![](https://files.readme.io/708cf50-image.png)
+
+  2. Expand the **Legacy DNS** section where you will see the IP addresses to use for the setup. Do NOT copy the same IPs from the screenshot, copy the ones from your account specifically.  
+![](https://files.readme.io/6796a58-image.png)
+
+## 
+
+Step 4
+
+Back in the DD-WRT interface, scroll down to the section containing the **Static DNS** fields. DD-WRT allows you to configure 3 DNS resolvers, we will use the two from the last step and leave the third blank.
+
+Enter the resolver IPs from the last step into the **Static DNS 1** and **Static DNS 2** fields.
+
+![](https://files.readme.io/d7f9dbb-image.png)
+
+## 
+
+Step 5
+
+Finally, scroll to the bottom of the page and press **Apply Settings**. 
+
+![](https://files.readme.io/ac5a0d3-image.png)
+
+Once the router saves the configuration, you are using Control D on your network! 
+
+Keep in mind that if you configure a custom DNS on any of the individual devices connected to this router, those devices will not be using the DNS you configured here.
+
+> ## 🚧
+> 
+> Dynamic IP Warning
+> 
+> This method is subject to your [source IP being registered](/docs/ip-management) on this Device in the web control panel, so this is best suited for networks with a static IP. If you have a Dynamic IP see [Legacy DNS limitations](/docs/ip-not-authorized) section for solution.
+
+* * *
+
+# 
+
+Secure Resolver (DNS-over-HTTPS)
+
+Setting up a secure DOH resolver on your router will require you to SSH into it and run a one-line command to install the [ctrld utility](/docs/ctrld). You will first need to enable some settings on the router to allow this though.
+
+## 
+
+Step 1
+
+Open the router interface by navigating to it in your browser. By default you can reach it via `192.168.1.1`
+
+![](https://files.readme.io/cc4c4e0-image.png)
+
+## 
+
+Step 2
+
+Now follow these steps to enable remote SSH access and JFFS2 Support in the router interface. These are necessary to run the ctrld installation command on the router.
+
+  1. Head to **Services** at the top, and then **Services** again.  
+![](https://files.readme.io/b39b49d-image.png)
+  2. Scroll down to the **Secure Shell (SSH)** section and use the following settings:  
+Enable Daemon: **Enable**  
+SSH TCP Forwarding: **Disable**  
+Password Login: **Enable**  
+Port: **22**  
+![](https://files.readme.io/2832e31-image.png)
+  3. Press **Apply Settings**.  
+![](https://files.readme.io/872b43f-image.png)
+  4. Now head to **Administration** at the top, followed by **Management**.  
+![](https://files.readme.io/7d0d3cc-image.png)
+  5. Scroll down to the **JFFS2 Support** section and **Enable Flash Storage**. Keep the other option disabled.  
+![](https://files.readme.io/6ea1e7c-image.png)
+  6. Press **Apply Settings** and once they are saved, press **Reboot Router.**  
+![](https://files.readme.io/71ea995-image.png)  
+![](https://files.readme.io/ef46c50-image.png)
+
+## 
+
+Step 3
+
+After the router has restarted, you should now be able to SSH into it. 
+
+Open **Command Prompt** (on Windows) or **Terminal** (on MacOS or Linux).
+
+Now remotely connect to the router with SSH using the `root` account and the Gateway IP. This is the IP that you used in the browser to access the router interface, usually `192.168.1.1` but if your gateway is different, use that one instead.
+
+The command will look like this `ssh [[email protected]](/cdn-cgi/l/email-protection)`
+
+You will be prompted for a password which is the router admin password, the same one you use to access the web interface. Type it in (you will not see any characters appear when typing the password) and press Enter.
+
+![](https://files.readme.io/4293b04-image.png)
+
+Once you are logged in, you will see the following in your Command Prompt/Terminal window:
+
+![](https://files.readme.io/c3a7967-image.png)
+
+## 
+
+Step 4
+
+Now you'll need to create a new Device for your router in the [Control D Dashboard](https://controld.com/dashboard/devices). 
+
+  1. Log into the Dashboard with your Control D account and go to [the Devices section](https://controld.com/dashboard/devices).
+  2. Press the Green plus **( + )** button in the top-right.  
+![](https://files.readme.io/43f7342-image.png)
+  3. Select **DD-WRT** under the Routers section.  
+![](https://files.readme.io/cd93bbf-image.png)
+  4. Give your device a name and link it to a Profile ([create a new Profile if you don't have one](/docs/profiles)). Add any optional comments and enable Analytics if you want them. Then press **Add Device**.  
+![](https://files.readme.io/243240f-image.png)
+  5. Next, click the **Automatic Setup** option which will show you the one-line command to install the ctrld utility.  
+![](https://files.readme.io/3531a81-image.png)
+  6. Click the Copy button on the right side to copy the command to the clipboard.  
+![](https://files.readme.io/7a2ee04-image.png)
+
+## 
+
+Step 5
+
+Finally, go back to your Command Prompt/Terminal window where you are SSHed into the router, paste the command and press Enter to run it.
+
+![](https://files.readme.io/d918e24-image.png)
+
+The router will then download and install the ctrld utility. Once it's installed, the ctrl utility will automatically start.
+
+![](https://files.readme.io/6463d92-image.png)
+
+Once you see the **Service Started** message, you are done! Your router is now using your Secure DoH resolver. 
+
+If you want to execute ctrld commands on the router, first navigate to the folder it is installed in with this command:
+
+`cd /jffs/controld`
+
+And then execute commands using `./ctrld`. For example to see a help overview, run the command like this:
+
+`./ctrld --help`
+
+For more documentation, including the different ctrld modes, commands and uninstall instructions, refer to the main [ctrld Utility docs here](/docs/ctrld).
+
+__Updated over 1 year ago
+
+* * *

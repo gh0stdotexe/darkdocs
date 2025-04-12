@@ -1,0 +1,53 @@
+{
+  "autonomous_mode": true,
+  "max_iterations": 10,
+  "confidence_threshold": 0.85,
+  "tool_usage": {
+    "codebase_search": "aggressive",
+    "edit_file": "autonomous",
+    "run_terminal_cmd": "autonomous"
+  },
+  "formatting": {
+    "enforce_mintlify": true,
+    "auto_format": true,
+    "validate_tags": true,
+    "components": {
+      "image": "<Image>",
+      "tip": "<Tip>",
+      "code": "<CodeBlock>",
+      "tabs": "<Tabs>",
+      "callout": "<Callout>"
+    }
+  },
+  "workflow": {
+    "pre_edit": [
+      "validate_mintlify_formatting",
+      "check_tag_closure",
+      "verify_frontmatter"
+    ],
+    "post_edit": [
+      "format_document",
+      "validate_changes",
+      "update_toc"
+    ]
+  },
+  "auto_format": {
+    "rules": {
+      "heading_spacing": true,
+      "list_indentation": true,
+      "code_block_formatting": true,
+      "component_spacing": true,
+      "link_formatting": true
+    }
+  },
+  "formatting_fixes": {
+    "markdown_images": {
+      "pattern": "!\\[.*\\]\\(.*\\)",
+      "replacement": "<Image src=\"$2\" alt=\"$1\" />"
+    },
+    "code_blocks": {
+      "pattern": "```(\\w+)\\n([\\s\\S]*?)\\n```",
+      "replacement": "<CodeBlock language=\"$1\">\n$2\n</CodeBlock>"
+    }
+  }
+} 

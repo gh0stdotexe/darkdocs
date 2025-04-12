@@ -1,0 +1,47 @@
+---
+title: "Public Wi-Fi Operators"
+description: "Solutions for public Wi-Fi operators using Control D."
+icon: "wifi"
+---
+
+# Public Wi-Fi Operators
+
+Control D provides specialized solutions for public Wi-Fi operators to manage and secure their networks.
+
+## Features
+
+- **Content Filtering**: Control access to inappropriate content
+- **Bandwidth Management**: Optimize network performance
+- **User Authentication**: Manage user access and sessions
+- **Analytics**: Monitor network usage and performance
+- **Compliance**: Meet regulatory requirements
+
+## Implementation
+
+```yaml
+public_wifi:
+  locations:
+    - name: "Cafe A"
+      max_users: 50
+      bandwidth: "10Mbps"
+    - name: "Hotel B"
+      max_users: 200
+      bandwidth: "50Mbps"
+  filtering:
+    categories: ["adult", "gambling", "piracy"]
+    schedule: "24/7"
+  authentication:
+    method: "captive_portal"
+    session_timeout: "4h"
+```
+
+## Best Practices
+
+1. Implement appropriate content filtering
+2. Monitor network performance
+3. Regular security updates
+4. User experience optimization
+
+<Tip>
+Use Control D's features to provide a safe and reliable public Wi-Fi service.
+</Tip> 

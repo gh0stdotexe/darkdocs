@@ -1,0 +1,140 @@
+---
+title: "Multiple Enforced Profiles"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Enforcing multiple Profiles on a Device can allow for highly complex behaviors.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/multiple-enforced-profiles)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>Traditionally, a <Link href=&quot;/docs/devices&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;devices&quot;>Device</Link> enforces a single <Link href=&quot;/docs/profiles&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;profiles&quot;>Profile</Link> (configuration). Control D also allows you to enforce multiple profiles on a single device, in order to create advanced rule matching behaviors. </p>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Multiple Enforced Profiles
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Enforcing multiple Profiles on a Device can allow for highly complex behaviors.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/multiple-enforced-profiles)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>Traditionally, a <Link href=&quot;/docs/devices&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;devices&quot;>Device</Link> enforces a single <Link href=&quot;/docs/profiles&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;profiles&quot;>Profile</Link> (configuration). Control D also allows you to enforce multiple profiles on a single device, in order to create advanced rule matching behaviors. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;how-it-works&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-how-it-works&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>How it works</div><Link aria-label=&quot;Skip link to How it works&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#how-it-works&quot;></Link>
+
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/eb4ced1d58f993486a4c6dcec1116773e493d38a60511895d632c137d3c46539-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>When creating a device, you can choose up to two profiles (three for Organization accounts) that are enforced on the device. When you query a device that enforced  2 profiles, the rule engine will look for a match in the first profile. A match means:</p>
+
+- Filter was triggered that blocked something
+
+- Service rule was triggered that blocked, redirected or bypassed something
+
+- Custom rule was triggered that blocked, redirected or bypassed something
+
+- Default Rule was triggered that blocked or redirected something
+
+<p>If the first profile didn&#x27;t match any rule, when the 2nd enforced profile is consulted. The rule engine will then perform the same flow as above and look for a match. </p>
+<p>Another way to think about is multiple profiles are merged into a single one, and in case of conflicts (Profile 1 says block, Profile 2 says redirect), the first profile wins. Organization accounts have a way for a 2nd Profile to override the 1st in some cases. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;organization-accounts&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-organization-accounts&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Organization Accounts</div><Link aria-label=&quot;Skip link to Organization Accounts&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#organization-accounts&quot;></Link>
+
+<p>If you have a Organization account, you can also leverage the <Link href=&quot;/docs/global-profile&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;global-profile&quot;>Global Profile</Link> feature within any Sub-Organization. This can add a 3rd layer, meaning you can enforce up to 3 Profiles on any Device.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;limitations&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-limitations&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Limitations</div><Link aria-label=&quot;Skip link to Limitations&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#limitations&quot;></Link>
+
+1. $1
+
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;use-cases&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-use-cases&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Use Cases</div><Link aria-label=&quot;Skip link to Use Cases&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#use-cases&quot;></Link>
+
+<p>There are many powerful behaviors that you can accomplish with this feature. Some of these include:</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;common-rules&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-common-rules&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Common Rules</div><Link aria-label=&quot;Skip link to Common Rules&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#common-rules&quot;></Link>
+
+<p>You may have multiple profiles, but they probably have few/many rules that are common between all of them. If you change a rule in one, you have to go and manually change it in all other profiles. Instead, you can just have a single “Common Profile” that has all your common rules. Then your device specific profiles can have only the rules you need on those specific devices. So you can have something like this:</p>
+
+- Device A: Everyone Profile → Work Profile
+
+- Device B: Everyone Profile → Home Profile
+
+- Device C: Everyone Profile → Employee Profile
+
+<p>“Everyone Profile” contains things you probably want on all devices (block Malware, Ads, Phishing), while device/use-case specific profiles can only contain rules for things you only need on those specific devices. This eliminates the need to duplicate or sync rules. </p>
+<p>If you have a Organization account, and leverage sub-organizations you can make this 3 tiered:</p>
+
+- Device A: Global Profile For Entire Org → Support Department Profile → User Specific Profile  
+
+- Device B: Global Profile For Entire Org → Marketing Department Profile → User Specific Profile
+
+- Device C: Global Profile For Entire Org →  User Specific Profile
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;rule-priorities&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-rule-priorities&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Rule Priorities</div><Link aria-label=&quot;Skip link to Rule Priorities&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#rule-priorities&quot;></Link>
+
+<p>The rule engine works as follows:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+4. $1
+
+" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"><p>Traditionally, a [Device](/docs/devices) enforces a single [Profile](/docs/profiles) (configuration). Control D also allows you to enforce multiple profiles on a single device, in order to create advanced rule matching behaviors. </p>
+# <div class="heading-anchor anchor waypoint" id="how-it-works"></div><div class="heading-text"><div id="section-how-it-works" class="heading-anchor_backwardsCompatibility"></div>How it works</div>[](#how-it-works)
+
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/eb4ced1d58f993486a4c6dcec1116773e493d38a60511895d632c137d3c46539-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>When creating a device, you can choose up to two profiles (three for Organization accounts) that are enforced on the device. When you query a device that enforced  2 profiles, the rule engine will look for a match in the first profile. A match means:</p>
+
+- Filter was triggered that blocked something
+
+- Service rule was triggered that blocked, redirected or bypassed something
+
+- Custom rule was triggered that blocked, redirected or bypassed something
+
+- Default Rule was triggered that blocked or redirected something
+
+<p>If the first profile didn't match any rule, when the 2nd enforced profile is consulted. The rule engine will then perform the same flow as above and look for a match. </p>
+<p>Another way to think about is multiple profiles are merged into a single one, and in case of conflicts (Profile 1 says block, Profile 2 says redirect), the first profile wins. Organization accounts have a way for a 2nd Profile to override the 1st in some cases. </p>
+## <div class="heading-anchor anchor waypoint" id="organization-accounts"></div><div class="heading-text"><div id="section-organization-accounts" class="heading-anchor_backwardsCompatibility"></div>Organization Accounts</div>[](#organization-accounts)
+
+<p>If you have a Organization account, you can also leverage the [Global Profile](/docs/global-profile) feature within any Sub-Organization. This can add a 3rd layer, meaning you can enforce up to 3 Profiles on any Device.</p>
+## <div class="heading-anchor anchor waypoint" id="limitations"></div><div class="heading-text"><div id="section-limitations" class="heading-anchor_backwardsCompatibility"></div>Limitations</div>[](#limitations)
+
+1. $1
+
+# <div class="heading-anchor anchor waypoint" id="use-cases"></div><div class="heading-text"><div id="section-use-cases" class="heading-anchor_backwardsCompatibility"></div>Use Cases</div>[](#use-cases)
+
+<p>There are many powerful behaviors that you can accomplish with this feature. Some of these include:</p>
+## <div class="heading-anchor anchor waypoint" id="common-rules"></div><div class="heading-text"><div id="section-common-rules" class="heading-anchor_backwardsCompatibility"></div>Common Rules</div>[](#common-rules)
+
+<p>You may have multiple profiles, but they probably have few/many rules that are common between all of them. If you change a rule in one, you have to go and manually change it in all other profiles. Instead, you can just have a single “Common Profile” that has all your common rules. Then your device specific profiles can have only the rules you need on those specific devices. So you can have something like this:</p>
+
+- Device A: Everyone Profile → Work Profile
+
+- Device B: Everyone Profile → Home Profile
+
+- Device C: Everyone Profile → Employee Profile
+
+<p>“Everyone Profile” contains things you probably want on all devices (block Malware, Ads, Phishing), while device/use-case specific profiles can only contain rules for things you only need on those specific devices. This eliminates the need to duplicate or sync rules. </p>
+<p>If you have a Organization account, and leverage sub-organizations you can make this 3 tiered:</p>
+
+- Device A: Global Profile For Entire Org → Support Department Profile → User Specific Profile  
+
+- Device B: Global Profile For Entire Org → Marketing Department Profile → User Specific Profile
+
+- Device C: Global Profile For Entire Org →  User Specific Profile
+
+## <div class="heading-anchor anchor waypoint" id="rule-priorities"></div><div class="heading-text"><div id="section-rule-priorities" class="heading-anchor_backwardsCompatibility"></div>Rule Priorities</div>[](#rule-priorities)
+
+<p>The rule engine works as follows:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+4. $1
+
+</div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->4 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Endpoints (Devices)</div>](/docs/devices)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">IP Management</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/ip-management)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[How it works](#how-it-works)
+<ul>
+<li>[Organization Accounts](#organization-accounts)
+
+- [Limitations](#limitations)
+
+</li>
+<li>
+[Use Cases](#use-cases)
+
+- [Common Rules](#common-rules)
+
+- [Rule Priorities](#rule-priorities)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

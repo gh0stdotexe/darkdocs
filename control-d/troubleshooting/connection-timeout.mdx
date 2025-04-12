@@ -1,0 +1,106 @@
+---
+title: "Connection Timeout"
+description: "How to troubleshoot and resolve connection timeout issues with Control D"
+icon: "clock"
+---
+
+# Connection Timeout
+
+<Note>
+Connection timeouts can occur for various reasons. This guide will help you identify and resolve the issue.
+</Note>
+
+## 1. Check Network Connection
+
+<Steps>
+  <Step>Verify your internet connection is active</Step>
+  <Step>Test basic connectivity by pinging a reliable server</Step>
+  <Step>Check if other devices on the same network are working</Step>
+</Steps>
+
+## 2. Verify Control D Status
+
+<Steps>
+  <Step>Open Control D application</Step>
+  <Step>Check if the service is running</Step>
+  <Step>Verify your subscription status</Step>
+  <Step>Check for any error messages</Step>
+</Steps>
+
+## 3. Check DNS Settings
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step>Open Command Prompt as Administrator</Step>
+      <Step>Run `ipconfig /all`</Step>
+      <Step>Verify DNS servers are set to Control D addresses</Step>
+      <Step>Run `ipconfig /flushdns`</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <Steps>
+      <Step>Open Terminal</Step>
+      <Step>Run `scutil --dns`</Step>
+      <Step>Verify DNS configuration</Step>
+      <Step>Run `sudo killall -HUP mDNSResponder`</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Linux">
+    <Steps>
+      <Step>Open Terminal</Step>
+      <Step>Run `cat /etc/resolv.conf`</Step>
+      <Step>Verify DNS settings</Step>
+      <Step>Run `sudo systemd-resolve --flush-caches`</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 4. Check Firewall Settings
+
+<Warning>
+Your firewall might be blocking Control D connections. Check these settings:
+</Warning>
+
+<Steps>
+  <Step>Open your firewall settings</Step>
+  <Step>Verify Control D is allowed through the firewall</Step>
+  <Step>Check both inbound and outbound rules</Step>
+  <Step>Add exceptions if necessary</Step>
+</Steps>
+
+## 5. Test with Different Protocols
+
+<Info>
+Try using different DNS protocols to identify if the issue is protocol-specific:
+</Info>
+
+<Steps>
+  <Step>Test with DoH (DNS over HTTPS)</Step>
+  <Step>Test with DoT (DNS over TLS)</Step>
+  <Step>Test with plain DNS</Step>
+  <Step>Compare results</Step>
+</Steps>
+
+## 6. Collect Diagnostic Information
+
+<Accordion title="Diagnostic Steps">
+  <Steps>
+    <Step>Enable logging in Control D</Step>
+    <Step>Reproduce the timeout issue</Step>
+    <Step>Collect logs and network traces</Step>
+    <Step>Note any error messages</Step>
+  </Steps>
+</Accordion>
+
+## 7. Contact Support
+
+<Card>
+  If issues persist after trying these steps, [contact support](https://controld.com/contact/) with:
+  - Diagnostic logs
+  - Network traces
+  - Error messages
+  - Steps to reproduce
+</Card> 

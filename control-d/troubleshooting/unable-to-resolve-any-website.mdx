@@ -1,0 +1,110 @@
+---
+title: "Unable to Resolve Any Website / No Internet"
+description: "Troubleshooting steps for when you can't access any websites with Control D"
+icon: "globe"
+---
+
+# Unable to Resolve Any Website / No Internet
+
+<Note>
+If you're unable to access any websites while using Control D, follow these troubleshooting steps.
+</Note>
+
+## 1. Check Your Internet Connection
+
+<Steps>
+  <Step>Try accessing a website without Control D enabled</Step>
+  <Step>Check if other devices on your network can access the internet</Step>
+  <Step>Verify your network settings and router configuration</Step>
+</Steps>
+
+## 2. Verify Control D Status
+
+<Steps>
+  <Step>Open the Control D dashboard and verify your endpoint is active</Step>
+  <Step>Check the [status page](https://controld.com/status/) for any service issues</Step>
+  <Step>Ensure your subscription is active and not expired</Step>
+</Steps>
+
+## 3. Check DNS Settings
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step>Open Control Panel</Step>
+      <Step>Go to Network and Internet > Network and Sharing Center</Step>
+      <Step>Click on your active connection</Step>
+      <Step>Click Properties</Step>
+      <Step>Select Internet Protocol Version 4 (TCP/IPv4)</Step>
+      <Step>Click Properties</Step>
+      <Step>Verify that "Obtain DNS server address automatically" is selected</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <Steps>
+      <Step>Open System Preferences</Step>
+      <Step>Go to Network</Step>
+      <Step>Select your active connection</Step>
+      <Step>Click Advanced</Step>
+      <Step>Go to DNS tab</Step>
+      <Step>Verify that DNS servers are set to automatic</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Linux">
+    <Steps>
+      <Step>Open Network Settings</Step>
+      <Step>Select your active connection</Step>
+      <Step>Go to IPv4 settings</Step>
+      <Step>Verify that DNS is set to automatic</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 4. Restart Control D
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step>Open Services (services.msc)</Step>
+      <Step>Find "Control D" service</Step>
+      <Step>Right-click and select Restart</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <CodeBlock>
+      sudo ctrld restart
+    </CodeBlock>
+  </Tab>
+  
+  <Tab title="Linux">
+    <CodeBlock>
+      sudo systemctl restart ctrld
+    </CodeBlock>
+  </Tab>
+</Tabs>
+
+## 5. Check Firewall Settings
+
+<Steps>
+  <Step>Add exceptions for Control D in your firewall settings</Step>
+  <Step>Temporarily disable firewall to test if it's the cause</Step>
+  <Step>Check antivirus software settings</Step>
+</Steps>
+
+## 6. Collect Diagnostic Information
+
+<Warning>
+If the issue persists, collect the following information before contacting support:
+</Warning>
+
+1. Control D status page results
+2. Network configuration details
+3. Firewall settings
+4. Any error messages received
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) with the information collected above.
+</Card> 

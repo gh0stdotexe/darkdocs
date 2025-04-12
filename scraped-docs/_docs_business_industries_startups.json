@@ -1,0 +1,48 @@
+{
+  "content": {
+    "success": true,
+    "warning": "This scrape job was throttled at your current concurrency limit. If you'd like to scrape faster, you can upgrade your plan.",
+    "markdown": "![](https://files.readme.io/45785f4-brandmark-blue.svg)\n\n## Page Not Found",
+    "metadata": {
+      "og:image": "https://files.readme.io/45785f4-brandmark-blue.svg",
+      "readme-subdomain": "controld",
+      "title": "Control D",
+      "language": "en",
+      "twitter:title": "",
+      "twitter:image": "https://files.readme.io/45785f4-brandmark-blue.svg",
+      "favicon": "https://files.readme.io/a0e3b99-small-SymbolDark.png",
+      "ogDescription": "Take Control of your Internet experience. DNS service with superpowers.",
+      "description": "Take Control of your Internet experience. DNS service with superpowers.",
+      "ogTitle": "",
+      "readme-version": "1.0",
+      "og:description": "Take Control of your Internet experience. DNS service with superpowers.",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "loadedProject": "controld",
+      "ogImage": "https://files.readme.io/45785f4-brandmark-blue.svg",
+      "readme-deploy": "5.329.0",
+      "og:site_name": "Control D",
+      "ogSiteName": "Control D",
+      "og:title": "",
+      "twitter:description": "Take Control of your Internet experience. DNS service with superpowers.",
+      "twitter:card": "summary_large_image",
+      "scrapeId": "ac59a37d-d784-4052-b74c-39b2b7737397",
+      "sourceURL": "https://docs.controld.com/docs/business/industries/startups",
+      "url": "https://docs.controld.com/docs/business/industries/startups",
+      "statusCode": 404,
+      "error": "Not Found"
+    },
+    "html": "<!DOCTYPE html><html lang=\"en\" style=\"\" data-color-mode=\"null\" class=\" useReactApp  \"><body class=\"body-none theme-solid header-solid header-bg-size-auto header-bg-pos-tl header-overlay-triangles reference-layout-row lumosity-dark no-sidebar\"><div id=\"ssr-top\"></div><div id=\"ssr-main\"><div class=\"App ThemeContext ThemeContext_dark \" style=\"--color-primary:#111111;--color-primary-inverse:#fff;--color-primary-alt:#000000;--color-primary-darken-10:#000000;--color-primary-darken-20:#000000;--color-primary-alpha-25:rgba(17, 17, 17, 0.25);--color-link-primary:#6e34e9;--color-link-primary-darken-5:#5e1de6;--color-link-primary-darken-10:#5317d3;--color-link-primary-darken-20:#4112a5;--color-link-primary-alpha-50:rgba(110, 52, 233, 0.5);--color-link-primary-alpha-25:rgba(110, 52, 233, 0.25);--color-link-background:rgba(110, 52, 233, 0.09);--color-link-text:#fff;--color-login-link:#018ef5;--color-login-link-text:#fff;--color-login-link-darken-10:#0171c2;--color-login-link-primary-alpha-50:rgba(1, 142, 245, 0.5)\"><div class=\"PageNotFound3u7_0vlmK5-A rm-Container\"><img alt=\"\" class=\"PageNotFound-logoJythb8vq2xAB\" src=\"https://files.readme.io/45785f4-brandmark-blue.svg\"><h2 class=\"PageNotFound-titlevy1rat2lG86f\">Page Not Found</h2></div><div class=\"ModalWrapper\" id=\"ChatGPT-modal\"></div></div></div><div class=\"ng-non-bindable\"></div><div id=\"hub-container\"><div class=\"hub-container\"><div state-container=\"\" ng-attr-id=\"{{state.current().root !== 'docs' &amp;&amp; 'react-app-content-container'}}\"><div id=\"replace-view\" ng-non-bindable=\"\"></div></div></div></div><div id=\"ssr-end\">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</div></body></html>"
+  },
+  "metadata": {
+    "url": "https://docs.controld.com/docs/business/industries/startups",
+    "scrapedAt": "2025-04-12T22:11:45.026Z",
+    "contentLength": {
+      "markdown": 74,
+      "html": 1650
+    },
+    "title": "![](https://files.readme.io/45785f4-brandmark-blue.svg)",
+    "sections": [
+      "Page Not Found"
+    ]
+  }
+}

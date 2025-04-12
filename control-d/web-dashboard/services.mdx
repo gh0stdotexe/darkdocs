@@ -1,0 +1,61 @@
+---
+title: "Services"
+description: "Control individual websites, services and apps."
+icon: "settings"
+---
+
+# Services
+
+<Info>
+Services are pre-made collections of domains that are used by various websites, apps and platforms. Block or Redirect them with a single click.
+</Info>
+
+## What are Services
+
+<Info>
+A service is a collection of rules that cover a website, app, or web service. A rule can be assigned to a Service, that will perform some type of action. Services are broken down into several categories.
+</Info>
+
+<Image src="https://files.readme.io/0b96372-small-services_v2.PNG" alt="Services Interface" />
+
+## Service Rules
+
+<Info>
+There are 3 types of rules that can be chosen for any specific service.
+</Info>
+
+<Image src="https://files.readme.io/4b31588-small-services_tools_v2.PNG" alt="Service Rules Interface" />
+
+<Warning>
+**Matching Order**
+
+Service rules override Filters. So for example, if you enabled Social Filter (which blocks ALL social networks) you can use the Service rules to override this behavior and make selected services work (via BYPASS or REDIRECT rules).
+</Warning>
+
+### Block
+
+<Info>
+A BLOCK action will prevent the Service from loading, and will effectively make it inaccessible from a Device that enforces a Profile that blocks a specific service.
+</Info>
+
+### Bypass
+
+<Info>
+A BYPASS rule will resolve all domains associated with a Service to their true IPs. This is useful to override Filter blocks, or the Default Rule.
+</Info>
+
+<Info>
+**Rule OFF vs Bypass**
+
+You may be wondering, what's the difference between setting a BYPASS rule vs disabling the service status toggle. If you have Default Rule set to BYPASS, there is no difference between the earlier mentioned Service rule settings - they will behave the same way (resolve Service normally).
+
+If you have Default Rule set to redirect, then the Service rule will override this behavior. A BYPASS rule will cause the Service to resolve normally (not be redirected).
+</Info>
+
+### Redirect
+
+<Info>
+A REDIRECT rule will spoof all domains related to a Service via a proxy location or specific IP address chosen by you.
+</Info>
+
+__Updated over 1 year ago

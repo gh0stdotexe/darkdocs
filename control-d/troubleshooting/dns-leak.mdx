@@ -1,0 +1,107 @@
+---
+title: "DNS Leak"
+description: "How to identify and prevent DNS leaks when using Control D"
+icon: "shield"
+---
+
+# DNS Leak
+
+<Note>
+A DNS leak occurs when DNS requests bypass Control D and are sent to your ISP or other DNS servers. This guide will help you identify and prevent DNS leaks.
+</Note>
+
+## 1. Understanding DNS Leaks
+
+<Info>
+DNS leaks can happen due to:
+- IPv6 leakage
+- WebRTC leaks
+- System misconfiguration
+- VPN interference
+</Info>
+
+## 2. Test for DNS Leaks
+
+<Steps>
+  <Step>Visit a DNS leak test website</Step>
+  <Step>Run the test multiple times</Step>
+  <Step>Check if any requests bypass Control D</Step>
+  <Step>Note any unexpected DNS servers</Step>
+</Steps>
+
+## 3. Prevent IPv6 Leaks
+
+<Tabs>
+  <Tab title="Windows">
+    <Steps>
+      <Step>Open Network Settings</Step>
+      <Step>Disable IPv6 for all network adapters</Step>
+      <Step>Apply changes and restart</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <Steps>
+      <Step>Open Terminal</Step>
+      <Step>Run `networksetup -listallnetworkservices`</Step>
+      <Step>Disable IPv6 for each service</Step>
+      <Step>Restart networking services</Step>
+    </Steps>
+  </Tab>
+  
+  <Tab title="Linux">
+    <Steps>
+      <Step>Open Terminal</Step>
+      <Step>Edit `/etc/sysctl.conf`</Step>
+      <Step>Add IPv6 disable settings</Step>
+      <Step>Apply changes and restart</Step>
+    </Steps>
+  </Tab>
+</Tabs>
+
+## 4. Prevent WebRTC Leaks
+
+<Warning>
+WebRTC can reveal your real IP address. Follow these steps to prevent leaks:
+</Warning>
+
+<Steps>
+  <Step>Check browser WebRTC settings</Step>
+  <Step>Disable WebRTC if possible</Step>
+  <Step>Use browser extensions to block WebRTC</Step>
+  <Step>Test for leaks after changes</Step>
+</Steps>
+
+## 5. Verify DNS Settings
+
+<Accordion title="DNS Configuration Check">
+  <Steps>
+    <Step>Check system DNS settings</Step>
+    <Step>Verify Control D is the only DNS provider</Step>
+    <Step>Check for any DNS overrides</Step>
+    <Step>Test DNS resolution</Step>
+  </Steps>
+</Accordion>
+
+## 6. Additional Security Measures
+
+<Info>
+Consider these additional steps to enhance security:
+</Info>
+
+<Steps>
+  <Step>Enable DNS over HTTPS/TLS</Step>
+  <Step>Use a firewall to block non-Control D DNS</Step>
+  <Step>Regularly test for leaks</Step>
+  <Step>Keep software updated</Step>
+</Steps>
+
+## 7. Contact Support
+
+<Card>
+  If you continue to experience DNS leaks, [contact support](https://controld.com/contact/) with:
+  - DNS leak test results
+  - System configuration details
+  - Steps to reproduce the leak
+  - Any error messages
+</Card> 

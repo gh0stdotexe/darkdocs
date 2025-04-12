@@ -1,0 +1,180 @@
+---
+title: "FRITZ!Box Router Guide"
+description: "FRITZ!Box Routers FRITZ!Box routers have support for both Legacy IPv4 DNS resolvers and DNS-over-TLS (DoT) resolvers. When using Control D on your router, we recommend the DoT configuration as it is more secure. DNS-over-TLS (DoT) DNS-over-TLS offers more security than the Legacy DNS approach and ca..."
+icon: "shield"
+---
+
+# 
+
+FRITZ!Box Routers
+
+FRITZ!Box routers have support for both Legacy IPv4 DNS resolvers and DNS-over-TLS (DoT) resolvers.
+
+When using Control D on your router, we recommend the DoT configuration as it is more secure.
+
+* * *
+
+# 
+
+DNS-over-TLS (DoT)
+
+DNS-over-TLS offers more security than the Legacy DNS approach and can be enabled easily on the FRITZ!Box router.
+
+## 
+
+Step 1
+
+Open the FRITZ!Box router interface by navigating to it in your browser. You can reach it via `fritz.box`.
+
+![](https://files.readme.io/005350d-image.png)
+
+## 
+
+Step 2
+
+Expand the **Internet** section in the sidebar and select **Account Information**.
+
+![](https://files.readme.io/3908ee2-image.png)
+
+## 
+
+Step 3
+
+Select the **DNS Server** tab at the top.
+
+![](https://files.readme.io/7cf4455-image.png)
+
+## 
+
+Step 4
+
+You will now need to configure the options for Your DoT setup:
+
+  * a. Under **Public DNS Servers** , disable the **Fallback to public DNS servers** option
+  * b. Under **DNS over TLS** enable the **Encrypted name resolution** option
+  * c. Enable the **Force certificate check** option
+  * d. Disable the **Allow fallback to non-encrypted name resolution** option.
+
+This is the most secure DNS configuration. With these options, your router will only use the DoT resolver for DNS queries. If DNS resolution stops working with the DoT resolver, then the router will not be able to resolve any domains.
+
+![](https://files.readme.io/5250071-image.png)
+
+## 
+
+Step 5
+
+Now you'll need to fetch your account's DNS resolvers, you can find your custom DNS details in the [Manage Profiles and Devices](https://controld.com/control-panel/filters?overlay=profile-management) section. Best thing to do, is create a new FRITZ!Box Router Device, which will generate unique resolvers for it. 
+
+## 
+
+Step 6
+
+Below the checkbox options in the router interface, you'll see the field to enter the DoT resolver. Use the resolver from the Control D router device you setup and paste it into the field.
+
+![](https://files.readme.io/70a70dd-image.png)
+
+## 
+
+Step 7
+
+Once you've added the DNS resolver to the list, at the bottom of the page press **Apply**. 
+
+![](https://files.readme.io/c72e559-image.png)
+
+After the router saves the configuration, you are using Control D on your network! 
+
+Keep in mind that if you configure a custom DNS on any of the individual devices connected to this router, those devices will not be using the DNS you configured here.
+
+* * *
+
+# 
+
+Legacy DNS
+
+Follow the steps below to configure the Legacy DNS IP on your FRITZ!Box router. 
+
+## 
+
+Step 1
+
+Open the FRITZ!Box router interface by navigating to it in your browser. You can reach it via `fritz.box`.
+
+![](https://files.readme.io/005350d-image.png)
+
+## 
+
+Step 2
+
+Expand the **Internet** section in the sidebar and select **Account Information**.
+
+![](https://files.readme.io/3908ee2-image.png)
+
+## 
+
+Step 3
+
+Select the **DNS Server** tab at the top.
+
+![](https://files.readme.io/7cf4455-image.png)
+
+## 
+
+Step 4
+
+Now determine which DNS resolver you want to use. 
+
+### 
+
+Free Resolver
+
+If you are configuring our free DNS resolvers, you can get the IPs from this page: <https://controld.com/free-dns>
+
+  1. Select the configuration you want to use from the list:  
+![](https://files.readme.io/f86c0c1-image.png)
+
+  2. Then copy the Legacy Resolver IP address that appears at the bottom of the page:  
+![](https://files.readme.io/c1b2ca6-image.png)
+
+### 
+
+Custom Resolver
+
+If you are configuring a custom Legacy DNS resolver: 
+
+  1. Create a new "Other" Router Device on your [Control D Dashboard](https://controld.com/dashboard/devices). Link it to a Profile (or [create a new Profile if you don't have one](/docs/profiles)) and finally make sure to enable the **Legacy Resolver** option under **Advanced Settings**. Then press **Add Device** :  
+![](https://files.readme.io/708cf50-image.png)
+
+  2. Expand the **Legacy DNS** section where you will see the IP addresses to use for the setup. Do NOT copy the same IPs from the screenshot, copy the ones from your account specifically.  
+![](https://files.readme.io/6796a58-image.png)
+
+## 
+
+Step 5
+
+Back in the router interface, in the **DNSv4 Servers** section, enable the **Use other DNSv4 servers** option. 
+
+Then enter the resolver IPs from the last step into the **Preferred** and **Alternative** DNSv4 server fields.
+
+![](https://files.readme.io/7acd4f4-image.png)
+
+## 
+
+Step 6
+
+Finally, at the bottom of the page press **Apply**. 
+
+![](https://files.readme.io/2018f81-image.png)
+
+Once the router saves the configuration, you are using Control D on your network! 
+
+Keep in mind that if you configure a custom DNS on any of the individual devices connected to this router, those devices will not be using the DNS you configured here.
+
+> ## 🚧
+> 
+> Dynamic IP Warning
+> 
+> This method is subject to your [source IP being registered](/docs/ip-management) on this Device in the web control panel, so this is best suited for networks with a static IP. If you have a Dynamic IP see [Legacy DNS limitations](/docs/ip-not-authorized) section for solution.
+
+__Updated about 1 year ago
+
+* * *

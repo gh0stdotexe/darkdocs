@@ -1,0 +1,97 @@
+---
+title: "How to Debug ctrld"
+description: "Anything made by humans is not perfect, let's get some data and resolve the issue, shall we?"
+icon: "bug"
+---
+
+# How to Debug ctrld
+
+<Note>
+In order to enable debug logging with `ctrld`, follow these steps for your operating system.
+</Note>
+
+<Tabs>
+  <Tab title="Windows">
+    ## Enable Logging
+
+    <Steps>
+      <Step>Open admin `cmd` or Powershell and navigate to `C:/ControlD`</Step>
+      <Step>
+        Run this exact command:
+        <CodeBlock>
+          ctrld start --log dns.log
+        </CodeBlock>
+      </Step>
+    </Steps>
+
+    <Info>
+      ctrld will start/restart in full debug mode, and write debug data to `C:/ControlD/dns.log`.
+      Reproduce the issue, copy the file and send it to us.
+    </Info>
+
+    ## Disable Logging
+
+    <Warning>
+      Once you've collected the logs, it's a good idea to stop writing the debug log file, which can become quite large over time.
+    </Warning>
+
+    You can either:
+    1. Re-run the installer as you did originally, or
+    2. Follow these steps:
+
+    <Steps>
+      <Step>Open admin `cmd` or Powershell and navigate to `C:/ControlD`</Step>
+      <Step>
+        Run this command:
+        <CodeBlock>
+          ctrld start --cd RESOLVER_ID_GOES_HERE
+        </CodeBlock>
+      </Step>
+    </Steps>
+
+    <Note>
+      Template the value of `RESOLVER_ID_GOES_HERE` with your Endpoint's actual Resolver ID.
+    </Note>
+  </Tab>
+
+  <Tab title="MacOS">
+    ## Enable Logging
+
+    <Steps>
+      <Step>
+        Open Terminal and run:
+        <CodeBlock>
+          sudo ctrld start --log dns.log
+        </CodeBlock>
+      </Step>
+    </Steps>
+
+    <Info>
+      ctrld will start/restart in full debug mode, and write debug data to the user's home directory.
+      Reproduce the issue, copy the file and send it to us.
+    </Info>
+
+    ## Disable Logging
+
+    <Warning>
+      Once you've collected the logs, it's a good idea to stop writing the debug log file, which can become quite large over time.
+    </Warning>
+
+    You can either:
+    1. Re-run the installer as you did originally, or
+    2. Follow these steps:
+
+    <Steps>
+      <Step>
+        Open Terminal and run:
+        <CodeBlock>
+          sudo ctrld start --cd RESOLVER_ID_GOES_HERE
+        </CodeBlock>
+      </Step>
+    </Steps>
+
+    <Note>
+      Template the value of `RESOLVER_ID_GOES_HERE` with your Endpoint's actual Resolver ID.
+    </Note>
+  </Tab>
+</Tabs>

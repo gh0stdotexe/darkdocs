@@ -1,0 +1,87 @@
+---
+title: "Self-Provisioning"
+description: "Control D can be setup by the end user quickly and easily."
+icon: "user"
+---
+
+# Self-Provisioning
+
+<Info>
+Have dozens or hundreds of end-users and wish to deploy Control D on all their individual devices? We can already sense how NOT excited you are about doing this. Don't be sad, this is going to be surprisingly painless.
+</Info>
+
+<Warning>
+Admin Rights Required
+
+To use this onboarding method, the end user must have admin rights on their machine. If they do not, please see [Org: Mass Provisioning](/docs/provisioning) flow.
+</Warning>
+
+## Create Device
+
+<Info>
+When you create a Device, a unique set of DNS resolvers is issued for that Device. If you are the end-user, you can simply click "Help me configure this" button, which will kick off a setup tutorial for the chosen platform.
+</Info>
+
+<Image src="https://files.readme.io/ddb8f2e-image.png" alt="Create Device" />
+
+## Get Link
+
+<Info>
+If you are NOT the end user of the Device you just created, or simply want to set it up on a device that isn't logged in into the web control panel, click the **Copy setup link** button and send it to the end user (or yourself) via any method you want.
+</Info>
+
+## Self-Setup
+
+<Info>
+The end user clicks the link and follows the same setup process you would if you clicked the "Help me configure this" button, using step by step tutorials. They do not have to be logged in (or be a Control D user) to use the self-provisioning link.
+</Info>
+
+<Image src="https://files.readme.io/db95df5-self-configure-link.JPG" alt="Self Configure Link" />
+<Image src="https://files.readme.io/d87280b-image.png" alt="Setup Process" />
+<Image src="https://files.readme.io/ceccd13-small-install_type.PNG" alt="Install Type" />
+
+## Confirm End User Setup
+
+<Info>
+When you view a list of your Devices, you will see them in one of two states:
+</Info>
+
+<Steps>
+  <Step>
+    **Pending** - A big purple button will be shown
+  </Step>
+  <Step>
+    **Active** - No purple button will be shown
+  </Step>
+</Steps>
+
+<Image src="https://files.readme.io/1889ff6-configured-vsunconfigured.JPG" alt="Device States" />
+
+<Info>
+Once a device flips from pending to active, that means the end user successfully configured the Device. The little gray orb next to the device icon will turn green when the Device is currently active (resolved something in the last 5 minutes) - **only if you enable Analytics on the Device**.
+</Info>
+
+## Mass Create Devices
+
+<Note>
+Organizations Only
+
+An Organization account is required to use this feature.
+</Note>
+
+<Info>
+Too tedious to create hundreds of devices manually? No problem, simply use the [Org: Add Multiple Devices](/docs/add-multiple-devices) flow. Once you do this, the following will happen:
+</Info>
+
+<Steps>
+  <Step>
+    Devices are created in bulk
+  </Step>
+  <Step>
+    Setup links are generated for each device
+  </Step>
+</Steps>
+
+<Info>
+If you have total control over the end-user devices (Group Policy or RMM), you can use the [Command Line Daemon](/docs/ctrld) to do scripted deployments. See [Org: Mass Provisioning](/docs/provisioning) for more details.
+</Info>

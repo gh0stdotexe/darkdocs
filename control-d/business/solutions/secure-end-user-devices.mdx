@@ -1,0 +1,69 @@
+---
+title: "Secure End User Devices"
+description: "Learn how to secure end user devices with Control D"
+icon: "shield"
+---
+
+# Secure End User Devices
+
+Control D provides comprehensive security solutions for protecting end user devices across your organization.
+
+## Key Features
+
+### Malware Protection
+- Block access to known malicious domains
+- Prevent malware downloads
+- Stop command and control communications
+- Protect against ransomware
+
+### Phishing Prevention
+- Block access to phishing sites
+- Prevent credential theft
+- Stop social engineering attacks
+- Protect against business email compromise
+
+### Content Filtering
+- Block inappropriate content
+- Prevent access to harmful websites
+- Filter by category or custom rules
+- Apply different policies for different user groups
+
+## Implementation
+
+```yaml
+# Example configuration for secure end user devices
+security:
+  malware_protection: true
+  phishing_prevention: true
+  content_filtering:
+    enabled: true
+    categories:
+      - malware
+      - phishing
+      - adult
+      - gambling
+    custom_rules:
+      - domain: example.com
+        action: block
+```
+
+## Best Practices
+
+1. **Start with Basic Protection**
+   - Enable malware and phishing protection
+   - Block known malicious categories
+   - Monitor security events
+
+2. **Customize for Your Needs**
+   - Add custom rules for specific threats
+   - Create different policies for different departments
+   - Set up alerts for security events
+
+3. **Regular Maintenance**
+   - Review security logs regularly
+   - Update custom rules as needed
+   - Monitor for new threats
+
+<Tip>
+Consider enabling AI-powered malware filtering for enhanced protection against zero-day threats.
+</Tip> 

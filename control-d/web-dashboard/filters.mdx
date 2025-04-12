@@ -1,0 +1,120 @@
+---
+title: "Filters"
+description: "Configure and manage content filtering rules in Control D"
+icon: "filter"
+---
+
+## Overview
+
+Filters in Control D allow you to control access to different types of content, including ads, trackers, malware, and specific content categories.
+
+## Ads & Trackers Modes
+
+### Basic Mode
+- Blocks common advertising networks
+- Prevents basic tracking scripts
+- Minimal impact on functionality
+- Suitable for most users
+
+### Aggressive Mode
+```yaml
+ad_blocking:
+  mode: "aggressive"
+  options:
+    block_all_ads: true
+    block_tracking_pixels: true
+    block_analytics: true
+    safe_search: true
+```
+
+### Custom Mode
+- Select specific ad networks
+- Choose tracking categories
+- Configure exceptions
+- Set custom rules
+
+## Malware Protection
+
+### Threat Categories
+1. Phishing attempts
+2. Malware distribution
+3. Command & control servers
+4. Cryptocurrency mining
+
+### Configuration
+```yaml
+malware_protection:
+  enabled: true
+  categories:
+    phishing: true
+    malware: true
+    ransomware: true
+    cryptojacking: true
+  action: "block"
+```
+
+### AI Malware Detection
+- Real-time threat analysis
+- Pattern recognition
+- Zero-day protection
+- Automated updates
+
+### Response Options
+- Block access
+- Show warning
+- Log activity
+- Alert administrators
+
+## Content Categories
+
+### Available Categories
+- Adult Content
+- Gambling
+- Social Media
+- Streaming Services
+- Gaming
+- Shopping
+- News
+- Education
+
+### Category Management
+```yaml
+content_filters:
+  adult:
+    enabled: true
+    strict: true
+  gambling:
+    enabled: true
+    geo_restrict: true
+  social:
+    schedule_enabled: true
+    work_hours_only: true
+```
+
+## Best Practices
+
+### Configuration
+1. Start with basic protection
+2. Gradually increase restrictions
+3. Monitor false positives
+4. Adjust based on feedback
+
+### Maintenance
+- Regular filter updates
+- Review blocked domains
+- Check exception lists
+- Update custom rules
+
+### Performance
+- Monitor filtering impact
+- Optimize rule sets
+- Balance security needs
+- Consider user experience
+
+<Warning>
+Aggressive filtering may cause some websites to malfunction. Start with basic mode and adjust as needed.
+</Warning>
+
+<Tip>
+Use the Analytics section to monitor filter effectiveness and identify needed adjustments.
+</Tip> 

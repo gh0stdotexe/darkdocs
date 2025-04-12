@@ -1,0 +1,113 @@
+---
+title: "Update IP via Heartbeat Device"
+description: "Automatically update IP addresses using the heartbeat mechanism"
+icon: "heartbeat"
+---
+
+## Overview
+
+The Heartbeat Device feature allows automatic IP address updates for dynamic IP environments, ensuring continuous DNS filtering protection.
+
+## How It Works
+
+1. Device sends periodic heartbeat
+2. Control D detects IP changes
+3. DNS filtering rules update automatically
+4. No manual intervention needed
+
+## Configuration
+
+### Enable Heartbeat
+```yaml
+heartbeat:
+  enabled: true
+  interval: 300  # seconds
+  retry_count: 3
+  endpoints:
+    - type: "dns"
+    - type: "https"
+```
+
+### API Integration
+```bash
+# Update IP via API
+curl -X POST "https://api.controld.com/device/heartbeat" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"device_id": "YOUR_DEVICE_ID"}'
+```
+
+## Implementation Methods
+
+### Command Line Tool
+```bash
+# Using ctrld
+ctrld heartbeat --interval 300
+```
+
+### Scheduled Task
+```bash
+# Cron job example
+*/5 * * * * /usr/local/bin/ctrld heartbeat
+```
+
+### Script Integration
+```python
+import requests
+
+def update_ip():
+    response = requests.post(
+        "https://api.controld.com/device/heartbeat",
+        headers={"Authorization": "Bearer YOUR_API_KEY"},
+        json={"device_id": "YOUR_DEVICE_ID"}
+    )
+    return response.status_code == 200
+```
+
+## Best Practices
+
+### Configuration
+1. Set appropriate intervals
+2. Configure retry logic
+3. Monitor update status
+4. Log changes
+
+### Monitoring
+- Check heartbeat status
+- Monitor IP changes
+- Review update logs
+- Set up alerts
+
+### Troubleshooting
+1. Verify network connectivity
+2. Check API credentials
+3. Review error logs
+4. Test manual updates
+
+## Advanced Features
+
+### Multiple Devices
+```yaml
+devices:
+  office:
+    heartbeat: true
+    interval: 300
+  remote:
+    heartbeat: true
+    interval: 600
+```
+
+### Conditional Updates
+```yaml
+update_conditions:
+  check_connection: true
+  verify_dns: true
+  require_vpn: false
+```
+
+<Warning>
+Set reasonable heartbeat intervals to avoid API rate limiting (recommended: 300 seconds or more).
+</Warning>
+
+<Tip>
+Use the Control D dashboard to monitor heartbeat status and IP update history.
+</Tip> 

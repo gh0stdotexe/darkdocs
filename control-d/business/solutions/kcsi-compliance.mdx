@@ -1,0 +1,158 @@
+---
+title: "KCSIE Compliance"
+description: "Keeping Children Safe in Education compliance with Control D"
+icon: "shield"
+---
+
+# KCSIE Compliance
+
+Control D helps educational institutions in the UK comply with Keeping Children Safe in Education (KCSIE) requirements.
+
+## KCSIE Requirements
+
+### Online Safety
+- Content filtering
+- Monitoring systems
+- Safeguarding measures
+- Risk assessment
+
+### Protection
+- Child protection
+- Staff training
+- Reporting procedures
+- Incident management
+
+### Policies
+- Online safety policy
+- Acceptable use policy
+- Safeguarding policy
+- Training policy
+
+## Implementation
+
+### Basic Setup
+```yaml
+kcsi:
+  safety:
+    - filtering: true
+    - monitoring: true
+    - protection: true
+    - reporting: true
+```
+
+### Advanced Setup
+```yaml
+kcsi:
+  policies:
+    safety:
+      filtering:
+        enabled: true
+        categories: ["all"]
+      monitoring:
+        enabled: true
+        logs: true
+    protection:
+      enabled: true
+      training: true
+```
+
+### Custom Setup
+```yaml
+kcsi:
+  rules:
+    - type: "category"
+      name: "harmful"
+      action: "block"
+    - type: "monitoring"
+      events: ["all"]
+      retention: "1y"
+    - type: "reporting"
+      incidents: ["all"]
+      alerts: true
+```
+
+## Monitoring
+
+### Compliance Dashboard
+- Safety status
+- Incident reports
+- Staff training
+- Policy compliance
+
+### Reports
+- Safety metrics
+- Incident patterns
+- Training status
+- Compliance status
+
+### Alerts
+- Safety incidents
+- Policy violations
+- Training requirements
+- Compliance issues
+
+## Documentation
+
+### Required Policies
+```yaml
+policies:
+  kcsi:
+    - name: "Online Safety"
+      requirements:
+        - filtering
+        - monitoring
+        - protection
+    - name: "Safeguarding"
+      requirements:
+        - procedures
+        - training
+        - reporting
+```
+
+### Implementation Plan
+```yaml
+implementation:
+  phases:
+    - assessment
+    - deployment
+    - training
+    - monitoring
+  timeline:
+    - start: "2024-01-01"
+      end: "2024-03-31"
+```
+
+### Audit Trail
+```yaml
+audit:
+  logs:
+    - type: "safety"
+      retention: "1y"
+    - type: "incidents"
+      retention: "1y"
+    - type: "training"
+      retention: "1y"
+```
+
+## Best Practices
+
+1. **Configuration**
+   - Comprehensive filtering
+   - Regular monitoring
+   - Staff training
+   - Incident reporting
+
+2. **Management**
+   - Regular reviews
+   - Policy updates
+   - Training programs
+   - Incident response
+
+3. **Compliance**
+   - Documentation
+   - Regular audits
+   - Staff training
+   - Policy updates
+
+<Tip>
+Regularly review and update KCSIE compliance measures to ensure ongoing adherence to requirements. 

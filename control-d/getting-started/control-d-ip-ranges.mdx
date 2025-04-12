@@ -1,0 +1,79 @@
+---
+title: "Control D IP Ranges"
+description: "The following anycast IP ranges are used by Control D."
+icon: "network"
+---
+
+# Control D IP Ranges
+
+<Info>
+The following anycast IP ranges are used by Control D.
+</Info>
+
+## DNS
+
+<Info>
+These ranges are used to handle DNS queries, using any protocol, most commonly used ports are: TCP+UDP 53, 853, 443.
+</Info>
+
+<CodeGroup>
+  <Code title="IPv4 Ranges">
+    76.76.2.0/24
+    76.76.10.0/24
+  </Code>
+  <Code title="IPv6 Ranges">
+    2606:1a40::/48
+    2606:1a40:1::/48
+  </Code>
+</CodeGroup>
+
+<Info>
+Primary endpoints for Secure DNS protocols (DoH, DOT, Doq) are:
+</Info>
+
+<CodeGroup>
+  <Code title="Free DNS">
+    freedns.controld.com
+    76.76.2.11
+    76.76.10.11
+    2606:1a40::11
+    2606:1a40:1::11
+  </Code>
+  <Code title="Premium DNS">
+    dns.controld.com
+    76.76.2.22
+    76.76.10.22
+    2606:1a40::22
+    2606:1a40:1::22
+  </Code>
+</CodeGroup>
+
+## Proxy
+
+<Info>
+These ranges are used for transparent TCP proxying, **on any port**.
+</Info>
+
+<CodeGroup>
+  <Code title="IPv4 Range">
+    206.253.88.0/22
+  </Code>
+  <Code title="IPv6 Range">
+    2606:1a40:2:/48
+  </Code>
+</CodeGroup>
+
+## Web / API
+
+<Info>
+These ranges are used by HTTP services, like the API, website, and static assets. Mostly on port 443.
+</Info>
+
+<CodeGroup>
+  <Code title="IPv4 Range">
+    147.185.34.0/24
+  </Code>
+  <Code title="IPv6 Range">
+    2606:1a40:3::/48
+  </Code>
+</CodeGroup>

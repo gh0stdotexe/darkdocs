@@ -1,0 +1,115 @@
+---
+title: "TP-Link Router Guide"
+description: "Legacy DNS Follow the steps below to configure Control D on your TP-Link router. Keep in mind that TP-Link routers use legacy DNS at the moment. Step 1 Open the TP-Link router interface by navigating to it in your browser. You can typically reach it via http://tplinkwifi.net or 192.168.0.1 . Step 2 ..."
+icon: "network"
+---
+
+# 
+
+Legacy DNS
+
+Follow the steps below to configure Control D on your TP-Link router. 
+
+Keep in mind that TP-Link routers use legacy DNS at the moment.
+
+## 
+
+Step 1
+
+Open the TP-Link router interface by navigating to it in your browser. You can typically reach it via `http://tplinkwifi.net` or `192.168.0.1`. 
+
+![](https://files.readme.io/5968306-image.png)
+
+![](https://files.readme.io/7f3b79e-image.png)
+
+## 
+
+Step 2
+
+Once you have logged into the router, click the **Advanced** tab at the top. 
+
+![](https://files.readme.io/64e60d5-image.png)
+
+## 
+
+Step 3
+
+You will see some new options on the left side of the page. Click **Network** and then open the **Internet** section.
+
+![](https://files.readme.io/fbc9710-image.png)
+
+## 
+
+Step 4
+
+Inside the Internet section, click on **Advanced** to expand some more settings.
+
+![](https://files.readme.io/f831d2c-image.png)
+
+## 
+
+Step 5
+
+Select **“Use the following DNS Addresses”** in the expanded settings.
+
+![](https://files.readme.io/396f0db-image.png)
+
+## 
+
+Step 6
+
+Now determine which DNS resolver you want to use. 
+
+### 
+
+Free Resolver
+
+If you are configuring our free DNS resolvers, you can get the IPs from this page: <https://controld.com/free-dns>
+
+  1. Select the configuration you want to use from the list:  
+![](https://files.readme.io/f86c0c1-image.png)
+
+  2. Then copy the Legacy Resolver IP address that appears at the bottom of the page:  
+![](https://files.readme.io/c1b2ca6-image.png)
+
+### 
+
+Custom Resolver
+
+If you are configuring a custom Legacy DNS resolver: 
+
+  1. Create a new "Other" Router Device on your [Control D Dashboard](https://controld.com/dashboard/devices). Link it to a Profile (or [create a new Profile if you don't have one](/docs/profiles)) and finally make sure to enable the **Legacy Resolver** option under **Advanced Settings**. Then press **Add Device** :  
+![](https://files.readme.io/708cf50-image.png)
+
+  2. Expand the **Legacy DNS** section where you will see the IP addresses to use for the setup. Do NOT copy the same IPs from the screenshot, copy the ones from your account specifically.  
+![](https://files.readme.io/6796a58-image.png)
+
+## 
+
+Step 7
+
+Once you have selected the resolver you want to use, you can enter the two DNS IPs in the **Primary** and **Secondary DNS** fields.
+
+![](https://files.readme.io/06caecf-image.png)
+
+## 
+
+Step 8
+
+Finally, press **Save** below the settings.
+
+![](https://files.readme.io/1c1d2e9-image.png)
+
+Once the router saves the configuration, you are using Control D on your network! 
+
+Keep in mind that if you configure a custom DNS on any of the individual devices connected to this router, those devices will not be using the DNS you configured here.
+
+> ## 🚧
+> 
+> Dynamic IP Warning
+> 
+> This method is subject to your [source IP being registered](/docs/ip-management) on this Device in the web control panel, so this is best suited for networks with a static IP. If you have a Dynamic IP see [Legacy DNS limitations](/docs/ip-not-authorized) section for solution.
+
+__Updated over 1 year ago
+
+* * *

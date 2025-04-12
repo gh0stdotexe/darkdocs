@@ -1,0 +1,124 @@
+---
+title: "Check if DNS is Working"
+description: "How to verify your DNS configuration is working correctly"
+icon: "magnifying-glass"
+---
+
+# Check if DNS is Working
+
+<Note>
+Use these commands to verify that your DNS configuration is working correctly with Control D.
+</Note>
+
+## Quick Check
+
+<Tabs>
+  <Tab title="Using nslookup">
+    <CodeBlock>
+      nslookup example.com your-code.dns.controld.com
+    </CodeBlock>
+  </Tab>
+  
+  <Tab title="Using dig">
+    <CodeBlock>
+      dig @your-code.dns.controld.com example.com
+    </CodeBlock>
+  </Tab>
+</Tabs>
+
+## Verification Steps
+
+<Steps>
+  <Step>
+    **Check DNS Resolver Configuration**
+    - Verify resolver address is correct
+    - Confirm no typos in the hostname
+    - Check for proper formatting
+  </Step>
+
+  <Step>
+    **Test DNS Resolution**
+    - Try multiple domains
+    - Check response times
+    - Verify correct IP addresses
+  </Step>
+
+  <Step>
+    **Check Network Connectivity**
+    <CodeBlock>
+      # Test DNS port
+      nc -zv your-code.dns.controld.com 53
+      
+      # Test DoH
+      curl -v https://your-code.dns.controld.com/dns-query
+    </CodeBlock>
+  </Step>
+
+  <Step>
+    **Verify DNS Protocol**
+    - UDP 53 (standard DNS)
+    - TCP 853 (DNS-over-TLS)
+    - HTTPS 443 (DNS-over-HTTPS)
+  </Step>
+</Steps>
+
+## Common Issues
+
+<Accordion title="No Response">
+  <Steps>
+    <Step>Check firewall settings</Step>
+    <Step>Verify network connectivity</Step>
+    <Step>Confirm DNS port is open</Step>
+    <Step>Check for VPN interference</Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Incorrect Results">
+  <Steps>
+    <Step>Clear DNS cache</Step>
+    <Step>Check for local DNS overrides</Step>
+    <Step>Verify profile configuration</Step>
+    <Step>Check for conflicting software</Step>
+  </Steps>
+</Accordion>
+
+<Accordion title="Slow Resolution">
+  <Steps>
+    <Step>Test alternative DNS protocols</Step>
+    <Step>Check network latency</Step>
+    <Step>Verify DNS cache settings</Step>
+    <Step>Monitor system resources</Step>
+  </Steps>
+</Accordion>
+
+## Platform-Specific Tools
+
+<Tabs>
+  <Tab title="Windows">
+    <CodeBlock>
+      # Clear DNS cache
+      ipconfig /flushdns
+
+      # Display DNS settings
+      ipconfig /all
+    </CodeBlock>
+  </Tab>
+  
+  <Tab title="macOS/Linux">
+    <CodeBlock>
+      # Clear DNS cache
+      sudo killall -HUP mDNSResponder
+
+      # Check DNS configuration
+      scutil --dns
+    </CodeBlock>
+  </Tab>
+</Tabs>
+
+<Warning>
+If you're unable to resolve any domains, check your network connection first before troubleshooting DNS issues.
+</Warning>
+
+<Card>
+  Use our [Status Page](/control-d/web-dashboard/status) to check if there are any known service issues.
+</Card> 

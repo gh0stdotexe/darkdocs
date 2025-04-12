@@ -1,0 +1,162 @@
+---
+title: "Device Clients"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Using Control D on a router or other types of devices, and want granular visibility and control? This should get you started.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/device-clients)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overview&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overview&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overview</div><Link aria-label=&quot;Skip link to Overview&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overview&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Device Clients
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Using Control D on a router or other types of devices, and want granular visibility and control? This should get you started.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/device-clients)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overview&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overview&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overview</div><Link aria-label=&quot;Skip link to Overview&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overview&quot;></Link>
+
+<p>You are using Control D on a router, which likely has many devices using it as the DNS server. By default, all of these physical devices will be grouped together, and you will see the sum of all their activity, without knowing which gadget is responsible for what. Additionally, all of these gadgets will be subject to the same set of rules, defined in the enforced Profile. </p>
+<p>The solution to both of these issues is simple, and there are two ways to go about it. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;router-utility&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-router-utility&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Router Utility</div><Link aria-label=&quot;Skip link to Router Utility&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#router-utility&quot;></Link>
+
+<p>The simplest (and best) option is to install the <Link href=&quot;/docs/ctrld&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;ctrld&quot;>Command Line Daemon</Link> on your router. Once you do this, <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` will relay LAN client information along with the DNS queries themselves, and you will see all your LAN clients in the web control panel. You can see a count of all detected clients right in the Endpoints section</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/c4d36a6a5b5fbf85904d20c7afea5ed409e23f4914cdbe6225b1185fa9afd2e9-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>If you click the &quot;Clients&quot; button you will see a list of all detected LAN clients. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/b3df9d36a1ad0c7e9de1140de6bc90f2cd7ebdbb244ee2c2f3d6f9d55ff0fc15-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>From here, you can view Analytics for chosen LAN clients, and assign them aliases. All relevant client information will be displayed here, which includes:</p>
+
+- **Hostname** which is the device name
+
+- **Time** of last activity 
+
+- **MAC address** of the device as seen by your router
+
+- **LAN IP** address of the device assigned by your router
+
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>DNS-over-HTTPS Only</p>
+
+<p>You must be using the DNS-over-HTTPS protocol in order to see the client data. If you&#x27;re using DNS-over-TLS or DNS-over-QUIC, no client data will be relayed with the DNS queries.</p>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;client-specific-profile&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-client-specific-profile&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Client Specific Profile</div><Link aria-label=&quot;Skip link to Client Specific Profile&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#client-specific-profile&quot;></Link>
+
+<p>At this point you can see all your LAN clients, and view their individual Analytics, however they are all still subject to the same set of rules, as defined by the enforced Profile of the relevant Endpoint. To make one (or more) of the clients enforce a different set of rules (Profile) you can click on the Profile name in this list, and choose a different one to enforce from the drop down menu.</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/d7796726acbc7c1756cdc10854e61b9c2612fca2d72ff4e42abb0dcedf17fd94-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Once you press Save, this Client will be subject to a different set of rules, as per the chosen Profile. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/79a59833e26af3822931fcd117af1b291987ef5fd22dee4265e4c6197d35f5da-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<br/>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Analytics Reset</p>
+
+<p>When you turn a LAN client into its own standalone Device, this will create a new Analytics time series. Existing data will still be available in the same place as before, however all new activity will be logged under the newly created Device, **if you enabled Analytics at device creation time**. You don&#x27;t have to enable Analytics, if you want one of your LAN clients to stay hidden :)</p>
+
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;using-apps&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-using-apps&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Using Apps</div><Link aria-label=&quot;Skip link to Using Apps&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#using-apps&quot;></Link>
+
+<p>Control D has <Link href=&quot;/docs/gui-setup-utility&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;gui-setup-utility&quot;>GUI Based Apps</Link> for Windows, Mac, iOS and Android. Simply download the relevant one for your platform. Input the Resolver ID into the box for the relevant Control D Device you want to setup, and optionally enter the client name. Then you will be able to view Analytics for all the individual clients separately. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/f44ebd1-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;manual&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-manual&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Manual</div><Link aria-label=&quot;Skip link to Manual&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#manual&quot;></Link>
+
+<p>If you&#x27;re not using the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` utility, you can still make use of the above system, albeit with some limitations, and you won&#x27;t see all of the data mentioned above (hostname, MAC address, LAN IP). </p>
+<p>To manually &quot;create&quot; a client for a <Link href=&quot;/docs/devices&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;devices&quot;>Device</Link> simply template the DNS-over-HTTPS URL or DNS-over-TLS  hostname with the client name, and configure the resolvers on desired physical gadgets. After you do, you will be able to view Analytics separately for all the clients. For example:</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;dns-over-https&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-dns-over-https&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>DNS-over-HTTPS</div><Link aria-label=&quot;Skip link to DNS-over-HTTPS&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#dns-over-https&quot;></Link>
+
+- Original Device Resolver: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`https://dns.controld.com/abcd1234`
+
+- Client Specific Resolver: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`https://dns.controld.com/abcd1234/name-goes-here`
+
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`name-goes-here` must not contain spaces or any special characters. Only letters, numbers and dashes are allowed. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;dns-over-tls&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-dns-over-tls&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>DNS-over-TLS</div><Link aria-label=&quot;Skip link to DNS-over-TLS&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#dns-over-tls&quot;></Link>
+
+- Original Device Resolver: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`abcd1234.dns.controld.com`
+
+- Client Specific Resolver: <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`abcd1234-name-goes-here.dns.controld.com`
+
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`name-goes-here` must not contain spaces or any special characters. Only letters, numbers and dashes are allowed.</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;apple--dns-profile&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-apple-dns-profile&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Apple / DNS Profile</div><Link aria-label=&quot;Skip link to Apple / DNS Profile&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#apple--dns-profile&quot;></Link>
+
+<p>If you&#x27;re using an Apple device, you can leverage DNS Profiles to achieve this. Simply create a single MacOS or iOS Device for all your Apple gadgets. Then start the setup tutorial by pressing **Help Configure.** Choose **Manual Setup**. In the **Advanced Settings** section, input the client name into the top box. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/89c0b41-client_id.PNG&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Download the DNS Profile and continue with the setup flow. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;android-private-dns&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-android-private-dns&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Android Private DNS</div><Link aria-label=&quot;Skip link to Android Private DNS&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#android-private-dns&quot;></Link>
+
+<p>When setting up your Android device manually using Private DNS, simply follow the DNS-over-TLS flow mentioned above. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;use-case&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-use-case&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Use Case</div><Link aria-label=&quot;Skip link to Use Case&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#use-case&quot;></Link>
+
+<p>You can use this method if you want to prevent &quot;device sprawl&quot; where you&#x27;re making a separate device for every physical gadget that belongs to a single person, ie. your kid&#x27;s devices (Johnny&#x27;s phone, iPad, PC).  You can just make a single Device - &quot;johnny&quot; and deploy a modified resolver on each of the devices. Then you can see Analytics for all their devices as a sum, or look at individual stats. You can also re-map an existing client to its own standalone Device, which enforces a unique Profile.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="overview"></div><div class="heading-text"><div id="section-overview" class="heading-anchor_backwardsCompatibility"></div>Overview</div>[](#overview)
+
+<p>You are using Control D on a router, which likely has many devices using it as the DNS server. By default, all of these physical devices will be grouped together, and you will see the sum of all their activity, without knowing which gadget is responsible for what. Additionally, all of these gadgets will be subject to the same set of rules, defined in the enforced Profile. </p>
+<p>The solution to both of these issues is simple, and there are two ways to go about it. </p>
+# <div class="heading-anchor anchor waypoint" id="router-utility"></div><div class="heading-text"><div id="section-router-utility" class="heading-anchor_backwardsCompatibility"></div>Router Utility</div>[](#router-utility)
+
+<p>The simplest (and best) option is to install the [Command Line Daemon](/docs/ctrld) on your router. Once you do this, <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` will relay LAN client information along with the DNS queries themselves, and you will see all your LAN clients in the web control panel. You can see a count of all detected clients right in the Endpoints section</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/c4d36a6a5b5fbf85904d20c7afea5ed409e23f4914cdbe6225b1185fa9afd2e9-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>If you click the "Clients" button you will see a list of all detected LAN clients. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/b3df9d36a1ad0c7e9de1140de6bc90f2cd7ebdbb244ee2c2f3d6f9d55ff0fc15-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>From here, you can view Analytics for chosen LAN clients, and assign them aliases. All relevant client information will be displayed here, which includes:</p>
+
+- **Hostname** which is the device name
+
+- **Time** of last activity 
+
+- **MAC address** of the device as seen by your router
+
+- **LAN IP** address of the device assigned by your router
+
+> ## <span class="callout-icon">🚧</span><p>DNS-over-HTTPS Only</p>
+
+<p>You must be using the DNS-over-HTTPS protocol in order to see the client data. If you're using DNS-over-TLS or DNS-over-QUIC, no client data will be relayed with the DNS queries.</p>
+
+## <div class="heading-anchor anchor waypoint" id="client-specific-profile"></div><div class="heading-text"><div id="section-client-specific-profile" class="heading-anchor_backwardsCompatibility"></div>Client Specific Profile</div>[](#client-specific-profile)
+
+<p>At this point you can see all your LAN clients, and view their individual Analytics, however they are all still subject to the same set of rules, as defined by the enforced Profile of the relevant Endpoint. To make one (or more) of the clients enforce a different set of rules (Profile) you can click on the Profile name in this list, and choose a different one to enforce from the drop down menu.</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/d7796726acbc7c1756cdc10854e61b9c2612fca2d72ff4e42abb0dcedf17fd94-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Once you press Save, this Client will be subject to a different set of rules, as per the chosen Profile. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/79a59833e26af3822931fcd117af1b291987ef5fd22dee4265e4c6197d35f5da-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<br>
+> ## <span class="callout-icon">🚧</span><p>Analytics Reset</p>
+
+<p>When you turn a LAN client into its own standalone Device, this will create a new Analytics time series. Existing data will still be available in the same place as before, however all new activity will be logged under the newly created Device, **if you enabled Analytics at device creation time**. You don't have to enable Analytics, if you want one of your LAN clients to stay hidden :)</p>
+
+# <div class="heading-anchor anchor waypoint" id="using-apps"></div><div class="heading-text"><div id="section-using-apps" class="heading-anchor_backwardsCompatibility"></div>Using Apps</div>[](#using-apps)
+
+<p>Control D has [GUI Based Apps](/docs/gui-setup-utility) for Windows, Mac, iOS and Android. Simply download the relevant one for your platform. Input the Resolver ID into the box for the relevant Control D Device you want to setup, and optionally enter the client name. Then you will be able to view Analytics for all the individual clients separately. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/f44ebd1-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+# <div class="heading-anchor anchor waypoint" id="manual"></div><div class="heading-text"><div id="section-manual" class="heading-anchor_backwardsCompatibility"></div>Manual</div>[](#manual)
+
+<p>If you're not using the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` utility, you can still make use of the above system, albeit with some limitations, and you won't see all of the data mentioned above (hostname, MAC address, LAN IP). </p>
+<p>To manually "create" a client for a [Device](/docs/devices) simply template the DNS-over-HTTPS URL or DNS-over-TLS  hostname with the client name, and configure the resolvers on desired physical gadgets. After you do, you will be able to view Analytics separately for all the clients. For example:</p>
+### <div class="heading-anchor anchor waypoint" id="dns-over-https"></div><div class="heading-text"><div id="section-dns-over-https" class="heading-anchor_backwardsCompatibility"></div>DNS-over-HTTPS</div>[](#dns-over-https)
+
+- Original Device Resolver: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">https://dns.controld.com/abcd1234</span>`
+
+- Client Specific Resolver: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">https://dns.controld.com/abcd1234/name-goes-here</span>`
+
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">name-goes-here</span>` must not contain spaces or any special characters. Only letters, numbers and dashes are allowed. </p>
+### <div class="heading-anchor anchor waypoint" id="dns-over-tls"></div><div class="heading-text"><div id="section-dns-over-tls" class="heading-anchor_backwardsCompatibility"></div>DNS-over-TLS</div>[](#dns-over-tls)
+
+- Original Device Resolver: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">abcd1234.dns.controld.com</span>`
+
+- Client Specific Resolver: <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">abcd1234-name-goes-here.dns.controld.com</span>`
+
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">name-goes-here</span>` must not contain spaces or any special characters. Only letters, numbers and dashes are allowed.</p>
+### <div class="heading-anchor anchor waypoint" id="apple--dns-profile"></div><div class="heading-text"><div id="section-apple-dns-profile" class="heading-anchor_backwardsCompatibility"></div>Apple / DNS Profile</div>[](#apple--dns-profile)
+
+<p>If you're using an Apple device, you can leverage DNS Profiles to achieve this. Simply create a single MacOS or iOS Device for all your Apple gadgets. Then start the setup tutorial by pressing **Help Configure.** Choose **Manual Setup**. In the **Advanced Settings** section, input the client name into the top box. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/89c0b41-client_id.PNG" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Download the DNS Profile and continue with the setup flow. </p>
+### <div class="heading-anchor anchor waypoint" id="android-private-dns"></div><div class="heading-text"><div id="section-android-private-dns" class="heading-anchor_backwardsCompatibility"></div>Android Private DNS</div>[](#android-private-dns)
+
+<p>When setting up your Android device manually using Private DNS, simply follow the DNS-over-TLS flow mentioned above. </p>
+# <div class="heading-anchor anchor waypoint" id="use-case"></div><div class="heading-text"><div id="section-use-case" class="heading-anchor_backwardsCompatibility"></div>Use Case</div>[](#use-case)
+
+<p>You can use this method if you want to prevent "device sprawl" where you're making a separate device for every physical gadget that belongs to a single person, ie. your kid's devices (Johnny's phone, iPad, PC).  You can just make a single Device - "johnny" and deploy a modified resolver on each of the devices. Then you can see Analytics for all their devices as a sum, or look at individual stats. You can also re-map an existing client to its own standalone Device, which enforces a unique Profile.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->5 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Prevent Deactivation</div>](/docs/prevent-deactivation)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Org: Restricted Resolver</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/restricted-resolver)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[Overview](#overview)
+
+- 
+[Router Utility](#router-utility)
+<ul>
+<li>[Client Specific Profile](#client-specific-profile)
+
+</li>
+<li>
+[Using Apps](#using-apps)
+</li>
+<li>
+[Manual](#manual)
+</li>
+<li>
+[Use Case](#use-case)
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

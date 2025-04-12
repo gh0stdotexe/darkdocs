@@ -1,0 +1,205 @@
+---
+title: "Windows"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to configure Control D on any Windows computer.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/platform-windows)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-gui&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-gui&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (GUI)</div><Link aria-label=&quot;Skip link to Automatic Setup (GUI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-gui&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Windows
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to configure Control D on any Windows computer.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/platform-windows)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-gui&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-gui&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (GUI)</div><Link aria-label=&quot;Skip link to Automatic Setup (GUI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-gui&quot;></Link>
+
+<p>Want to spend the least amount of time setting up Control D on a Windows device? We probably read your mind. </p>
+<p><Link href=&quot;/docs/gui-setup-utility&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;gui-setup-utility&quot;>GUI Setup Utility</Link> is what you&#x27;re looking for. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-cli&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-cli&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (CLI)</div><Link aria-label=&quot;Skip link to Automatic Setup (CLI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-cli&quot;></Link>
+
+<p>GUI is not your thing, or looking to do a scripted deployment? Have no fear, there is an app for that. </p>
+<p><Link href=&quot;/docs/ctrld&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;ctrld&quot;>Command Line Daemon</Link> is what you&#x27;re looking for.</p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-yogadns&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-yoga-dns&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (<Link href=&quot;https://www.yogadns.com/&quot; target=&quot;&quot; title=&quot;&quot;>YogaDNS</Link>)</div><Link aria-label=&quot;Skip link to Automatic Setup (&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-yogadns&quot;></Link>
+
+<p>Launch YogaDNS and navigate to <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`Configuration > Configuration Wizard`. Select <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`Control D DoH` as the provider. Enter your Control D resolver ID and an optional client name. YogaDNS will work seamlessly to route your queries via Control D.</p>
+<span aria-label=&quot;CDYogaDNS&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;CDYogaDNS&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/6305641-YogaDns_oggxiYnEGr.gif&quot; align=&quot;center&quot; class=&quot;border&quot; width=&quot;500px&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot;/></span></span>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;manual-setup&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-manual-setup&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Manual Setup</div><Link aria-label=&quot;Skip link to Manual Setup&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#manual-setup&quot;></Link>
+
+<p>Want to do everything manually? We understand, some of us still drive stick shift. There are a few ways to do it. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;powershell-legacy-dns&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-power-shell-legacy-dns&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>PowerShell (Legacy DNS)</div><Link aria-label=&quot;Skip link to PowerShell (Legacy DNS)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#powershell-legacy-dns&quot;></Link>
+
+<p>If you&#x27;re looking for a 1 liner command to configure Legacy DNS on an interface, this is it. The following example will configure <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`76.76.2.2` (free ad-blocking DNS resolver - yours will be different) on the default network interface. Be sure to run this in Admin prompt. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>Get-WmiObject -Class Win32_IP4RouteTable |  where { $_.destination -eq &#x27;0.0.0.0&#x27; -and $_.mask -eq &#x27;0.0.0.0&#x27;} |  Sort-Object metric1 | select interfaceindex | set-DnsClientServerAddress -ServerAddresses (&#x27;76.76.2.2&#x27;)
+</code></pre>
+<p>Wow, that was easy. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;to-revert-dns-changes-via-powershell&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-to-revert-dns-changes-via-power-shell&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>To Revert DNS Changes via PowerShell</div><Link aria-label=&quot;Skip link to To Revert DNS Changes via PowerShell&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#to-revert-dns-changes-via-powershell&quot;></Link>
+
+<p>Open PowerShell as Administrator:</p>
+
+- Press Win + X and select &quot;Windows PowerShell (Admin)&quot; or &quot;Windows Terminal (Admin)&quot; if you&#x27;re on a newer version.
+
+<p>Run the following command to revert back to obtaining DNS server addresses automatically:</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>Get-WmiObject -Class Win32_IP4RouteTable |  where { $_.destination -eq &#x27;0.0.0.0&#x27; -and $_.mask -eq &#x27;0.0.0.0&#x27;} |  Sort-Object metric1 | ForEach-Object {Set-DnsClientServerAddress -InterfaceIndex $_.InterfaceIndex -ResetServerAddresses}
+</code></pre>
+<p>Explanation:</p>
+<p>This script iterates through each network interface that has a default route (indicated by destination 0.0.0.0 and mask 0.0.0.0), and resets its DNS server addresses to the default settings. This should revert your DNS settings back to automatic configuration and effectively &quot;uninstall&quot; the manual DNS setup for Control D.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;netsh-legacy-dns&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-netsh-legacy-dns&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>netsh (Legacy DNS)</div><Link aria-label=&quot;Skip link to netsh (Legacy DNS)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#netsh-legacy-dns&quot;></Link>
+
+<p>Powershell not your thing? Sure, let&#x27;s setup Legacy DNS another way. Fire up that Admin prompt. </p>
+<p>List all interfaces and find the Interface you are currently using or want to change the DNS server on.</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>netsh interface ip show config
+</code></pre>
+<p>Here we&#x27;re gonna assume **Ethernet0** and DNS server **76.76.2.2** (yours will be different). </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>netsh interface ipv4 set dns name=&quot;Ethernet0&quot; static 76.76.2.2
+</code></pre>
+<p>.... and you&#x27;re done. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;netsh-secure-dns&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-netsh-secure-dns&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>netsh (Secure DNS)</div><Link aria-label=&quot;Skip link to netsh (Secure DNS)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#netsh-secure-dns&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Compatibility Warning</p>
+
+<p>Windows 11 is required to execute these commands.</p>
+
+<p>Running Windows 11 and wish to setup DNS-over-HTTPS? Good thinking, let&#x27;s do that. Want a super detailed guide? Check out this <Link href=&quot;https://blog.controld.com/how-to-set-up-control-d-on-windows/&quot; target=&quot;&quot; title=&quot;&quot;>blog post</Link>. Otherwise, fire up that Admin prompt. </p>
+<p>First, let&#x27;s create a DOH template. Keep in mind, your <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`server` and <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`dohtemplate` values will be different. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>netsh dns add encryption server=76.76.2.2 dohtemplate=https://freedns.controld.com/p2
+</code></pre>
+<p>List all interfaces and find the Interface you are currently using or want to change the DNS server on.</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>netsh interface show interface
+
+Admin State    State          Type             Interface Name
+-------------------------------------------------------------------------
+Disabled       Connecting     Dedicated        Local Area Connection 3
+Disabled       Connecting     Dedicated        VMware Network Adapter VMnet1
+Enabled        Connected      Dedicated        Ethernet0
+Disabled       Connecting     Dedicated        Wi-Fi
+</code></pre>
+<p>Choose the network that is both Enabled and Connected. Here we&#x27;re gonna assume **Ethernet0** and DNS server **76.76.2.2** (yours will be different). </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>netsh interface ipv4 set dns name=&quot;Ethernet0&quot; static 76.76.2.2
+</code></pre>
+<p>Now, for some reason you have to open the GUI Settings app, navigate to **Network Settings**, and edit your interface. </p>
+<p>Go to **DNS server assignment**, choose **manual IPv4,** and  choose the **On (automatic template) **drop-down menu option for **DNS over HTTPS**.</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/9ac1978-doh_template.JPG&quot; title=&quot;doh_template.JPG&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; width=&quot;auto&quot;/></span></span></p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;to-revert-netsh-method&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-to-revert-netsh-method&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>To revert <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`netsh` method:</div><Link aria-label=&quot;Skip link to To revert &quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#to-revert-netsh-method&quot;></Link>
+
+<p>Open Command Prompt:</p>
+
+- Right-click the Start menu and select &quot;Command Prompt (Admin)&quot; or &quot;Windows PowerShell (Admin)&quot;.
+
+<p>Run the command:</p>
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`netsh interface ipv4 set dns name=&quot;Ethernet0&quot; dhcp`</p>
+
+- This command sets the DNS back to being obtained automatically via DHCP.
+
+- If this doesn&#x27;t solve it, you might have used the command with some different interface name. 
+
+<p>To find the correct interface name, run:</p>
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`netsh interface ipv4 show config`</p>
+
+- Look for the DNS settings and interface name and then apply the command accordingly.
+
+" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="automatic-setup-gui"></div><div class="heading-text"><div id="section-automatic-setup-gui" class="heading-anchor_backwardsCompatibility"></div>Automatic Setup (GUI)</div>[](#automatic-setup-gui)
+
+<p>Want to spend the least amount of time setting up Control D on a Windows device? We probably read your mind. </p>
+<p>[GUI Setup Utility](/docs/gui-setup-utility) is what you're looking for. </p>
+# <div class="heading-anchor anchor waypoint" id="automatic-setup-cli"></div><div class="heading-text"><div id="section-automatic-setup-cli" class="heading-anchor_backwardsCompatibility"></div>Automatic Setup (CLI)</div>[](#automatic-setup-cli)
+
+<p>GUI is not your thing, or looking to do a scripted deployment? Have no fear, there is an app for that. </p>
+<p>[Command Line Daemon](/docs/ctrld) is what you're looking for.</p>
+# <div class="heading-anchor anchor waypoint" id="automatic-setup-yogadns"></div><div class="heading-text"><div id="section-automatic-setup-yoga-dns" class="heading-anchor_backwardsCompatibility"></div>Automatic Setup ([YogaDNS](https://www.yogadns.com/))</div>[](#automatic-setup-yogadns)
+
+<p>Launch YogaDNS and navigate to <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">Configuration > Configuration Wizard</span>`. Select <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">Control D DoH</span>` as the provider. Enter your Control D resolver ID and an optional client name. YogaDNS will work seamlessly to route your queries via Control D.</p>
+<span aria-label="CDYogaDNS" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="CDYogaDNS" loading="lazy" src="https://files.readme.io/6305641-YogaDns_oggxiYnEGr.gif" align="center" class="border" width="500px" caption="" height="auto" title=""></span></span>
+# <div class="heading-anchor anchor waypoint" id="manual-setup"></div><div class="heading-text"><div id="section-manual-setup" class="heading-anchor_backwardsCompatibility"></div>Manual Setup</div>[](#manual-setup)
+
+<p>Want to do everything manually? We understand, some of us still drive stick shift. There are a few ways to do it. </p>
+## <div class="heading-anchor anchor waypoint" id="powershell-legacy-dns"></div><div class="heading-text"><div id="section-power-shell-legacy-dns" class="heading-anchor_backwardsCompatibility"></div>PowerShell (Legacy DNS)</div>[](#powershell-legacy-dns)
+
+<p>If you're looking for a 1 liner command to configure Legacy DNS on an interface, this is it. The following example will configure <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">76.76.2.2</span>` (free ad-blocking DNS resolver - yours will be different) on the default network interface. Be sure to run this in Admin prompt. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">Get-WmiObject -Class Win32_IP4RouteTable |  where { $_.destination -eq '0.0.0.0' -and $_.mask -eq '0.0.0.0'} |  Sort-Object metric1 | select interfaceindex | set-DnsClientServerAddress -ServerAddresses ('76.76.2.2')
+</span></code></pre>
+<p>Wow, that was easy. </p>
+## <div class="heading-anchor anchor waypoint" id="to-revert-dns-changes-via-powershell"></div><div class="heading-text"><div id="section-to-revert-dns-changes-via-power-shell" class="heading-anchor_backwardsCompatibility"></div>To Revert DNS Changes via PowerShell</div>[](#to-revert-dns-changes-via-powershell)
+
+<p>Open PowerShell as Administrator:</p>
+
+- Press Win + X and select "Windows PowerShell (Admin)" or "Windows Terminal (Admin)" if you're on a newer version.
+
+<p>Run the following command to revert back to obtaining DNS server addresses automatically:</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">Get-WmiObject -Class Win32_IP4RouteTable |  where { $_.destination -eq '0.0.0.0' -and $_.mask -eq '0.0.0.0'} |  Sort-Object metric1 | ForEach-Object {Set-DnsClientServerAddress -InterfaceIndex $_.InterfaceIndex -ResetServerAddresses}
+</span></code></pre>
+<p>Explanation:</p>
+<p>This script iterates through each network interface that has a default route (indicated by destination 0.0.0.0 and mask 0.0.0.0), and resets its DNS server addresses to the default settings. This should revert your DNS settings back to automatic configuration and effectively "uninstall" the manual DNS setup for Control D.</p>
+## <div class="heading-anchor anchor waypoint" id="netsh-legacy-dns"></div><div class="heading-text"><div id="section-netsh-legacy-dns" class="heading-anchor_backwardsCompatibility"></div>netsh (Legacy DNS)</div>[](#netsh-legacy-dns)
+
+<p>Powershell not your thing? Sure, let's setup Legacy DNS another way. Fire up that Admin prompt. </p>
+<p>List all interfaces and find the Interface you are currently using or want to change the DNS server on.</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh interface ip show config
+</span></code></pre>
+<p>Here we're gonna assume **Ethernet0** and DNS server **76.76.2.2** (yours will be different). </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh interface ipv4 set dns name="Ethernet0" static 76.76.2.2
+</span></code></pre>
+<p>.... and you're done. </p>
+## <div class="heading-anchor anchor waypoint" id="netsh-secure-dns"></div><div class="heading-text"><div id="section-netsh-secure-dns" class="heading-anchor_backwardsCompatibility"></div>netsh (Secure DNS)</div>[](#netsh-secure-dns)
+
+> ## <span class="callout-icon">🚧</span><p>Compatibility Warning</p>
+
+<p>Windows 11 is required to execute these commands.</p>
+
+<p>Running Windows 11 and wish to setup DNS-over-HTTPS? Good thinking, let's do that. Want a super detailed guide? Check out this [blog post](https://blog.controld.com/how-to-set-up-control-d-on-windows/). Otherwise, fire up that Admin prompt. </p>
+<p>First, let's create a DOH template. Keep in mind, your <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">server</span>` and <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">dohtemplate</span>` values will be different. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh dns add encryption server=76.76.2.2 dohtemplate=https://freedns.controld.com/p2
+</span></code></pre>
+<p>List all interfaces and find the Interface you are currently using or want to change the DNS server on.</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh interface show interface
+
+Admin State    State          Type             Interface Name
+-------------------------------------------------------------------------
+Disabled       Connecting     Dedicated        Local Area Connection 3
+Disabled       Connecting     Dedicated        VMware Network Adapter VMnet1
+Enabled        Connected      Dedicated        Ethernet0
+Disabled       Connecting     Dedicated        Wi-Fi
+</span></code></pre>
+<p>Choose the network that is both Enabled and Connected. Here we're gonna assume **Ethernet0** and DNS server **76.76.2.2** (yours will be different). </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh interface ipv4 set dns name="Ethernet0" static 76.76.2.2
+</span></code></pre>
+<p>Now, for some reason you have to open the GUI Settings app, navigate to **Network Settings**, and edit your interface. </p>
+<p>Go to **DNS server assignment**, choose **manual IPv4,** and  choose the **On (automatic template) **drop-down menu option for **DNS over HTTPS**.</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/9ac1978-doh_template.JPG" title="doh_template.JPG" align="" caption="" height="auto" width="auto"></span></span></p>
+## <div class="heading-anchor anchor waypoint" id="to-revert-netsh-method"></div><div class="heading-text"><div id="section-to-revert-netsh-method" class="heading-anchor_backwardsCompatibility"></div>To revert <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh</span>` method:</div>[](#to-revert-netsh-method)
+
+<p>Open Command Prompt:</p>
+
+- Right-click the Start menu and select "Command Prompt (Admin)" or "Windows PowerShell (Admin)".
+
+<p>Run the command:</p>
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh interface ipv4 set dns name="Ethernet0" dhcp</span>`</p>
+
+- This command sets the DNS back to being obtained automatically via DHCP.
+
+- If this doesn't solve it, you might have used the command with some different interface name. 
+
+<p>To find the correct interface name, run:</p>
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">netsh interface ipv4 show config</span>`</p>
+
+- Look for the DNS settings and interface name and then apply the command accordingly.
+
+</div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->10 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Supported Platforms</div>](/docs/supported-platforms)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">MacOS</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/macos-platform)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[Automatic Setup (GUI)](#automatic-setup-gui)
+
+- 
+[Automatic Setup (CLI)](#automatic-setup-cli)
+
+- 
+[Automatic Setup (YogaDNS)](#automatic-setup-yogadns)
+
+- 
+[Manual Setup](#manual-setup)
+<ul>
+<li>[PowerShell (Legacy DNS)](#powershell-legacy-dns)
+
+- [To Revert DNS Changes via PowerShell](#to-revert-dns-changes-via-powershell)
+
+- [netsh (Legacy DNS)](#netsh-legacy-dns)
+
+- [netsh (Secure DNS)](#netsh-secure-dns)
+
+- [To revert `netsh` method:](#to-revert-netsh-method)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

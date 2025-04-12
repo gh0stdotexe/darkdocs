@@ -1,0 +1,87 @@
+---
+title: "CIPA Compliance"
+description: "This document will explain how Control D can help with CIPA compliance, and E-rate eligibility."
+icon: "shield"
+---
+
+The [Children's Internet Protection Act](https://www.fcc.gov/consumers/guides/childrens-internet-protection-act) (CIPA) is a federal law in the United States that requires K-12 schools and libraries to implement internet safety policies and to block or filter internet access to pictures and material that are obscene, child pornography, or harmful to minors on computers that are provided to students. Besides filtering, schools and libraries must also monitor online activities of minors and educate them about online safety. Compliance with CIPA is necessary for schools and libraries to qualify for E-rate funding, which is a government program that makes telecommunications and information services more affordable.
+
+Schools and libraries subject to CIPA are required to adopt and implement an Internet safety policy addressing:
+
+  * Access by minors to inappropriate matter on the Internet;
+  * The safety and security of minors when using electronic mail, chat rooms and other forms of direct electronic communications;
+  * Unauthorized access, including so-called “hacking,” and other unlawful activities by minors online;
+  * Unauthorized disclosure, use, and dissemination of personal information regarding minors; and
+  * Measures restricting minors' access to materials harmful to them.
+
+# 
+
+Control D Features for CIPA Compliance
+
+While compliance with CIPA involves multiple components, including education and monitoring, certain technical requirements, specifically around content filtering, can be facilitated by Control D. Here are some specific features that can help:
+
+## 
+
+Safe Search
+
+[Safe Search](/docs/safe-search) enables filtering on all search engines that support it, blocking Not Safe for Work (NSFW) content. For search engines that do not support Safe Search, access will be restricted entirely. You can enable Safe Search by editing a Profile under "Profile Options" and activating the toggle.
+
+## 
+
+Restricted YouTube
+
+This feature forces YouTube into [restricted mode](/docs/restricted-youtube), which removes mature content and disables comments, making it safer for children and compliant with CIPA's requirements for filtering content. Within the Control D interface, you can edit a Profile, navigate to "Profile Options," and toggle the Restricted YouTube option on.
+
+![](https://files.readme.io/cf8a9d1-image.png)
+
+## 
+
+Malware Filter
+
+[Malware](/docs/malware) filter blocks known (and unknown) malicious domains that can distribute malware, operate botnet C&C servers, or can cause harm you the end user. There are several modes that this Filter can be operated in, which leverages different types of datasets as well as machine learning. To enable this feature, navigate to the desired Profile -> Filters and toggle the Malware Filter on into Strict mode. 
+
+## 
+
+Additional Filters
+
+Those seeking CIPA compliance should also enable the following filters, at a bare minimum: 
+
+  * **Adult Content (Strict)** \- Blocks sites of a pornographic nature, as well as adult themed shopping sites. 
+  * **Clickbait** \- Blocks sites that intentionally, but not necessarily exclusively, publish hoaxes and disinformation for purposes other than satire.
+  * **Dating** \- Blocks dating sites like Tinder, Bumble, and more. 
+  * **Drugs** \- Blocks sites that legally and illegally sell drugs, alcohol, tobacco and vape products.
+  * **Gambling** \- Blocks betting and other gambling websites.
+  * **Phishing** \- Blocks websites that are designed to trick a person into giving out personal information 
+  * **Social** \- Blocks social networks.
+  * **Torrents & Piracy** \- Blocks common BitTorrent indexing sites as well as trackers. 
+  * **VPN & DNS** \- Blocks websites of VPN providers and other DNS services which can be used to bypass restrictions.
+
+Once you're done, it should look something like this
+
+![](https://files.readme.io/94c074d-image.png)
+
+## 
+
+Service Blocks
+
+You can further customize the blocking to prevent common distractions, like Video Games. This can be accomplished in the **Services - > Gaming** section. Create a BLOCK rule for every gaming service you see. If you don't see one you need, contact us and we'll add one (usually in ~24hrs). 
+
+![](https://files.readme.io/ce18f5f-image.png)
+
+## 
+
+Additional Notes
+
+  * CSAM is blanket blocked on the Control D network.
+  * Control D does not collect or store personally identifying information on adults or children. 
+  * Care should be taken to prevent minors from accessing circumvention technologies such as VPNs, or using 3rd party DNS providers. The latter can be achieved by intercepting and redirecting all UDP 53 (DNS) traffic to Control D. The former can be more difficult, especially with quality VPN providers that don't rely on DNS in order to function. The VPN & DNS filter will prevent access to all known VPN provider websites, but may not prevent already installed VPN apps from working. 
+
+# 
+
+Utilizing Control D for CIPA Compliance
+
+By leveraging these features, schools and libraries can take a significant step towards meeting CIPA's internet safety and content filtering requirements. It is important to remember that while these technical measures are crucial, CIPA compliance also involves policy, education, and monitoring aspects. Organizations should ensure they are addressing all components of compliance to provide a safe online environment for minors and secure funding through E-rate.
+
+__Updated about 1 year ago
+
+* * *

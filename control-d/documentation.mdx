@@ -1,0 +1,77 @@
+---
+title: "Documentation"
+description: "Control D Documentation"
+icon: "book"
+---
+
+# Getting Started
+
+<Tip>
+Let's find out what Control D is, and what it can do for you.
+</Tip>
+
+## What is Control D?
+
+Control D is a customizable DNS filtering and traffic redirection platform. It can do all the things your standard DNS resolver can (resolve domains to IP addresses), but it can also do a lot more. Think of it as your personal Authoritative DNS resolver for the entire Internet that gives you granular control over what domains get resolved, redirected or blocked.
+
+## DNS Primer
+
+<Tip>
+DNS (Domain Name System) is like a phone book for the Internet. It converts human readable names to IP addresses.
+</Tip>
+
+When you enter a domain into your browser, it will query the router on your network for the IP address of the website you're trying to load. Your router doesn't perform any DNS resolution and forwards the request upstream to whatever DNS server is configured there. This could be your ISP or a 3rd party resolver like Cloudflare, or Google.
+
+Your DNS query will usually takes the following route (simplified view):
+
+```
+Your Device → Router → DNS Provider → Root Name Server → Authoritative Server
+```
+
+## How does Control D work?
+
+<Tip>
+Control D provides you with multiple DNS resolvers that can manipulate the responses based on the criteria you have set.
+</Tip>
+
+Control D is a DNS resolver, and with a default configuration it will work identically to any other DNS resolver. However once you start fiddling with the rules, you can selectively disregard the authoritative DNS records associated with any domain you attempt to resolve (regardless of it actually existing in public DNS), and replace the response with any record that you wish.
+
+You can prevent a domain from loading, spoof it to an IP of your choice, or to one of over 100 exit proxy locations supported by Control D. In this mode, Control D will transparently proxy SNI (and some non-SNI) enabled traffic through servers in that location/country, masking the client IP.
+
+## Feature Overview
+
+<Tip>
+Block access to categories of sites, individual services/apps, and specific domain names. Block malicious domains. Spoof your IP. View graphs of your browsing activity.
+</Tip>
+
+### Web Filtering
+
+Block various categories of websites and services with a single toggle switch. There are 18 Native filters to choose from, as well as over a dozen 3rd party filters. With these, you can block things like:
+
+- Malware and Phishing
+- Ads & Trackers
+- Potentially harmful content like porn and drug content
+- Newly registered domains
+- Torrenting and file hosting websites
+- Crypto and gambling
+- Whole lot more
+
+### Malware Protection
+
+Preventing malicious domains from resolving in real time is one of the best ways to protect your devices and networks from getting owned. Control D has several layers of protection:
+
+- **Domain level threat intelligence feeds** - We subscribe to dozens of threat intel feeds, and block domains in real time as part of the Malware "Relaxed" Filter.
+- **IP level threat intelligence feeds** - We subscribe to IP level feeds, and block domains that resolve to malicious IPs as part of the Malware "Strict" Filter.
+- **Machine Learning Blocking** - Our in-line ML model blocks malicious domains that do not appear in any 3rd party intel feed, in real time.
+
+### Traffic Redirection
+
+Unlike other DNS filtering platforms, where you have just two choices: **allow** or **block**, Control D has a 3rd option, which allows you to **redirect** any domain name, service or app, entire TLD, or all browsing activity via transparent proxies. There are [over 100 exit locations](https://controld.com/network/) to choose from. This feature masks the end-user IP address from the destination.
+
+### Analytics
+
+View stats for all your DNS resolvers, and see what domains are being resolved, blocked or redirected. Gain insights on your network, and customize the rules to prevent unwanted behaviors.
+
+### Highly Customizable
+
+You are not restricted to a single set of rules. Create multiple Profiles (policies) that define how a Device (DNS resolver) should function. You can create dozens (even hundreds) of Profiles and enforce some/all of them on your physical devices. Each one gets its own DNS resolver that enforces a Profile, which can be swapped via the web GUI, API or on a schedule.

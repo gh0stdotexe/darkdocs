@@ -1,0 +1,130 @@
+---
+title: "Create a DNS Stamp"
+description: "How to create and use DNS stamps with Control D"
+icon: "stamp"
+---
+
+## What is a DNS Stamp?
+
+A DNS stamp is a compact, encoded string that contains all the information needed to connect to a DNS server, including:
+- Server address
+- Protocol type
+- Public key
+- Additional properties
+
+## Creating DNS Stamps
+
+### Basic Format
+```
+sdns://protocol-info_hostname-and-port
+```
+
+### Protocol Types
+- `A...` - DNSCrypt
+- `h...` - DNS-over-HTTPS
+- `k...` - DNS-over-TLS
+- `q...` - DNS-over-QUIC
+
+## Control D Stamps
+
+### DNS-over-HTTPS
+```bash
+# Format
+sdns://AgcAAAAAAAAACzcyLjc2LjIuMjIAHHlvdXJjb2RlLmRucy5jb250cm9sZC5jb20KL2Rucy1xdWVyeQ
+
+# Components
+protocol: DoH
+ip: 72.76.2.22
+hostname: yourcode.dns.controld.com
+path: /dns-query
+```
+
+### DNS-over-TLS
+```bash
+# Format
+sdns://AwcAAAAAAAAACzcyLjc2LjIuMjIAHHlvdXJjb2RlLmRucy5jb250cm9sZC5jb20
+
+# Components
+protocol: DoT
+ip: 72.76.2.22
+hostname: yourcode.dns.controld.com
+```
+
+## Implementation
+
+### Command Line
+```bash
+# Generate stamp
+echo -n "sdns://..." | base64
+
+# Decode stamp
+echo -n "sdns://..." | base64 -d
+```
+
+### Using dnsstamp.js
+```javascript
+const stamp = require('dnsstamp');
+
+const config = {
+  protocol: 'doh',
+  ip: '72.76.2.22',
+  hostname: 'yourcode.dns.controld.com',
+  path: '/dns-query'
+};
+
+const dnsStamp = stamp.create(config);
+```
+
+## Use Cases
+
+### Client Configuration
+```yaml
+dns_client:
+  stamp: "sdns://..."
+  fallback: true
+  verify: true
+```
+
+### Application Integration
+```python
+from dnsstamp import DNSStamp
+
+stamp = DNSStamp.from_string("sdns://...")
+config = stamp.to_dict()
+```
+
+## Best Practices
+
+### Security
+1. Verify stamp integrity
+2. Use DNSSEC when available
+3. Implement fallback options
+4. Monitor stamp validity
+
+### Management
+1. Document stamp creation
+2. Store stamps securely
+3. Update when needed
+4. Test regularly
+
+## Troubleshooting
+
+### Common Issues
+- Invalid encoding
+- Wrong protocol
+- Missing components
+- Connection failures
+
+### Verification
+1. Decode stamp
+2. Check components
+3. Test connection
+4. Verify resolution
+
+<Warning>
+Always verify DNS stamps before deployment to ensure they contain the correct server information.
+</Warning>
+
+<Tip>
+Use our [DNS Stamp Generator](/control-d/tools/stamp-generator) to create stamps for your Control D endpoints.
+</Tip> 

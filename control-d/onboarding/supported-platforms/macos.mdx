@@ -1,0 +1,56 @@
+---
+title: "MacOS"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to configure Control D on any MacOS computer.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/macos-platform)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-gui&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-gui&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (GUI)</div><Link aria-label=&quot;Skip link to Automatic Setup (GUI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-gui&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># MacOS
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to configure Control D on any MacOS computer.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/macos-platform)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-gui&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-gui&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (GUI)</div><Link aria-label=&quot;Skip link to Automatic Setup (GUI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-gui&quot;></Link>
+
+<p>Want to spend the least amount of time setting up Control D on a MacOS device? We probably read your mind. </p>
+<p><Link href=&quot;/docs/gui-setup-utility&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;gui-setup-utility&quot;>GUI Setup Utility</Link> is what you&#x27;re looking for. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;automatic-setup-cli&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-automatic-setup-cli&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Automatic Setup (CLI)</div><Link aria-label=&quot;Skip link to Automatic Setup (CLI)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#automatic-setup-cli&quot;></Link>
+
+<p>GUI is not your thing, looking to do a scripted deployment, or have an existing MDM profile already in use? Have no fear, there is an app for that. </p>
+<p><Link href=&quot;/docs/ctrld&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;ctrld&quot;>Command Line Daemon</Link> is what you&#x27;re looking for.</p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;manual-setup-profile&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-manual-setup-profile&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Manual Setup (Profile)</div><Link aria-label=&quot;Skip link to Manual Setup (Profile)&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#manual-setup-profile&quot;></Link>
+
+<p>It&#x27;s entirely optional to use the above applications, and you can manually setup an Apple DNS Profile that will enable DNS-over-HTTPS system wide. In order to do this, follow the Manual Setup guide in the Web Control Panel after you create a MacOS device (or view an existing one). </p>
+<p>In **Step 1** of the **Manual Setup** you will be asked to download a signed .mobileconfig profile. You can optionally customize this DNS profile to exclude networks where Control D should not be used, as well as exclude specific domains you wish to be bypassed from Control D. This is helpful to make captive portals work. </p>
+<span aria-label=&quot;3574&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;3574&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/5734ebc-macual_mac_profile.JPG&quot; title=&quot;macual_mac_profile.JPG&quot; class=&quot;&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; width=&quot;auto&quot;/></span></span>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;google-chrome-warning&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-google-chrome-warning&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Google Chrome Warning</div><Link aria-label=&quot;Skip link to Google Chrome Warning&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#google-chrome-warning&quot;></Link>
+
+<p>This section is only applicable if you use Google Chrome browser. </p>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Google Chrome Warning</p>
+
+<p>If you use MacOS Ventura along with Google Chrome, there is an OS bug you should be aware of, where Google Chrome will disregard your OS DNS resolver in some cases, making it bypass Control D. </p><p>The solution is to also configure your Device <Link href=&quot;https://blog.controld.com/how-to-set-up-control-d-on-google-chrome/&quot; target=&quot;&quot; title=&quot;&quot;>directly in Google Chrome</Link>.</p>
+" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="automatic-setup-gui"></div><div class="heading-text"><div id="section-automatic-setup-gui" class="heading-anchor_backwardsCompatibility"></div>Automatic Setup (GUI)</div>[](#automatic-setup-gui)
+
+<p>Want to spend the least amount of time setting up Control D on a MacOS device? We probably read your mind. </p>
+<p>[GUI Setup Utility](/docs/gui-setup-utility) is what you're looking for. </p>
+# <div class="heading-anchor anchor waypoint" id="automatic-setup-cli"></div><div class="heading-text"><div id="section-automatic-setup-cli" class="heading-anchor_backwardsCompatibility"></div>Automatic Setup (CLI)</div>[](#automatic-setup-cli)
+
+<p>GUI is not your thing, looking to do a scripted deployment, or have an existing MDM profile already in use? Have no fear, there is an app for that. </p>
+<p>[Command Line Daemon](/docs/ctrld) is what you're looking for.</p>
+# <div class="heading-anchor anchor waypoint" id="manual-setup-profile"></div><div class="heading-text"><div id="section-manual-setup-profile" class="heading-anchor_backwardsCompatibility"></div>Manual Setup (Profile)</div>[](#manual-setup-profile)
+
+<p>It's entirely optional to use the above applications, and you can manually setup an Apple DNS Profile that will enable DNS-over-HTTPS system wide. In order to do this, follow the Manual Setup guide in the Web Control Panel after you create a MacOS device (or view an existing one). </p>
+<p>In **Step 1** of the **Manual Setup** you will be asked to download a signed .mobileconfig profile. You can optionally customize this DNS profile to exclude networks where Control D should not be used, as well as exclude specific domains you wish to be bypassed from Control D. This is helpful to make captive portals work. </p>
+<span aria-label="3574" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="3574" loading="lazy" src="https://files.readme.io/5734ebc-macual_mac_profile.JPG" title="macual_mac_profile.JPG" class="" align="" caption="" height="auto" width="auto"></span></span>
+# <div class="heading-anchor anchor waypoint" id="google-chrome-warning"></div><div class="heading-text"><div id="section-google-chrome-warning" class="heading-anchor_backwardsCompatibility"></div>Google Chrome Warning</div>[](#google-chrome-warning)
+
+<p>This section is only applicable if you use Google Chrome browser. </p>
+> ## <span class="callout-icon">🚧</span><p>Google Chrome Warning</p>
+
+<p>If you use MacOS Ventura along with Google Chrome, there is an OS bug you should be aware of, where Google Chrome will disregard your OS DNS resolver in some cases, making it bypass Control D. </p><p>The solution is to also configure your Device [directly in Google Chrome](https://blog.controld.com/how-to-set-up-control-d-on-google-chrome/).</p>
+</div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->about 2 years ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Windows</div>](/docs/platform-windows)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Linux</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/linux-platform)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>[Automatic Setup (GUI)](#automatic-setup-gui)
+
+- [Automatic Setup (CLI)](#automatic-setup-cli)
+
+- [Manual Setup (Profile)](#manual-setup-profile)
+
+- [Google Chrome Warning](#google-chrome-warning)
+
+</li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

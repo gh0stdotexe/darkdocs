@@ -1,0 +1,206 @@
+---
+title: "Introduction"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Let's find out what Control D is, and what it can do for you.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/getting-started)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>So, you want to learn more about Control D and how it works. You&#x27;ve come to the right place. </p>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Introduction
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Let's find out what Control D is, and what it can do for you.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/getting-started)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>So, you want to learn more about Control D and how it works. You&#x27;ve come to the right place. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;-what-is-control-d&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-📛-what-is-control-d&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>📛 What is Control D?</div><Link aria-label=&quot;Skip link to 📛 What is Control D?&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#-what-is-control-d&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>📘</span><p>TLDR</p>
+
+<p>Control D is a DNS service that you can customize to your needs.</p>
+
+<p>Control D is a customizable DNS filtering and traffic redirection platform. It can do all the things your standard DNS resolver can (resolve domains to IP addresses), but it can also do a lot more. Think of it as your personal Authoritative DNS resolver for the entire Internet that gives you granular control over what domains get resolved, redirected or blocked. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;-dns-primer&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-📚-dns-primer&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>📚 DNS Primer</div><Link aria-label=&quot;Skip link to 📚 DNS Primer&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#-dns-primer&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>📘</span><p>TLDR</p>
+
+<p>DNS (Domain Name System) is like a phone book for the Internet. It converts human readable names to IP addresses.</p>
+
+<p>When you enter a domain into your browser, it will query the router on your network for the IP address of the website you&#x27;re trying to load. Your router doesn’t perform any DNS resolution and forwards the request upstream to whatever DNS server is configured there. This could be your ISP or a 3rd party resolver like Cloudflare, or Google. </p>
+<p>Your DNS query will usually takes the following route (simplified view):</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>Your Device → Router → DNS Provider → Root Name Server → Authoritative Server
+</code></pre>
+<p>The responses that the authoritative DNS server emits are typically static. This means that any user, anywhere, asking any DNS server “where is domain.com” will get the same response. There are some notable exceptions to this when it comes to CDNs, which will geo-code your source IP, and return variable results based on your location. A user in the UK will see different IPs than a user in the US.</p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;️-how-does-control-d-work&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-🛠️-how-does-control-d-work&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>🛠️ How does Control D work?</div><Link aria-label=&quot;Skip link to 🛠️ How does Control D work?&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#️-how-does-control-d-work&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>📘</span><p>TLDR</p>
+
+<p>Control D provides you with multiple DNS resolvers that can manipulate the responses based on the criteria you have set.</p>
+
+<p>Control D is a DNS resolver, and with a default configuration it will work identically to any other DNS resolver. However once you start fiddling with the rules, you can selectively disregard the authoritative DNS records associated with any domain you attempt to resolve (regardless of it actually existing in public DNS), and replace the response with any record that you wish. </p>
+<p>You can prevent a domain from loading, spoof it to an IP of your choice, or to one of over 100 exit proxy locations supported by Control D. In this mode, Control D will transparently proxy SNI (and some non-SNI) enabled traffic through servers in that location/country, masking the client IP. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;-feature-overview&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-🎁-feature-overview&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>🎁 Feature Overview</div><Link aria-label=&quot;Skip link to 🎁 Feature Overview&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#-feature-overview&quot;></Link>
+
+<p>The following will provide a birds eye view of what you can do with Control D. For more in-depth explanations, see the &quot;Web Dashboard&quot; section of this guide.</p>
+> ## <span class=&quot;callout-icon&quot;>📘</span><p>TLDR</p>
+
+<p>Block access to categories of sites, individual services/apps, and specific domain names. Block malicious domains. Spoof your IP. View graphs of your browsing activity.</p>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;-web-filtering&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-🚫-web-filtering&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>🚫 Web Filtering</div><Link aria-label=&quot;Skip link to 🚫 Web Filtering&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#-web-filtering&quot;></Link>
+
+<p>Block various categories of websites and services with a single toggle switch. There are 18 Native filters to choose from, as well as over a dozen 3rd party filters. With these, you can block things like:</p>
+
+- Malware and Phishing
+
+- Ads &amp; Trackers
+
+- Potentially harmful content like porn and drug content
+
+- Newly registered domains
+
+- Torrenting and file hosting websites
+
+- Crypto and gambling
+
+- Whole lot more
+
+<p>Filtering can be also scoped to specific services like Facebook, TikTok, or Steam - there are 400+ to choose from. </p>
+<p>Lastly, you can have granular control over individual domain names, where you can block specific websites, and even whole TLDs. Wildcard rules are supported. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;️-malware-protection&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-☠️-malware-protection&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>☠️ Malware Protection</div><Link aria-label=&quot;Skip link to ☠️ Malware Protection&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#️-malware-protection&quot;></Link>
+
+<p>Preventing malicious domains from resolving in real time is one of the best ways to protect your devices and networks from getting owned. Control D has several layers of protection:</p>
+
+- **Domain level threat intelligence feeds **- We subscribe to dozens of threat intel feeds, and block domains in real time as part of the Malware &quot;Relaxed&quot; Filter. 
+
+- **IP level threat intelligence feeds** - We subscribe to IP level feeds, and block domains that resolve to malicious IPs as part of the Malware &quot;Strict&quot; Filter. 
+
+- **Machine Learning Blocking** Our in-line ML model blocks malicious domains that do not appear in any 3rd party intel feed, in real time. 
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;️-traffic-redirection&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-↪️-traffic-redirection&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>↪️ Traffic Redirection</div><Link aria-label=&quot;Skip link to ↪️ Traffic Redirection&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#️-traffic-redirection&quot;></Link>
+
+<p>Unlike other DNS filtering platforms, where you have just two choices: **allow** or **block**, Control D has a 3rd option, which allows you to **redirect** any domain name, service or app, entire TLD, or all browsing activity via transparent proxies. There are <Link href=&quot;https://controld.com/network/&quot; target=&quot;&quot; title=&quot;&quot;>over 100 exit locations</Link> to choose from. This feature masks the end-user IP address from the destination. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;-analytics&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-📈-analytics&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>📈 Analytics</div><Link aria-label=&quot;Skip link to 📈 Analytics&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#-analytics&quot;></Link>
+
+<p>View stats for all your DNS resolvers, and see what domains are being resolved, blocked or redirected. Gain insights on your network, and customize the rules to prevent unwanted behaviors. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;️-highly-customizable&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-⚙️-highly-customizable&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>⚙️ Highly Customizable</div><Link aria-label=&quot;Skip link to ⚙️ Highly Customizable&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#️-highly-customizable&quot;></Link>
+
+<p>You are not restricted to a single set of rules. Create multiple Profiles (policies) that define how a Device (DNS resolver) should function. You can create dozens (even hundreds) of Profiles and enforce some/all of them on your physical devices. Each one gets its own DNS resolver that enforces a Profile, which can be swapped via the web GUI, API or on a schedule.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;️-modern-protocols&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-🛡️-modern-protocols&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>🛡️ Modern Protocols</div><Link aria-label=&quot;Skip link to 🛡️ Modern Protocols&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#️-modern-protocols&quot;></Link>
+
+<p>Control D supports all DNS protocols you can think of.</p>
+
+- Legacy DNS (UDP53) - least secure, but most widely supported
+
+- DNS-over-HTTPS (DoH) - most secure, supported by modern OSes
+
+- DNS-over-TLS (DoT) - most secure, supported by modern OSes
+
+- DNS-over-QUIC (DoQ) - experimental protocol leveraging TLS over QUIC
+
+<p>We can go on, but you probably don&#x27;t have all day. Continue to the next section to learn what these features can do for **you**.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"><p>So, you want to learn more about Control D and how it works. You've come to the right place. </p>
+# <div class="heading-anchor anchor waypoint" id="-what-is-control-d"></div><div class="heading-text"><div id="section-📛-what-is-control-d" class="heading-anchor_backwardsCompatibility"></div>📛 What is Control D?</div>[](#-what-is-control-d)
+
+> ## <span class="callout-icon">📘</span><p>TLDR</p>
+
+<p>Control D is a DNS service that you can customize to your needs.</p>
+
+<p>Control D is a customizable DNS filtering and traffic redirection platform. It can do all the things your standard DNS resolver can (resolve domains to IP addresses), but it can also do a lot more. Think of it as your personal Authoritative DNS resolver for the entire Internet that gives you granular control over what domains get resolved, redirected or blocked. </p>
+## <div class="heading-anchor anchor waypoint" id="-dns-primer"></div><div class="heading-text"><div id="section-📚-dns-primer" class="heading-anchor_backwardsCompatibility"></div>📚 DNS Primer</div>[](#-dns-primer)
+
+> ## <span class="callout-icon">📘</span><p>TLDR</p>
+
+<p>DNS (Domain Name System) is like a phone book for the Internet. It converts human readable names to IP addresses.</p>
+
+<p>When you enter a domain into your browser, it will query the router on your network for the IP address of the website you're trying to load. Your router doesn’t perform any DNS resolution and forwards the request upstream to whatever DNS server is configured there. This could be your ISP or a 3rd party resolver like Cloudflare, or Google. </p>
+<p>Your DNS query will usually takes the following route (simplified view):</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">Your Device → Router → DNS Provider → Root Name Server → Authoritative Server
+</span></code></pre>
+<p>The responses that the authoritative DNS server emits are typically static. This means that any user, anywhere, asking any DNS server “where is domain.com” will get the same response. There are some notable exceptions to this when it comes to CDNs, which will geo-code your source IP, and return variable results based on your location. A user in the UK will see different IPs than a user in the US.</p>
+# <div class="heading-anchor anchor waypoint" id="️-how-does-control-d-work"></div><div class="heading-text"><div id="section-🛠️-how-does-control-d-work" class="heading-anchor_backwardsCompatibility"></div>🛠️ How does Control D work?</div>[](#️-how-does-control-d-work)
+
+> ## <span class="callout-icon">📘</span><p>TLDR</p>
+
+<p>Control D provides you with multiple DNS resolvers that can manipulate the responses based on the criteria you have set.</p>
+
+<p>Control D is a DNS resolver, and with a default configuration it will work identically to any other DNS resolver. However once you start fiddling with the rules, you can selectively disregard the authoritative DNS records associated with any domain you attempt to resolve (regardless of it actually existing in public DNS), and replace the response with any record that you wish. </p>
+<p>You can prevent a domain from loading, spoof it to an IP of your choice, or to one of over 100 exit proxy locations supported by Control D. In this mode, Control D will transparently proxy SNI (and some non-SNI) enabled traffic through servers in that location/country, masking the client IP. </p>
+# <div class="heading-anchor anchor waypoint" id="-feature-overview"></div><div class="heading-text"><div id="section-🎁-feature-overview" class="heading-anchor_backwardsCompatibility"></div>🎁 Feature Overview</div>[](#-feature-overview)
+
+<p>The following will provide a birds eye view of what you can do with Control D. For more in-depth explanations, see the "Web Dashboard" section of this guide.</p>
+> ## <span class="callout-icon">📘</span><p>TLDR</p>
+
+<p>Block access to categories of sites, individual services/apps, and specific domain names. Block malicious domains. Spoof your IP. View graphs of your browsing activity.</p>
+
+## <div class="heading-anchor anchor waypoint" id="-web-filtering"></div><div class="heading-text"><div id="section-🚫-web-filtering" class="heading-anchor_backwardsCompatibility"></div>🚫 Web Filtering</div>[](#-web-filtering)
+
+<p>Block various categories of websites and services with a single toggle switch. There are 18 Native filters to choose from, as well as over a dozen 3rd party filters. With these, you can block things like:</p>
+
+- Malware and Phishing
+
+- Ads & Trackers
+
+- Potentially harmful content like porn and drug content
+
+- Newly registered domains
+
+- Torrenting and file hosting websites
+
+- Crypto and gambling
+
+- Whole lot more
+
+<p>Filtering can be also scoped to specific services like Facebook, TikTok, or Steam - there are 400+ to choose from. </p>
+<p>Lastly, you can have granular control over individual domain names, where you can block specific websites, and even whole TLDs. Wildcard rules are supported. </p>
+## <div class="heading-anchor anchor waypoint" id="️-malware-protection"></div><div class="heading-text"><div id="section-☠️-malware-protection" class="heading-anchor_backwardsCompatibility"></div>☠️ Malware Protection</div>[](#️-malware-protection)
+
+<p>Preventing malicious domains from resolving in real time is one of the best ways to protect your devices and networks from getting owned. Control D has several layers of protection:</p>
+
+- **Domain level threat intelligence feeds **- We subscribe to dozens of threat intel feeds, and block domains in real time as part of the Malware "Relaxed" Filter. 
+
+- **IP level threat intelligence feeds** - We subscribe to IP level feeds, and block domains that resolve to malicious IPs as part of the Malware "Strict" Filter. 
+
+- **Machine Learning Blocking** Our in-line ML model blocks malicious domains that do not appear in any 3rd party intel feed, in real time. 
+
+## <div class="heading-anchor anchor waypoint" id="️-traffic-redirection"></div><div class="heading-text"><div id="section-↪️-traffic-redirection" class="heading-anchor_backwardsCompatibility"></div>↪️ Traffic Redirection</div>[](#️-traffic-redirection)
+
+<p>Unlike other DNS filtering platforms, where you have just two choices: **allow** or **block**, Control D has a 3rd option, which allows you to **redirect** any domain name, service or app, entire TLD, or all browsing activity via transparent proxies. There are [over 100 exit locations](https://controld.com/network/) to choose from. This feature masks the end-user IP address from the destination. </p>
+## <div class="heading-anchor anchor waypoint" id="-analytics"></div><div class="heading-text"><div id="section-📈-analytics" class="heading-anchor_backwardsCompatibility"></div>📈 Analytics</div>[](#-analytics)
+
+<p>View stats for all your DNS resolvers, and see what domains are being resolved, blocked or redirected. Gain insights on your network, and customize the rules to prevent unwanted behaviors. </p>
+## <div class="heading-anchor anchor waypoint" id="️-highly-customizable"></div><div class="heading-text"><div id="section-⚙️-highly-customizable" class="heading-anchor_backwardsCompatibility"></div>⚙️ Highly Customizable</div>[](#️-highly-customizable)
+
+<p>You are not restricted to a single set of rules. Create multiple Profiles (policies) that define how a Device (DNS resolver) should function. You can create dozens (even hundreds) of Profiles and enforce some/all of them on your physical devices. Each one gets its own DNS resolver that enforces a Profile, which can be swapped via the web GUI, API or on a schedule.</p>
+## <div class="heading-anchor anchor waypoint" id="️-modern-protocols"></div><div class="heading-text"><div id="section-🛡️-modern-protocols" class="heading-anchor_backwardsCompatibility"></div>🛡️ Modern Protocols</div>[](#️-modern-protocols)
+
+<p>Control D supports all DNS protocols you can think of.</p>
+
+- Legacy DNS (UDP53) - least secure, but most widely supported
+
+- DNS-over-HTTPS (DoH) - most secure, supported by modern OSes
+
+- DNS-over-TLS (DoT) - most secure, supported by modern OSes
+
+- DNS-over-QUIC (DoQ) - experimental protocol leveraging TLS over QUIC
+
+<p>We can go on, but you probably don't have all day. Continue to the next section to learn what these features can do for **you**.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->10 months ago<!-- --> </p></div><hr class="NextStepsDivider"><div class="WhatsNext-wrapper3DTnpcPqKoHg"><header class="APISectionHeader3LN_-QIR0m7x rm-APISectionHeader WhatsNext-headingQHN33r4trf_s"><div class="APISectionHeader-heading4MUMLbp4_nLs">What’s Next</div></header><div class="rm-Markdown markdown-body WhatsNext-description1zZyZLPCGmaa WhatsNext-description_empty1Hh8M1AKGhbW" data-testid="RDMD"></div>- [Use Cases](/docs/use-cases)<span class="IconWrapper Icon-wrapper2z2wVIeGsiUy"><svg fill="none" viewBox="0 0 24 24" class="Icon Icon3_D2ysxFZ_ll Icon-svg2Lm7f6G9Ly5a icon" data-name="arrow-right" role="img" style="--icon-color:inherit;--icon-size:inherit;--icon-stroke-width:2px" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M12 5l7 7-7 7" class="icon-stroke-width"></path></svg></span>
+</div><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[📛 What is Control D?](#-what-is-control-d)
+<ul>
+<li>[📚 DNS Primer](#-dns-primer)
+
+</li>
+<li>
+[🛠️ How does Control D work?](#%EF%B8%8F-how-does-control-d-work)
+</li>
+<li>
+[🎁 Feature Overview](#-feature-overview)
+
+- [🚫 Web Filtering](#-web-filtering)
+
+- [☠️ Malware Protection](#%EF%B8%8F-malware-protection)
+
+- [↪️ Traffic Redirection](#%EF%B8%8F-traffic-redirection)
+
+- [📈 Analytics](#-analytics)
+
+- [⚙️ Highly Customizable](#%EF%B8%8F-highly-customizable)
+
+- [🛡️ Modern Protocols](#%EF%B8%8F-modern-protocols)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

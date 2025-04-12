@@ -1,0 +1,548 @@
+---
+title: "Command Line Daemon"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>DNS proxy server you can run on a router, or any other device.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/ctrld)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>In order to facilitate simple onboarding, on any type of device (with a keyboard) we&#x27;ve developed an open source  command line daemon, known as **ctrld**. It can be used to configure a Control D <Link href=&quot;/docs/devices&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;devices&quot;>Device</Link> with a single command, and it can do a whole bunch more. </p>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Command Line Daemon
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>DNS proxy server you can run on a router, or any other device.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/ctrld)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>In order to facilitate simple onboarding, on any type of device (with a keyboard) we&#x27;ve developed an open source  command line daemon, known as **ctrld**. It can be used to configure a Control D <Link href=&quot;/docs/devices&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;devices&quot;>Device</Link> with a single command, and it can do a whole bunch more. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;why-use-this&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-why-use-this&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Why Use This</div><Link aria-label=&quot;Skip link to Why Use This&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#why-use-this&quot;></Link>
+
+<p>You may want to use this utility in the following situations:</p>
+
+- You operate a network, and have to use Legacy DNS for all your LAN clients 
+
+- Want to use Secure DNS protocols on a device that does not support them
+
+- Want to create an advanced DNS routing policies or leverage split horizon DNS 
+
+- Want to see all your <Link href=&quot;/docs/device-clients&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;device-clients&quot;>LAN clients</Link>, and create DNS policies for all of them via a web GUI
+
+- Want to deploy Secure DNS on a roaming client 
+
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;quick-install&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-quick-install&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Quick Install</div><Link aria-label=&quot;Skip link to Quick Install&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#quick-install&quot;></Link>
+
+<p>The simplest way to start using <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` is to run the installer. Open an terminal and execute this command as admin/system user on any Linux or UNIX-like OS (including MacOS):</p>
+<div class=&quot;CodeTabs CodeTabs_initial theme-light&quot;><div class=&quot;CodeTabs-toolbar&quot; role=&quot;tablist&quot;><button aria-selected=&quot;true&quot; class=&quot;CodeTabs_active&quot; role=&quot;tab&quot; type=&quot;button&quot;>bash</button></div><div class=&quot;CodeTabs-inner&quot; role=&quot;tabpanel&quot;><pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang-text theme-light&quot; data-lang=&quot;text&quot; name=&quot;bash&quot; tabindex=&quot;0&quot;>sh -c &#x27;sh -c &quot;$(curl -sL https://api.controld.com/dl)&quot; -s RESOLVER_ID_HERE forced&#x27;
+</code></pre></div></div>
+<p> Template <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`RESOLVER_ID_HERE` with your actual Resolver ID from the relevant Device. </p>
+<p>If you&#x27;d like to use the same method on Windows, run this in Powershell:</p>
+<div class=&quot;CodeTabs CodeTabs_initial theme-light&quot;><div class=&quot;CodeTabs-toolbar&quot; role=&quot;tablist&quot;><button aria-selected=&quot;true&quot; class=&quot;CodeTabs_active&quot; role=&quot;tab&quot; type=&quot;button&quot;>cmd</button></div><div class=&quot;CodeTabs-inner&quot; role=&quot;tabpanel&quot;><pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang-Text theme-light&quot; data-lang=&quot;Text&quot; name=&quot;cmd&quot; tabindex=&quot;0&quot;>(Invoke-WebRequest -Uri &#x27;https://api.controld.com/dl/ps1&#x27; -UseBasicParsing).Content | Set-Content &quot;$env:TEMPctrld_install.ps1&quot;; Invoke-Expression &quot;&amp; &#x27;$env:TEMPctrld_install.ps1&#x27; &#x27;RESOLVER_ID_HERE&#x27; &#x27;forced&#x27;&quot;
+</code></pre></div></div>
+<p>The above scripts will do the following:</p>
+
+- Detect your OS and architecture 
+
+- Download the appropriate binary 
+
+- Make it executable
+
+- Register a system service and start the DNS server
+
+- Modify the DNS settings on your network adapter to use the local server
+
+<p>In order to skip the interactive confirmation (y/n), simply append <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`forced` flag to the installer command. ie. <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`-s RESOLVER_ID_HERE forced` for MacOS and Linux, and <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`RESOLVER_ID_HERE forced` for Windows + PowerShell. This will perform the installation without any user confirmation or input.  </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;download-manually&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-download-manually&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Download Manually</div><Link aria-label=&quot;Skip link to Download Manually&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#download-manually&quot;></Link>
+
+<p><Link href=&quot;https://github.com/Control-D-Inc/ctrld&quot; target=&quot;&quot; title=&quot;&quot;>Head over to Github</Link>, and download the version of the daemon for your platform. You can find builds for most operating systems in the <Link href=&quot;https://github.com/Control-D-Inc/ctrld/releases&quot; target=&quot;&quot; title=&quot;&quot;>Releases</Link> section. </p>
+<p>Currently supported operating systems are:</p>
+
+- Windows (386, AMD64 and ARM) - use the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`_windows` builds
+
+- Mac (AMD64 and ARM) - use the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`_darwin` builds 
+
+- Linux (386, AMD64, ARM, MIPS) - use the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`_linux` builds
+
+- FreeBSD (386, AMD64, ARM) - use the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`_freebsd` builds 
+
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/4bb9d1b-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;get-your-resolver-id&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-get-your-resolver-id&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Get your resolver ID</div><Link aria-label=&quot;Skip link to Get your resolver ID&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#get-your-resolver-id&quot;></Link>
+
+<p>When you create a Control D Device, you are issued a set of DNS resolvers. On the screen that shows you your resolvers, you will see &quot;Resolver ID&quot; at the top. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;windows&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-windows&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Windows</div><Link aria-label=&quot;Skip link to Windows&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#windows&quot;></Link>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;start-service&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-start-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Start Service</div><Link aria-label=&quot;Skip link to Start Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#start-service&quot;></Link>
+
+<p>Open Administrative command line, and navigate to the folder where the .exe file is extracted, and run this command. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>ctrld.exe start --cd RESOLVER_ID_HERE
+</code></pre>
+<p>This command will do the following:</p>
+
+- Fetch your Device&#x27;s configuration
+
+- Render a configuration file and store it in the HOME directory
+
+- Spawn a DNS listener and start a system service that will always run
+
+- Configure the DNS on the default interface to use the local DNS proxy server
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;stop-service&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-stop-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Stop Service</div><Link aria-label=&quot;Skip link to Stop Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#stop-service&quot;></Link>
+
+<p>In order to **temporarily stop** the Control D service, execute the following from Administrative command line:</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>ctrld.exe stop
+</code></pre>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Service is still installed</p>
+
+<p>The above commands will stop the service, and unconfigure the listener it spawned from the default interface. If the system is rebooted, the original configuration will be restored automatically.</p>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;uninstall-service&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-uninstall-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Uninstall Service</div><Link aria-label=&quot;Skip link to Uninstall Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#uninstall-service&quot;></Link>
+
+<p>In order to permanently uninstall <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` run this command. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>ctrld.exe uninstall
+</code></pre>
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` binary will remain on disk and can be used at a later time. To remove all files from disk, append <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`--cleanup` flag to the uninstall command. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;macos&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-mac-os&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>MacOS</div><Link aria-label=&quot;Skip link to MacOS&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#macos&quot;></Link>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;start-service-1&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-start-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Start Service</div><Link aria-label=&quot;Skip link to Start Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#start-service-1&quot;></Link>
+
+<p>Open terminal, navigate to the folder where the binary file is extracted, and run this command. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>sudo ctrld start --cd RESOLVER_ID_HERE
+</code></pre>
+<p>This command will do the following:</p>
+
+- Fetch your Device&#x27;s configuration
+
+- Render a configuration file and store it in the HOME directory
+
+- Spawn a DNS listener and start a system service that will always run
+
+- Configure the DNS on the default interface to use the local DNS proxy server
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;stop-service-1&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-stop-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Stop Service</div><Link aria-label=&quot;Skip link to Stop Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#stop-service-1&quot;></Link>
+
+<p>In order to **temporarily stop** the Control D service, execute the following command with admin/sudo privilege:</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>sudo ctrld stop
+</code></pre>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Service is still installed</p>
+
+<p>The above commands will stop the service, and unconfigure the listener it spawned from the default interface. If the system is rebooted, the original configuration will be restored automatically.</p>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;uninstall-service-1&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-uninstall-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Uninstall Service</div><Link aria-label=&quot;Skip link to Uninstall Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#uninstall-service-1&quot;></Link>
+
+<p>In order to permanently uninstall <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` run this commands</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>sudo ctrld uninstall
+</code></pre>
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` binary will remain on disk and can be used at a later time. To remove all files from disk, append <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`--cleanup` flag to the uninstall command.</p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;linux&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-linux&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Linux</div><Link aria-label=&quot;Skip link to Linux&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#linux&quot;></Link>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;start-service-2&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-start-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Start Service</div><Link aria-label=&quot;Skip link to Start Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#start-service-2&quot;></Link>
+
+<p>Open terminal, navigate to the folder where the binary file is extracted, and run this command. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>sudo ctrld start --cd RESOLVER_ID_HERE
+</code></pre>
+<p>This command will do the following:</p>
+
+- Fetch your Device&#x27;s configuration
+
+- Render a configuration file and store it in the HOME directory
+
+- Spawn a DNS listener and start a system service that will always run
+
+- Configure the DNS on the default interface to use the local DNS proxy server
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;stop-service-2&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-stop-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Stop Service</div><Link aria-label=&quot;Skip link to Stop Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#stop-service-2&quot;></Link>
+
+<p>In order to **temporarily stop** the Control D service, execute the following command with admin/sudo privilege:</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>sudo ctrld stop
+</code></pre>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Service is still installed</p>
+
+<p>The above commands will stop the service, and unconfigure the listener it spawned from the default interface. If the system is rebooted, the original configuration will be restored automatically.</p>
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;uninstall-service-2&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-uninstall-service&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Uninstall Service</div><Link aria-label=&quot;Skip link to Uninstall Service&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#uninstall-service-2&quot;></Link>
+
+<p>In order to permanently uninstall <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` run this command.</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>sudo ctrld uninstall
+</code></pre>
+<p>If you are running <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` on a router, you may need to run the above command from the directory where you installed it. <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`sudo` may be optional if you&#x27;re running it as a root user. </p>
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` binary will remain on disk and can be used at a later time. To remove all files from disk, append <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`--cleanup` flag to the uninstall command.</p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;routers&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-routers&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Routers</div><Link aria-label=&quot;Skip link to Routers&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#routers&quot;></Link>
+
+<p><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` currently supports the following routers and firmware:</p>
+
+- ASUS Merlin
+
+- DD-WRT
+
+- Firewalla
+
+- Fresh Tomato
+
+- GL.iNet
+
+- OpenWRT
+
+- pfSense / OPNsense
+
+- Synology
+
+- Ubiquiti UDM, UDR, EdgeOS
+
+<p>All you have to do is SSH into your router and follow the **Quick Install** instructions at the top of this page. With a single command, you can start using Control D in literally seconds. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;remote-uninstallation&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-remote-uninstallation&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Remote Uninstallation</div><Link aria-label=&quot;Skip link to Remote Uninstallation&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#remote-uninstallation&quot;></Link>
+
+<p>Simply delete the associated Device from the web control panel. The DNS daemon will self-uninstall if you&#x27;re using v1.3.9 or newer. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;upgrade&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-upgrade&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Upgrade</div><Link aria-label=&quot;Skip link to Upgrade&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#upgrade&quot;></Link>
+
+<p>In order to upgrade the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` service to the latest version, there are two ways to do it. </p>
+
+1. $1
+
+2. $1
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;windows-1&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-windows&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Windows</div><Link aria-label=&quot;Skip link to Windows&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#windows-1&quot;></Link>
+
+<p>Run this batch command in admin cmd (not Powershell). Use this if you&#x27;re running v1.3.7 or earlier. </p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>powershell -Command &quot;(Invoke-WebRequest -Uri &#x27;https://api.controld.com/dl&#x27; -UseBasicParsing).Content | Set-Content &#x27;%TEMP%\ctrld_install.bat&#x27;&quot; &amp;&amp; %TEMP%\ctrld_install.bat
+</code></pre>
+<p>or</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>ctrld upgrade
+</code></pre>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;linux-or-mac&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-linux-or-mac&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Linux or Mac</div><Link aria-label=&quot;Skip link to Linux or Mac&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#linux-or-mac&quot;></Link>
+
+<p>Run this bash command in Terminal as root user.  </p>
+<div class=&quot;CodeTabs CodeTabs_initial theme-light&quot;><div class=&quot;CodeTabs-toolbar&quot; role=&quot;tablist&quot;><button aria-selected=&quot;true&quot; class=&quot;CodeTabs_active&quot; role=&quot;tab&quot; type=&quot;button&quot;>bash</button></div><div class=&quot;CodeTabs-inner&quot; role=&quot;tabpanel&quot;><pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang-Text theme-light&quot; data-lang=&quot;Text&quot; name=&quot;bash&quot; tabindex=&quot;0&quot;>sh -c &#x27;sh -c &quot;$(curl -sL https://api.controld.com/dl)&quot;&#x27;
+</code></pre></div></div>
+<p>or</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>ctrld upgrade
+</code></pre>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;update-channels&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-update-channels&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Update Channels</div><Link aria-label=&quot;Skip link to Update Channels&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#update-channels&quot;></Link>
+
+<p>There are 2 update channels:</p>
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`prod` - stable production release (default)
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`dev` - beta release that is ahead of production 
+
+<p>To switch channels, append the channel name to the upgrade command:</p>
+<pre><button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button><code class=&quot;rdmd-code lang- theme-light&quot; data-lang=&quot;&quot; name=&quot;&quot; tabindex=&quot;0&quot;>C:\Windows\system32>ctrld upgrade prod
+Jul 22 13:21:56.000 NTC Upgrade successful - v1.3.7
+
+C:\Windows\system32>ctrld upgrade dev
+Jul 22 13:22:54.000 NTC Upgrade successful - dev-429123b
+</code></pre>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;do-more&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-do-more&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Do More</div><Link aria-label=&quot;Skip link to Do More&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#do-more&quot;></Link>
+
+<p>This is the most basic use of the <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`ctrld` daemon. It can do a whole lot more, especially if you run it on a router. What can you do with it? Here are some use cases:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+4. $1
+
+5. $1
+
+<p>For a full feature set, please <Link href=&quot;https://github.com/Control-D-Inc/ctrld#readme&quot; target=&quot;&quot; title=&quot;&quot;>check out the README</Link>.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;example-configs&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-example-configs&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Example Configs</div><Link aria-label=&quot;Skip link to Example Configs&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#example-configs&quot;></Link>
+
+<p>Want to craft your own config? No problem, <Link href=&quot;https://github.com/Control-D-Inc/ctrld/wiki/Example-Configurations&quot; target=&quot;&quot; title=&quot;&quot;>check out some examples</Link>. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;troubleshooting&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-troubleshooting&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Troubleshooting</div><Link aria-label=&quot;Skip link to Troubleshooting&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#troubleshooting&quot;></Link>
+
+<p>Something not working? <Link href=&quot;https://github.com/Control-D-Inc/ctrld/wiki/Troubleshooting-Guide&quot; target=&quot;&quot; title=&quot;&quot;>Check out the troubleshooting guide</Link>.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"><p>In order to facilitate simple onboarding, on any type of device (with a keyboard) we've developed an open source  command line daemon, known as **ctrld**. It can be used to configure a Control D [Device](/docs/devices) with a single command, and it can do a whole bunch more. </p>
+# <div class="heading-anchor anchor waypoint" id="why-use-this"></div><div class="heading-text"><div id="section-why-use-this" class="heading-anchor_backwardsCompatibility"></div>Why Use This</div>[](#why-use-this)
+
+<p>You may want to use this utility in the following situations:</p>
+
+- You operate a network, and have to use Legacy DNS for all your LAN clients 
+
+- Want to use Secure DNS protocols on a device that does not support them
+
+- Want to create an advanced DNS routing policies or leverage split horizon DNS 
+
+- Want to see all your [LAN clients](/docs/device-clients), and create DNS policies for all of them via a web GUI
+
+- Want to deploy Secure DNS on a roaming client 
+
+# <div class="heading-anchor anchor waypoint" id="quick-install"></div><div class="heading-text"><div id="section-quick-install" class="heading-anchor_backwardsCompatibility"></div>Quick Install</div>[](#quick-install)
+
+<p>The simplest way to start using <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` is to run the installer. Open an terminal and execute this command as admin/system user on any Linux or UNIX-like OS (including MacOS):</p>
+<div class="CodeTabs CodeTabs_initial theme-light"><div class="CodeTabs-toolbar" role="tablist"><button aria-selected="true" class="CodeTabs_active" role="tab" type="button">bash</button></div><div class="CodeTabs-inner" role="tabpanel"><pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang-text theme-light" data-lang="text" name="bash" tabindex="0"><div class="cm-s-neo" data-testid="SyntaxHighlighter">sh -c 'sh -c "$(curl -sL https://api.controld.com/dl)" -s RESOLVER_ID_HERE forced'
+</div></code></pre></div></div>
+<p> Template <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">RESOLVER_ID_HERE</span>` with your actual Resolver ID from the relevant Device. </p>
+<p>If you'd like to use the same method on Windows, run this in Powershell:</p>
+<div class="CodeTabs CodeTabs_initial theme-light"><div class="CodeTabs-toolbar" role="tablist"><button aria-selected="true" class="CodeTabs_active" role="tab" type="button">cmd</button></div><div class="CodeTabs-inner" role="tabpanel"><pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang-Text theme-light" data-lang="Text" name="cmd" tabindex="0"><div class="cm-s-neo" data-testid="SyntaxHighlighter">(Invoke-WebRequest -Uri 'https://api.controld.com/dl/ps1' -UseBasicParsing).Content | Set-Content "$env:TEMPctrld_install.ps1"; Invoke-Expression "& '$env:TEMPctrld_install.ps1' 'RESOLVER_ID_HERE' 'forced'"
+</div></code></pre></div></div>
+<p>The above scripts will do the following:</p>
+
+- Detect your OS and architecture 
+
+- Download the appropriate binary 
+
+- Make it executable
+
+- Register a system service and start the DNS server
+
+- Modify the DNS settings on your network adapter to use the local server
+
+<p>In order to skip the interactive confirmation (y/n), simply append <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">forced</span>` flag to the installer command. ie. <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">-s RESOLVER_ID_HERE forced</span>` for MacOS and Linux, and <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">RESOLVER_ID_HERE forced</span>` for Windows + PowerShell. This will perform the installation without any user confirmation or input.  </p>
+# <div class="heading-anchor anchor waypoint" id="download-manually"></div><div class="heading-text"><div id="section-download-manually" class="heading-anchor_backwardsCompatibility"></div>Download Manually</div>[](#download-manually)
+
+<p>[Head over to Github](https://github.com/Control-D-Inc/ctrld), and download the version of the daemon for your platform. You can find builds for most operating systems in the [Releases](https://github.com/Control-D-Inc/ctrld/releases) section. </p>
+<p>Currently supported operating systems are:</p>
+
+- Windows (386, AMD64 and ARM) - use the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">_windows</span>` builds
+
+- Mac (AMD64 and ARM) - use the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">_darwin</span>` builds 
+
+- Linux (386, AMD64, ARM, MIPS) - use the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">_linux</span>` builds
+
+- FreeBSD (386, AMD64, ARM) - use the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">_freebsd</span>` builds 
+
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/4bb9d1b-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+# <div class="heading-anchor anchor waypoint" id="get-your-resolver-id"></div><div class="heading-text"><div id="section-get-your-resolver-id" class="heading-anchor_backwardsCompatibility"></div>Get your resolver ID</div>[](#get-your-resolver-id)
+
+<p>When you create a Control D Device, you are issued a set of DNS resolvers. On the screen that shows you your resolvers, you will see "Resolver ID" at the top. </p>
+# <div class="heading-anchor anchor waypoint" id="windows"></div><div class="heading-text"><div id="section-windows" class="heading-anchor_backwardsCompatibility"></div>Windows</div>[](#windows)
+
+## <div class="heading-anchor anchor waypoint" id="start-service"></div><div class="heading-text"><div id="section-start-service" class="heading-anchor_backwardsCompatibility"></div>Start Service</div>[](#start-service)
+
+<p>Open Administrative command line, and navigate to the folder where the .exe file is extracted, and run this command. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld.exe start --cd RESOLVER_ID_HERE
+</span></code></pre>
+<p>This command will do the following:</p>
+
+- Fetch your Device's configuration
+
+- Render a configuration file and store it in the HOME directory
+
+- Spawn a DNS listener and start a system service that will always run
+
+- Configure the DNS on the default interface to use the local DNS proxy server
+
+## <div class="heading-anchor anchor waypoint" id="stop-service"></div><div class="heading-text"><div id="section-stop-service" class="heading-anchor_backwardsCompatibility"></div>Stop Service</div>[](#stop-service)
+
+<p>In order to **temporarily stop** the Control D service, execute the following from Administrative command line:</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld.exe stop
+</span></code></pre>
+> ## <span class="callout-icon">🚧</span><p>Service is still installed</p>
+
+<p>The above commands will stop the service, and unconfigure the listener it spawned from the default interface. If the system is rebooted, the original configuration will be restored automatically.</p>
+
+## <div class="heading-anchor anchor waypoint" id="uninstall-service"></div><div class="heading-text"><div id="section-uninstall-service" class="heading-anchor_backwardsCompatibility"></div>Uninstall Service</div>[](#uninstall-service)
+
+<p>In order to permanently uninstall <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` run this command. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld.exe uninstall
+</span></code></pre>
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` binary will remain on disk and can be used at a later time. To remove all files from disk, append <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">--cleanup</span>` flag to the uninstall command. </p>
+# <div class="heading-anchor anchor waypoint" id="macos"></div><div class="heading-text"><div id="section-mac-os" class="heading-anchor_backwardsCompatibility"></div>MacOS</div>[](#macos)
+
+## <div class="heading-anchor anchor waypoint" id="start-service-1"></div><div class="heading-text"><div id="section-start-service" class="heading-anchor_backwardsCompatibility"></div>Start Service</div>[](#start-service-1)
+
+<p>Open terminal, navigate to the folder where the binary file is extracted, and run this command. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo ctrld start --cd RESOLVER_ID_HERE
+</span></code></pre>
+<p>This command will do the following:</p>
+
+- Fetch your Device's configuration
+
+- Render a configuration file and store it in the HOME directory
+
+- Spawn a DNS listener and start a system service that will always run
+
+- Configure the DNS on the default interface to use the local DNS proxy server
+
+## <div class="heading-anchor anchor waypoint" id="stop-service-1"></div><div class="heading-text"><div id="section-stop-service" class="heading-anchor_backwardsCompatibility"></div>Stop Service</div>[](#stop-service-1)
+
+<p>In order to **temporarily stop** the Control D service, execute the following command with admin/sudo privilege:</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo ctrld stop
+</span></code></pre>
+> ## <span class="callout-icon">🚧</span><p>Service is still installed</p>
+
+<p>The above commands will stop the service, and unconfigure the listener it spawned from the default interface. If the system is rebooted, the original configuration will be restored automatically.</p>
+
+## <div class="heading-anchor anchor waypoint" id="uninstall-service-1"></div><div class="heading-text"><div id="section-uninstall-service" class="heading-anchor_backwardsCompatibility"></div>Uninstall Service</div>[](#uninstall-service-1)
+
+<p>In order to permanently uninstall <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` run this commands</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo ctrld uninstall
+</span></code></pre>
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` binary will remain on disk and can be used at a later time. To remove all files from disk, append <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">--cleanup</span>` flag to the uninstall command.</p>
+# <div class="heading-anchor anchor waypoint" id="linux"></div><div class="heading-text"><div id="section-linux" class="heading-anchor_backwardsCompatibility"></div>Linux</div>[](#linux)
+
+## <div class="heading-anchor anchor waypoint" id="start-service-2"></div><div class="heading-text"><div id="section-start-service" class="heading-anchor_backwardsCompatibility"></div>Start Service</div>[](#start-service-2)
+
+<p>Open terminal, navigate to the folder where the binary file is extracted, and run this command. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo ctrld start --cd RESOLVER_ID_HERE
+</span></code></pre>
+<p>This command will do the following:</p>
+
+- Fetch your Device's configuration
+
+- Render a configuration file and store it in the HOME directory
+
+- Spawn a DNS listener and start a system service that will always run
+
+- Configure the DNS on the default interface to use the local DNS proxy server
+
+## <div class="heading-anchor anchor waypoint" id="stop-service-2"></div><div class="heading-text"><div id="section-stop-service" class="heading-anchor_backwardsCompatibility"></div>Stop Service</div>[](#stop-service-2)
+
+<p>In order to **temporarily stop** the Control D service, execute the following command with admin/sudo privilege:</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo ctrld stop
+</span></code></pre>
+> ## <span class="callout-icon">🚧</span><p>Service is still installed</p>
+
+<p>The above commands will stop the service, and unconfigure the listener it spawned from the default interface. If the system is rebooted, the original configuration will be restored automatically.</p>
+
+## <div class="heading-anchor anchor waypoint" id="uninstall-service-2"></div><div class="heading-text"><div id="section-uninstall-service" class="heading-anchor_backwardsCompatibility"></div>Uninstall Service</div>[](#uninstall-service-2)
+
+<p>In order to permanently uninstall <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` run this command.</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo ctrld uninstall
+</span></code></pre>
+<p>If you are running <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` on a router, you may need to run the above command from the directory where you installed it. <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">sudo</span>` may be optional if you're running it as a root user. </p>
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` binary will remain on disk and can be used at a later time. To remove all files from disk, append <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">--cleanup</span>` flag to the uninstall command.</p>
+# <div class="heading-anchor anchor waypoint" id="routers"></div><div class="heading-text"><div id="section-routers" class="heading-anchor_backwardsCompatibility"></div>Routers</div>[](#routers)
+
+<p><button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` currently supports the following routers and firmware:</p>
+
+- ASUS Merlin
+
+- DD-WRT
+
+- Firewalla
+
+- Fresh Tomato
+
+- GL.iNet
+
+- OpenWRT
+
+- pfSense / OPNsense
+
+- Synology
+
+- Ubiquiti UDM, UDR, EdgeOS
+
+<p>All you have to do is SSH into your router and follow the **Quick Install** instructions at the top of this page. With a single command, you can start using Control D in literally seconds. </p>
+# <div class="heading-anchor anchor waypoint" id="remote-uninstallation"></div><div class="heading-text"><div id="section-remote-uninstallation" class="heading-anchor_backwardsCompatibility"></div>Remote Uninstallation</div>[](#remote-uninstallation)
+
+<p>Simply delete the associated Device from the web control panel. The DNS daemon will self-uninstall if you're using v1.3.9 or newer. </p>
+# <div class="heading-anchor anchor waypoint" id="upgrade"></div><div class="heading-text"><div id="section-upgrade" class="heading-anchor_backwardsCompatibility"></div>Upgrade</div>[](#upgrade)
+
+<p>In order to upgrade the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` service to the latest version, there are two ways to do it. </p>
+
+1. $1
+
+2. $1
+
+## <div class="heading-anchor anchor waypoint" id="windows-1"></div><div class="heading-text"><div id="section-windows" class="heading-anchor_backwardsCompatibility"></div>Windows</div>[](#windows-1)
+
+<p>Run this batch command in admin cmd (not Powershell). Use this if you're running v1.3.7 or earlier. </p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">powershell -Command "(Invoke-WebRequest -Uri 'https://api.controld.com/dl' -UseBasicParsing).Content | Set-Content '%TEMP%\ctrld_install.bat'" && %TEMP%\ctrld_install.bat
+</span></code></pre>
+<p>or</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld upgrade
+</span></code></pre>
+## <div class="heading-anchor anchor waypoint" id="linux-or-mac"></div><div class="heading-text"><div id="section-linux-or-mac" class="heading-anchor_backwardsCompatibility"></div>Linux or Mac</div>[](#linux-or-mac)
+
+<p>Run this bash command in Terminal as root user.  </p>
+<div class="CodeTabs CodeTabs_initial theme-light"><div class="CodeTabs-toolbar" role="tablist"><button aria-selected="true" class="CodeTabs_active" role="tab" type="button">bash</button></div><div class="CodeTabs-inner" role="tabpanel"><pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang-Text theme-light" data-lang="Text" name="bash" tabindex="0"><div class="cm-s-neo" data-testid="SyntaxHighlighter">sh -c 'sh -c "$(curl -sL https://api.controld.com/dl)"'
+</div></code></pre></div></div>
+<p>or</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld upgrade
+</span></code></pre>
+## <div class="heading-anchor anchor waypoint" id="update-channels"></div><div class="heading-text"><div id="section-update-channels" class="heading-anchor_backwardsCompatibility"></div>Update Channels</div>[](#update-channels)
+
+<p>There are 2 update channels:</p>
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">prod</span>` - stable production release (default)
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">dev</span>` - beta release that is ahead of production 
+
+<p>To switch channels, append the channel name to the upgrade command:</p>
+<pre><button aria-label="Copy Code" class="rdmd-code-copy fa"></button><code class="rdmd-code lang- theme-light" data-lang="" name="" tabindex="0"><span class="cm-s-neo" data-testid="SyntaxHighlighter">C:\Windows\system32>ctrld upgrade prod
+Jul 22 13:21:56.000 NTC Upgrade successful - v1.3.7
+
+C:\Windows\system32>ctrld upgrade dev
+Jul 22 13:22:54.000 NTC Upgrade successful - dev-429123b
+</span></code></pre>
+# <div class="heading-anchor anchor waypoint" id="do-more"></div><div class="heading-text"><div id="section-do-more" class="heading-anchor_backwardsCompatibility"></div>Do More</div>[](#do-more)
+
+<p>This is the most basic use of the <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">ctrld</span>` daemon. It can do a whole lot more, especially if you run it on a router. What can you do with it? Here are some use cases:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+4. $1
+
+5. $1
+
+<p>For a full feature set, please [check out the README](https://github.com/Control-D-Inc/ctrld#readme).</p>
+## <div class="heading-anchor anchor waypoint" id="example-configs"></div><div class="heading-text"><div id="section-example-configs" class="heading-anchor_backwardsCompatibility"></div>Example Configs</div>[](#example-configs)
+
+<p>Want to craft your own config? No problem, [check out some examples](https://github.com/Control-D-Inc/ctrld/wiki/Example-Configurations). </p>
+## <div class="heading-anchor anchor waypoint" id="troubleshooting"></div><div class="heading-text"><div id="section-troubleshooting" class="heading-anchor_backwardsCompatibility"></div>Troubleshooting</div>[](#troubleshooting)
+
+<p>Something not working? [Check out the troubleshooting guide](https://github.com/Control-D-Inc/ctrld/wiki/Troubleshooting-Guide).</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->about 1 month ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">GUI Setup Utility</div>](/docs/gui-setup-utility)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">How to Debug ctrld</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/how-to-debug-ctrld)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[Why Use This](#why-use-this)
+
+- 
+[Quick Install](#quick-install)
+
+- 
+[Download Manually](#download-manually)
+
+- 
+[Get your resolver ID](#get-your-resolver-id)
+
+- 
+[Windows](#windows)
+<ul>
+<li>[Start Service](#start-service)
+
+- [Stop Service](#stop-service)
+
+- [Uninstall Service](#uninstall-service)
+
+</li>
+<li>
+[MacOS](#macos)
+
+- [Start Service](#start-service-1)
+
+- [Stop Service](#stop-service-1)
+
+- [Uninstall Service](#uninstall-service-1)
+
+</li>
+<li>
+[Linux](#linux)
+
+- [Start Service](#start-service-2)
+
+- [Stop Service](#stop-service-2)
+
+- [Uninstall Service](#uninstall-service-2)
+
+</li>
+<li>
+[Routers](#routers)
+</li>
+<li>
+[Remote Uninstallation](#remote-uninstallation)
+</li>
+<li>
+[Upgrade](#upgrade)
+
+- [Windows](#windows-1)
+
+- [Linux or Mac](#linux-or-mac)
+
+- [Update Channels](#update-channels)
+
+</li>
+<li>
+[Do More](#do-more)
+
+- [Example Configs](#example-configs)
+
+- [Troubleshooting](#troubleshooting)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

@@ -1,0 +1,81 @@
+---
+title: "Active Directory Integration Guide"
+description: "How to use Control D in AD environments"
+icon: "network"
+---
+
+If you are using Active Directory on your network, and install the `ctrld` DNS daemon on the individual endpoints, be aware of the following potential issue, and solutions. 
+
+> ## 🚧
+> 
+> All DNS traffic is sent to Control D
+> 
+> `ctrld` DNS daemon will take over all DNS resolution on the endpoint, and send all DNS queries to a Control D resolver, **including your local domains, and hostnames of your AD servers**. 
+> 
+> This can effectively break the Active Directory connectivity, as your local domains will not be resolvable via Control D.
+
+There are 2 ways to solve this issue.
+
+# 
+
+1\. Split Horizon DNS
+
+This method allows you to still use your internal DNS servers to resolve local domains, allowing your existing infrastructure to keep doing its thing. Let's create a split DNS policy that sends your local domain's DNS queries to internal DNS servers, while steering everything else to Control D. 
+
+> ## 📘
+> 
+> DNS Daemon Required
+> 
+> This method will only work if you use the [Command Line Daemon](/docs/ctrld) which enables split routed DNS, and will enforce the rules you create below. If you don't use the ctrld DNS daemon, you will have to split route your domains manually.
+
+## 
+
+NEW: Automatic Detection
+
+If you're using `ctrld` v1.3.10 or newer, your AD domain will be detected automatically based on the response of this PowerShell command: `(Get-WmiObject Win32_ComputerSystem).Domain`. In most cases this will be accurate, so you don't actually have to do anything. You can close this page, grab a whiskey and smoke a cigar. 
+
+If you have multiple domains, or a non-standard setup, you will have to do this manually. 
+
+## 
+
+Manual
+
+This sounds scarier than it actually is. There are just 2 steps.
+
+  1. In a Profile that is enforced by all devices in your Active Directory domain, create a [special folder](/docs/magic-folders) with this exact name: `Control D Bypass`.
+  2. Create a BYPASS Custom rule that matches your AD domain, wildcard rule is suggested. For example, if your AD domain is `example.local` you would create a rule like this:
+
+![](https://files.readme.io/c542f37451110f5175162afade8018e531c22d8f7131f425f0a89f0d2c82fc50-image.png)
+
+> ## 🚧
+> 
+> Wildcard Alert
+> 
+> Be sure to add your domains as wildcards. So for `example.local` you must add `*.example.local` to ensure it covers all your subdomains, and the relevant resources.
+
+Now, when you provision a Control D endpoint that enforces this Profile, all DNS queries for your local domain(s) would be sent to the default DNS server that was configured before Control D was installed, as pushed by your DHCP server.
+
+You can use this folder to split route any domain, and resolve it locally.
+
+### 
+
+Runtime Changes
+
+It's always best to set this up first before you do a wide deployment, so it all works right away. However if you need to add additional domains to be resolved locally, you can still do this at runtime, however these changes won't be instant and will take **up to an hour** to propagate to the fleet. To enforce these changes right away, there are 2 ways to do it:
+
+  1. **Visit the[Status page](https://controld.com/status) on the device** \- this will instantly re-fetch your new configuration
+  2. **Reload the config** \- run `ctrld reload` command to have `ctrld` re-fetch the config from API 
+
+# 
+
+2\. Mirror Controller DNS Records
+
+The other way to resolve this problem is to simply mirror your AD controller DNS records in Control D, using [Custom Rules](/docs/custom-rules#create-private-domains). For example, let's pretend your staff need to access **resource.domain.company.com** and it points to **10.20.30.1**. Simply create a Redirect rule that replicates this DNS record from your local DNS, in Control D interface. 
+
+![](https://files.readme.io/10fb8acfdf5a3a07d0a801aa6add130b31aaf126e8c03ed2c405bc1f24801e02-image.png)
+
+Now, any Device that enforces a Profile that has this rule, will be able to resolve **resource.domain.company.com** and reach the desired resource. This method effectively deprecates the need for running a local DNS server on your network.
+
+__Updated about 2 months ago
+
+* * *

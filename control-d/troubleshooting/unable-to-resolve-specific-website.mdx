@@ -1,0 +1,77 @@
+---
+title: "Unable to Resolve Specific Website"
+description: "Troubleshooting steps for when you can't access a specific website with Control D"
+icon: "link"
+---
+
+# Unable to Resolve Specific Website
+
+<Note>
+If you're unable to access a specific website while using Control D, follow these troubleshooting steps.
+</Note>
+
+## 1. Check Website Status
+
+<Steps>
+  <Step>Try accessing the website without Control D enabled</Step>
+  <Step>Check if other devices on your network can access the website</Step>
+  <Step>Use a website status checker like [DownDetector](https://downdetector.com/)</Step>
+</Steps>
+
+## 2. Verify Control D Configuration
+
+<Steps>
+  <Step>Open the Control D dashboard</Step>
+  <Step>Check if the website is blocked by any of your rules</Step>
+  <Step>Verify if the website is in your allowlist or blocklist</Step>
+  <Step>Check if any filters are affecting the website</Step>
+</Steps>
+
+## 3. Test with Different DNS Servers
+
+<Steps>
+  <Step>Temporarily switch to a different DNS provider</Step>
+  <Step>Try accessing the website</Step>
+  <Step>If it works, the issue might be with Control D's configuration</Step>
+  <Step>If it doesn't work, the issue might be with the website itself</Step>
+</Steps>
+
+## 4. Check for DNS Cache Issues
+
+<Tabs>
+  <Tab title="Windows">
+    <CodeBlock>
+      ipconfig /flushdns
+    </CodeBlock>
+  </Tab>
+  
+  <Tab title="MacOS">
+    <CodeBlock>
+      sudo dscacheutil -flushcache
+      sudo killall -HUP mDNSResponder
+    </CodeBlock>
+  </Tab>
+  
+  <Tab title="Linux">
+    <CodeBlock>
+      sudo systemd-resolve --flush-caches
+    </CodeBlock>
+  </Tab>
+</Tabs>
+
+## 5. Collect Diagnostic Information
+
+<Warning>
+If the issue persists, collect the following information before contacting support:
+</Warning>
+
+<Steps>
+  <Step>The specific website URL</Step>
+  <Step>Any error messages received</Step>
+  <Step>Results from different DNS servers</Step>
+  <Step>Control D configuration for the website</Step>
+</Steps>
+
+<Card>
+  Need help? [Contact support](https://controld.com/contact/) with the information collected above.
+</Card> 

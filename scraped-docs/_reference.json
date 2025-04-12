@@ -1,0 +1,46 @@
+{
+  "content": {
+    "success": true,
+    "markdown": "## Welcome   [Skip link to Welcome](https://docs.controld.com/reference/get-started\\#welcome)\n\n![1920](https://files.readme.io/8443d82-controlddefaultbanner.png)\n\nIf you're looking to use the Control D API to interact with the service in scripted/advanced ways, you've come to the right place. The following sections will help you get started.\n\nWe strongly encourage you to familiarize yourself with the concepts and [general documentation](https://docs.controld.com/docs) first before using the API.\n\n> ## 📘  Use Barry (Experimental)\n>\n> Barry, the chatbot found in the bottom right corner of the main website is an API expert, and has complete knowledge of the API docs. Feel free to ask him any question regarding the API. He will happily assist you, and even give you code examples.\n\nIf you've already done so, let's dive in.\n\n![800](https://files.readme.io/93af8f1-api_speed.gif)\n\nDNS changes were never this fast.\n\n> ## 🚧  Usage Warning\n>\n> Currently the API has no versioning, and things can change at any time. Usually these changes should be non-breaking, however breaking changes can be introduced without warning.",
+    "metadata": {
+      "readme-deploy": "5.329.0",
+      "loadedProject": "controld",
+      "og:title": "Getting Started",
+      "favicon": "https://files.readme.io/a0e3b99-small-SymbolDark.png",
+      "og:description": "This page will help you get started with Control D API.",
+      "og:site_name": "Control D",
+      "ogImage": "https://files.readme.io/45785f4-brandmark-blue.svg",
+      "twitter:description": "This page will help you get started with Control D API.",
+      "ogTitle": "Getting Started",
+      "ogSiteName": "Control D",
+      "twitter:card": "summary_large_image",
+      "viewport": "width=device-width, initial-scale=1.0",
+      "title": "Getting Started",
+      "language": "en",
+      "twitter:title": "Getting Started",
+      "ogDescription": "This page will help you get started with Control D API.",
+      "twitter:image": "https://files.readme.io/45785f4-brandmark-blue.svg",
+      "readme-version": "1.0",
+      "description": "This page will help you get started with Control D API.",
+      "og:image": "https://files.readme.io/45785f4-brandmark-blue.svg",
+      "readme-subdomain": "controld",
+      "scrapeId": "33e30bb0-13b3-4a05-8645-757f17119aa0",
+      "sourceURL": "https://docs.controld.com/reference",
+      "url": "https://docs.controld.com/reference/get-started",
+      "statusCode": 200
+    },
+    "html": "<!DOCTYPE html><html lang=\"en\" style=\"\" data-color-mode=\"null\" class=\" useReactApp isRefPage \"><body class=\"body-none theme-solid header-solid header-bg-size-auto header-bg-pos-tl header-overlay-triangles reference-layout-row lumosity-dark hub-full\"><div id=\"ssr-top\"></div><div id=\"ssr-main\"><div class=\"App ThemeContext ThemeContext_dark \" style=\"--color-primary:#111111;--color-primary-inverse:#fff;--color-primary-alt:#000000;--color-primary-darken-10:#000000;--color-primary-darken-20:#000000;--color-primary-alpha-25:rgba(17, 17, 17, 0.25);--color-link-primary:#6e34e9;--color-link-primary-darken-5:#5e1de6;--color-link-primary-darken-10:#5317d3;--color-link-primary-darken-20:#4112a5;--color-link-primary-alpha-50:rgba(110, 52, 233, 0.5);--color-link-primary-alpha-25:rgba(110, 52, 233, 0.25);--color-link-background:rgba(110, 52, 233, 0.09);--color-link-text:#fff;--color-login-link:#018ef5;--color-login-link-text:#fff;--color-login-link-darken-10:#0171c2;--color-login-link-primary-alpha-50:rgba(1, 142, 245, 0.5)\"><main class=\"rm-ReferenceMain rm-Container rm-Container_flex rm-basic-page loading\" id=\"Explorer\"><article class=\"rm-Article\" id=\"content\"><div class=\"rm-Markdown markdown-body content-body\" data-testid=\"RDMD\"><h2 class=\"heading heading-2 header-scroll\" align=\"\"><div class=\"heading-anchor anchor waypoint\" id=\"welcome\"></div><div class=\"heading-text\"><div id=\"section-welcome\" class=\"heading-anchor_backwardsCompatibility\"></div>Welcome</div><a aria-label=\"Skip link to Welcome\" class=\"heading-anchor-icon fa fa-anchor\" href=\"https://docs.controld.com/reference/get-started#welcome\"></a></h2>\n<span aria-label=\"1920\" class=\"img lightbox closed\" role=\"button\" tabindex=\"0\"><span class=\"lightbox-inner\"><img alt=\"1920\" loading=\"lazy\" src=\"https://files.readme.io/8443d82-controlddefaultbanner.png\" title=\"controlddefaultbanner.png\" align=\"center\" class=\"\" width=\"100%\" caption=\"\" height=\"auto\"></span></span>\n<p>If you're looking to use the Control D API to interact with the service in scripted/advanced ways, you've come to the right place. The following sections will help you get started. </p>\n<p>We strongly encourage you to familiarize yourself with the concepts and <a target=\"_self\" href=\"https://docs.controld.com/docs\">general documentation</a> first before using the API. </p>\n<blockquote class=\"callout callout_info\" theme=\"📘\"><h2 class=\"callout-heading\"><span class=\"callout-icon\">📘</span><p>Use Barry (Experimental)</p></h2><p>Barry, the chatbot found in the bottom right corner of the main website is an API expert, and has complete knowledge of the API docs. Feel free to ask him any question regarding the API. He will happily assist you, and even give you code examples.</p></blockquote>\n<p>If you've already done so, let's dive in.</p>\n<figure><span aria-label=\"800\" class=\"img lightbox closed\" role=\"button\" tabindex=\"0\"><span class=\"lightbox-inner\"><img alt=\"800\" loading=\"lazy\" src=\"https://files.readme.io/93af8f1-api_speed.gif\" title=\"api_speed.gif\" align=\"center\" class=\"\" width=\"100%\" caption=\"\" height=\"auto\"></span></span><figcaption><p>DNS changes were never this fast.</p></figcaption></figure>\n<blockquote class=\"callout callout_warn\" theme=\"🚧\"><h2 class=\"callout-heading\"><span class=\"callout-icon\">🚧</span><p>Usage Warning</p></h2><p>Currently the API has no versioning, and things can change at any time. Usually these changes should be non-breaking, however breaking changes can be introduced without warning.</p></blockquote></div></article><section class=\"content-toc grid-25\"></section><div class=\"ModalWrapper\" id=\"response-headers-modal-root\"></div><div class=\"ModalWrapper\" id=\"tutorialmodal-root\"></div><div class=\"ModalWrapper QuickNav-modal QuickNav-modal-desktop\" id=\"QuickNav-modal-root\"></div><div class=\"ModalWrapper QuickNav-modal QuickNav-modal-mobile\" id=\"QuickNav-mobile-modal-root\"></div></main><div class=\"ModalWrapper\" id=\"ChatGPT-modal\"></div></div></div><div class=\"ng-non-bindable\"></div><div id=\"hub-container\"><div class=\"hub-container\"><div state-container=\"\" ng-attr-id=\"{{state.current().root !== 'docs' &amp;&amp; 'react-app-content-container'}}\"><div id=\"replace-view\" ng-non-bindable=\"\"></div></div></div></div><div id=\"ssr-end\">\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n</div></body></html>"
+  },
+  "metadata": {
+    "url": "https://docs.controld.com/reference",
+    "scrapedAt": "2025-04-12T22:11:38.755Z",
+    "contentLength": {
+      "markdown": 1126,
+      "html": 4290
+    },
+    "title": "# Welcome   [Skip link to Welcome](https://docs.controld.com/reference/get-started\\#welcome)",
+    "sections": [
+      "Welcome   [Skip link to Welcome](https://docs.controld.com/reference/get-started\\#welcome)"
+    ]
+  }
+}

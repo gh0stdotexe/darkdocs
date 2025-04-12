@@ -1,0 +1,90 @@
+---
+title: "Global Profile"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Assign a common Profile to your sub-organizations and avoid policy duplication</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/global-profile)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>This feature builds on top of <Link href=&quot;/docs/multiple-enforced-profiles&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;multiple-enforced-profiles&quot;>Multiple Enforced Profiles</Link> functionality and allows Organization account users to set a Profile for the entire organization. This Profile will apply to all devices created inside this Sub-Organization. </p>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Global Profile
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>Assign a common Profile to your sub-organizations and avoid policy duplication</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/global-profile)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="<p>This feature builds on top of <Link href=&quot;/docs/multiple-enforced-profiles&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;multiple-enforced-profiles&quot;>Multiple Enforced Profiles</Link> functionality and allows Organization account users to set a Profile for the entire organization. This Profile will apply to all devices created inside this Sub-Organization. </p>
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;how-it-works&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-how-it-works&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>How it works</div><Link aria-label=&quot;Skip link to How it works&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#how-it-works&quot;></Link>
+
+<p>Create or edit an existing Sub-Organization and choose a Global profile from the down-down menu. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/917bb51-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Such a profile should (ideally) be common to many sub-organizations, so you can keep your &quot;default policy&quot; all in one place. Such a Profile/policy can:</p>
+
+- Block Malware as you probably want to do this inside of all Sub-Organizations
+
+- Block common Services that none of your customers should access (ie. TikTok)
+
+- Have special custom rules that are relevant to all Sub-Organizations 
+
+- Create a common <Link href=&quot;/docs/blocked-query-response&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;blocked-query-response&quot;>Custom Block Page</Link>
+
+<p>Now, when you create a Device inside a Sub-Organization, and select a Profile that&#x27;s specific to this Sub-Organization, the Global Profile will be automatically inherited, and enforced at the same time as your Organization specific profile. </p>
+<p>Be mindful, the same Global Profile cannot be selected as a Device specific Profile inside a sub-organization, as it&#x27;s already enforced. You must choose another Sub-Organization specific or Shared Profile. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;rule-priorities&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-rule-priorities&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Rule Priorities</div><Link aria-label=&quot;Skip link to Rule Priorities&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#rule-priorities&quot;></Link>
+
+<p>The rule engine works as follows:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+4. $1
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;conflicts-and-overrides&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-conflicts-and-overrides&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Conflicts and Overrides</div><Link aria-label=&quot;Skip link to Conflicts and Overrides&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#conflicts-and-overrides&quot;></Link>
+
+<p>By default, if there is a conflict for the same Filter, Services, Custom Rule, or Profile Option, the Global Profile will win. For example, if *Gambling* is blocked in the **Global Profile**, but allowed in the **Sub-Organization Profile**, *Gambling* sites will still be blocked. Same is true for Services, if *TikTok* service was explicitly allowed (Bypassed) in the Global Profile, but blocked in the Sub-organization profile, it will still be allowed. </p>
+<p>You may not want this, in which case you can override the Global Profile, and have the Sub-Organization rule selection take precedence. In the Gambling Filter scenario presented earlier, you would see something like this when you view the Sub-Organization Profile.</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/63f612b-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Notice the yellow warning next to the Gambling filter. This suggests that this scope is blocked in the Global Profile. If you toggle this filter OFF, it will turn red, meaning it&#x27;s overriding the Global Profile. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/deef6e9-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Now, all devices in this Sub-Organization, that enforce this Sub-Organization Profile, will be allowed to access Gambling sites.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"><p>This feature builds on top of [Multiple Enforced Profiles](/docs/multiple-enforced-profiles) functionality and allows Organization account users to set a Profile for the entire organization. This Profile will apply to all devices created inside this Sub-Organization. </p>
+# <div class="heading-anchor anchor waypoint" id="how-it-works"></div><div class="heading-text"><div id="section-how-it-works" class="heading-anchor_backwardsCompatibility"></div>How it works</div>[](#how-it-works)
+
+<p>Create or edit an existing Sub-Organization and choose a Global profile from the down-down menu. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/917bb51-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Such a profile should (ideally) be common to many sub-organizations, so you can keep your "default policy" all in one place. Such a Profile/policy can:</p>
+
+- Block Malware as you probably want to do this inside of all Sub-Organizations
+
+- Block common Services that none of your customers should access (ie. TikTok)
+
+- Have special custom rules that are relevant to all Sub-Organizations 
+
+- Create a common [Custom Block Page](/docs/blocked-query-response)
+
+<p>Now, when you create a Device inside a Sub-Organization, and select a Profile that's specific to this Sub-Organization, the Global Profile will be automatically inherited, and enforced at the same time as your Organization specific profile. </p>
+<p>Be mindful, the same Global Profile cannot be selected as a Device specific Profile inside a sub-organization, as it's already enforced. You must choose another Sub-Organization specific or Shared Profile. </p>
+## <div class="heading-anchor anchor waypoint" id="rule-priorities"></div><div class="heading-text"><div id="section-rule-priorities" class="heading-anchor_backwardsCompatibility"></div>Rule Priorities</div>[](#rule-priorities)
+
+<p>The rule engine works as follows:</p>
+
+1. $1
+
+2. $1
+
+3. $1
+
+4. $1
+
+## <div class="heading-anchor anchor waypoint" id="conflicts-and-overrides"></div><div class="heading-text"><div id="section-conflicts-and-overrides" class="heading-anchor_backwardsCompatibility"></div>Conflicts and Overrides</div>[](#conflicts-and-overrides)
+
+<p>By default, if there is a conflict for the same Filter, Services, Custom Rule, or Profile Option, the Global Profile will win. For example, if *Gambling* is blocked in the **Global Profile**, but allowed in the **Sub-Organization Profile**, *Gambling* sites will still be blocked. Same is true for Services, if *TikTok* service was explicitly allowed (Bypassed) in the Global Profile, but blocked in the Sub-organization profile, it will still be allowed. </p>
+<p>You may not want this, in which case you can override the Global Profile, and have the Sub-Organization rule selection take precedence. In the Gambling Filter scenario presented earlier, you would see something like this when you view the Sub-Organization Profile.</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/63f612b-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Notice the yellow warning next to the Gambling filter. This suggests that this scope is blocked in the Global Profile. If you toggle this filter OFF, it will turn red, meaning it's overriding the Global Profile. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/deef6e9-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Now, all devices in this Sub-Organization, that enforce this Sub-Organization Profile, will be allowed to access Gambling sites.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->6 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Profiles</div>](/docs/org-profiles)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Software</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/software)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[How it works](#how-it-works)
+<ul>
+<li>[Rule Priorities](#rule-priorities)
+
+- [Conflicts and Overrides](#conflicts-and-overrides)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

@@ -1,0 +1,76 @@
+---
+title: "Block Internet on a Schedule"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to disable Internet on an Endpoint based on a Schedule.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/block-internet-on-a-schedule)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;why&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-why&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Why</div><Link aria-label=&quot;Skip link to Why&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#why&quot;></Link>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Block Internet on a Schedule
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>How to disable Internet on an Endpoint based on a Schedule.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/block-internet-on-a-schedule)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;why&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-why&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Why</div><Link aria-label=&quot;Skip link to Why&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#why&quot;></Link>
+
+<p>You may have a Wi-Fi network that should only be used during certain hours (when you&#x27;re open), or maybe you&#x27;re trying to enforce parental controls on your child&#x27;s device. The Scheduler can make this easy. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;create-profile&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-create-profile&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Create Profile</div><Link aria-label=&quot;Skip link to Create Profile&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#create-profile&quot;></Link>
+
+<p>First, make a new <Link href=&quot;/docs/profiles&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;profiles&quot;>Profile</Link> and call it something like &quot;Block Everything&quot;.  Go into this Profile and create a <Link href=&quot;/docs/default-rule&quot; target=&quot;&quot; title=&quot;&quot; class=&quot;doc-link&quot; data-sidebar=&quot;default-rule&quot;>Default Rule</Link> that blocks all traffic. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/b5911cadef4cbd773e704c2d97168d51c9455f57ed0599110ae675025041dd2d-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Now we will make a schedule that enables this Profile when the time is right. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;create-schedule&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-create-schedule&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Create Schedule</div><Link aria-label=&quot;Skip link to Create Schedule&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#create-schedule&quot;></Link>
+
+<p>Go to the <Link href=&quot;https://controld.com/dashboard/endpoints&quot; target=&quot;&quot; title=&quot;&quot;>Endpoints</Link> section and click the Edit button on an Endpoint that you wish to enable this feature on. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/d72f3cc7cc53e00d93cb3f4a39ba01d0a47d1ef3c0fc97d069fca5fd8e8cee1b-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>Then, click the clock icon to add a Schedule.</p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/624e6457bf665021fc95e7eee15b216a122202de393e60e746a0a3200399f7fa-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>It will pop up a Schedule creation screen. Choose your newly created &quot;Block Everything&quot; Profile from the &quot;Enforced Profile&quot; dropdown menu and choose the times you wish to have it enabled. </p>
+<p>When the time you have selected starts, this Profile will be enforced on your chosen Endpoint, and all Internet access will be disabled. Once the time ends, the previous Profile that was enforced on this Endpoint will be restored. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/60ce6a238be1e2f016205d54fd4ed800809c8ee46c562c64f0093cbf5121f92d-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;overnight-schedules&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-overnight-schedules&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Overnight Schedules</div><Link aria-label=&quot;Skip link to Overnight Schedules&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#overnight-schedules&quot;></Link>
+
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>Overnight Schedules Warning</p>
+
+<p>If your schedule starts in the evening, and ends in the morning of the next day (as would be the case for most scenarios described above) you would have to enforce the Profiles in reverse order.</p>
+
+<p>If you wish to block Internet at 5pm and re-enable it at 9am the next day, reverse order of the 2 Profiles you have created. </p>
+<p>Always enforce the &quot;Block Everything&quot; Profile on an Endpoint, by default. This would look something like this. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/b517e00421f15fe8bd2dad4c9f82662f6dc0b0d53b7305c83d86fd307e8ea29d-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>If you leave it like this, your Endpoint will never have Internet access, and won&#x27;t be able to access anything. Now we create a Schedule that enforces your &quot;normal&quot; Profile, that allows access to things you want. </p>
+<p><span aria-label=&quot;&quot; class=&quot;img lightbox closed&quot; role=&quot;button&quot; tabindex=&quot;0&quot;><span class=&quot;lightbox-inner&quot;><Image alt=&quot;&quot; loading=&quot;lazy&quot; src=&quot;https://files.readme.io/e742d820ac715ff53146951e3e8548dfcad55e57f2a65d29c2a3e5dab85a0521-image.png&quot; align=&quot;&quot; caption=&quot;&quot; height=&quot;auto&quot; title=&quot;&quot; width=&quot;auto&quot;/></span></span></p>
+<p>This schedule (9am to 5pm) will allow access between those times, and then revert back to &quot;Block Everything&quot; schedule outside of this timeframe.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD"># <div class="heading-anchor anchor waypoint" id="why"></div><div class="heading-text"><div id="section-why" class="heading-anchor_backwardsCompatibility"></div>Why</div>[](#why)
+
+<p>You may have a Wi-Fi network that should only be used during certain hours (when you're open), or maybe you're trying to enforce parental controls on your child's device. The Scheduler can make this easy. </p>
+## <div class="heading-anchor anchor waypoint" id="create-profile"></div><div class="heading-text"><div id="section-create-profile" class="heading-anchor_backwardsCompatibility"></div>Create Profile</div>[](#create-profile)
+
+<p>First, make a new [Profile](/docs/profiles) and call it something like "Block Everything".  Go into this Profile and create a [Default Rule](/docs/default-rule) that blocks all traffic. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/b5911cadef4cbd773e704c2d97168d51c9455f57ed0599110ae675025041dd2d-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Now we will make a schedule that enables this Profile when the time is right. </p>
+## <div class="heading-anchor anchor waypoint" id="create-schedule"></div><div class="heading-text"><div id="section-create-schedule" class="heading-anchor_backwardsCompatibility"></div>Create Schedule</div>[](#create-schedule)
+
+<p>Go to the [Endpoints](https://controld.com/dashboard/endpoints) section and click the Edit button on an Endpoint that you wish to enable this feature on. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/d72f3cc7cc53e00d93cb3f4a39ba01d0a47d1ef3c0fc97d069fca5fd8e8cee1b-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>Then, click the clock icon to add a Schedule.</p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/624e6457bf665021fc95e7eee15b216a122202de393e60e746a0a3200399f7fa-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>It will pop up a Schedule creation screen. Choose your newly created "Block Everything" Profile from the "Enforced Profile" dropdown menu and choose the times you wish to have it enabled. </p>
+<p>When the time you have selected starts, this Profile will be enforced on your chosen Endpoint, and all Internet access will be disabled. Once the time ends, the previous Profile that was enforced on this Endpoint will be restored. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/60ce6a238be1e2f016205d54fd4ed800809c8ee46c562c64f0093cbf5121f92d-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+## <div class="heading-anchor anchor waypoint" id="overnight-schedules"></div><div class="heading-text"><div id="section-overnight-schedules" class="heading-anchor_backwardsCompatibility"></div>Overnight Schedules</div>[](#overnight-schedules)
+
+> ## <span class="callout-icon">🚧</span><p>Overnight Schedules Warning</p>
+
+<p>If your schedule starts in the evening, and ends in the morning of the next day (as would be the case for most scenarios described above) you would have to enforce the Profiles in reverse order.</p>
+
+<p>If you wish to block Internet at 5pm and re-enable it at 9am the next day, reverse order of the 2 Profiles you have created. </p>
+<p>Always enforce the "Block Everything" Profile on an Endpoint, by default. This would look something like this. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/b517e00421f15fe8bd2dad4c9f82662f6dc0b0d53b7305c83d86fd307e8ea29d-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>If you leave it like this, your Endpoint will never have Internet access, and won't be able to access anything. Now we create a Schedule that enforces your "normal" Profile, that allows access to things you want. </p>
+<p><span aria-label="" class="img lightbox closed" role="button" tabindex="0"><span class="lightbox-inner"><Image alt="" loading="lazy" src="https://files.readme.io/e742d820ac715ff53146951e3e8548dfcad55e57f2a65d29c2a3e5dab85a0521-image.png" align="" caption="" height="auto" title="" width="auto"></span></span></p>
+<p>This schedule (9am to 5pm) will allow access between those times, and then revert back to "Block Everything" schedule outside of this timeframe.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->3 months ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">How to troubleshoot geo-blocking issues</div>](/docs/how-to-troubleshoot-geo-blocking-issues)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Update IP via Heartbeat Device</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/update-ip-via-heartbeat-device)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[Why](#why)
+<ul>
+<li>[Create Profile](#create-profile)
+
+- [Create Schedule](#create-schedule)
+
+- [Overnight Schedules](#overnight-schedules)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

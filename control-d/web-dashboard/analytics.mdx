@@ -1,0 +1,151 @@
+---
+title: "Analytics"
+description: "Monitor and analyze DNS traffic and filtering activities"
+icon: "chart-line"
+---
+
+## Overview
+
+The Analytics section provides comprehensive insights into your DNS traffic, filtering effectiveness, and security events across your organization.
+
+## Features
+
+### Statistics
+- Query volumes
+- Blocked requests
+- Response times
+- Traffic patterns
+- Device activity
+- Filter effectiveness
+
+### Activity Log
+```yaml
+activity_log:
+  retention: 30
+  detail_level: "full"
+  export_format: "csv"
+  fields:
+    - timestamp
+    - device
+    - query
+    - action
+    - category
+```
+
+### Organization Features
+
+#### Admin Logs
+- User actions
+- Configuration changes
+- Policy updates
+- Access attempts
+- System events
+
+#### Email Reports
+```yaml
+email_reports:
+  frequency: "weekly"
+  recipients:
+    - "admin@example.com"
+  content:
+    - traffic_summary
+    - blocked_threats
+    - policy_violations
+    - performance_metrics
+```
+
+## Data Collection
+
+### Query Analytics
+1. Domain statistics
+2. Query types
+3. Response codes
+4. Geographic distribution
+5. Time-based patterns
+
+### Security Metrics
+```yaml
+security_metrics:
+  threats_blocked: true
+  policy_violations: true
+  unauthorized_access: true
+  suspicious_patterns: true
+```
+
+### Performance Data
+- Resolution times
+- Server health
+- Cache efficiency
+- Error rates
+
+## Reporting
+
+### Dashboard Views
+- Real-time monitoring
+- Historical trends
+- Custom date ranges
+- Comparative analysis
+
+### Export Options
+```yaml
+export_config:
+  formats:
+    - csv
+    - json
+    - pdf
+  scheduling:
+    enabled: true
+    frequency: "daily"
+    retention: 90
+```
+
+### Custom Reports
+- Filter by device
+- Group by category
+- Sort by metric
+- Custom fields
+
+## Organization Features
+
+### Admin Logs
+```yaml
+admin_logging:
+  user_actions: true
+  system_events: true
+  config_changes: true
+  retention: 365
+```
+
+### Email Reports
+- Weekly summaries
+- Monthly trends
+- Custom schedules
+- Multiple recipients
+
+## Best Practices
+
+### Data Management
+1. Set retention policies
+2. Regular backups
+3. Access controls
+4. Privacy compliance
+
+### Monitoring
+- Set up alerts
+- Review regularly
+- Track trends
+- Investigate anomalies
+
+### Reporting
+- Customize for audience
+- Focus on key metrics
+- Regular distribution
+- Action items
+
+<Warning>
+Analytics data may contain sensitive information. Ensure proper access controls and data handling procedures are in place.
+</Warning>
+
+<Tip>
+Use the Activity Log to track specific domains or devices when troubleshooting issues or investigating security events.
+</Tip> 

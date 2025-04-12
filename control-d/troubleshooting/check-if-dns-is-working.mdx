@@ -1,0 +1,90 @@
+---
+title: "Check if DNS is Working"
+description: "How to verify that Control D is working and troubleshoot if it's not"
+icon: "check-circle"
+---
+
+# Check if DNS is Working
+
+<Note>
+This guide will help you verify if Control D is working properly and provide steps to fix it if it's not.
+</Note>
+
+## 1. Quick Check
+
+<Steps>
+  <Step>Visit the [Status Page](https://controld.com/status)</Step>
+  <Step>Check if it shows you're using Control D</Step>
+  <Step>If working, you're all set!</Step>
+</Steps>
+
+## 2. Command Line Check
+
+<Info>
+If you've configured Control D on your network router or directly on the network interface, it should be set up OS-wide.
+</Info>
+
+<Steps>
+  <Step>Open Terminal or Command Prompt</Step>
+  <Step>
+    Run the following command:
+    <CodeBlock>
+      nslookup verify.controld.com
+    </CodeBlock>
+  </Step>
+  <Step>Check the output for Control D IP addresses</Step>
+</Steps>
+
+<Warning>
+If the command returns an IP address:
+- Your OS is using Control D
+- The issue might be with your browser using DNS-over-HTTPS
+- Configure DNS-over-HTTPS in your browser using the tutorials
+</Warning>
+
+<Warning>
+If the command does NOT return a valid IP:
+- Your OS is not using Control D
+- Double-check your settings
+- Verify your configuration
+</Warning>
+
+## 3. External Check
+
+<Info>
+For devices without a browser or command line:
+</Info>
+
+<Steps>
+  <Step>Start the Activity Log on your device</Step>
+  <Step>Perform some actions on the device</Step>
+  <Step>Check if records appear in the Activity Log</Step>
+</Steps>
+
+<Warning>
+If the log is always blank:
+- DNS queries are not reaching Control D
+- Most likely reason: IP is not authorized
+- Check your IP authorization status
+</Warning>
+
+## 4. Troubleshooting Steps
+
+<Accordion title="Common Issues">
+  <Steps>
+    <Step>Verify IP authorization</Step>
+    <Step>Check DNS settings</Step>
+    <Step>Test with different browsers</Step>
+    <Step>Verify network configuration</Step>
+  </Steps>
+</Accordion>
+
+## 5. Contact Support
+
+<Card>
+  If you're still having issues, [contact support](https://controld.com/contact/) with:
+  - Status page results
+  - Command line output
+  - Activity log details
+  - Any error messages
+</Card>

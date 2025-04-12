@@ -1,0 +1,39 @@
+name: Validate Documentation
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - '**/*.mdx'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - '**/*.mdx'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run validation
+        run: node .github/scripts/validate-mintlify.js
+        
+      - name: Run fixes
+        run: node .github/scripts/fix-mintlify.js
+        
+      - name: Commit fixes
+        run: |
+          git config --global user.name 'GitHub Action'
+          git config --global user.email 'action@github.com'
+          git add .
+          git commit -m "docs: fix Mintlify formatting" || true
+          git push || true 

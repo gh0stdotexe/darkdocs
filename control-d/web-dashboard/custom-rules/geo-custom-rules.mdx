@@ -1,0 +1,180 @@
+---
+title: "Geo Custom Rules"
+description: "<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>You can create custom rules that leverage geo-location data of source and destination IPs.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/geo-custom-rules)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="> ## <span class=&quot;callout-icon&quot;>📘</span><p>Beta Feature</p>"
+---
+
+<header id="content-head"><div class="row clearfix"><div class="col-xs-9"># Geo Custom Rules
+
+<div class="excerpt"><div class="rm-Markdown markdown-body" data-testid="RDMD"><p>You can create custom rules that leverage geo-location data of source and destination IPs.</p></div></div></div><div class="col-xs-3">[<i aria-hidden="true" class="icon icon-edit"></i> Suggest Edits](/edit/geo-custom-rules)</div></div></header><div class="grid-container-fluid" id="content-container"><section class="content-body grid-75"><div dehydrated="> ## <span class=&quot;callout-icon&quot;>📘</span><p>Beta Feature</p>
+
+<p>This feature is in beta, and lacks a &quot;pretty UI&quot;, however you can use it right now.</p>
+
+# <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;what-are-geo-custom-rules&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-what-are-geo-custom-rules&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>What are Geo Custom Rules</div><Link aria-label=&quot;Skip link to What are Geo Custom Rules&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#what-are-geo-custom-rules&quot;></Link>
+
+<p>Geo Custom Rules work exactly as standard (domain based) custom rules, except they leverage the geo-location data that&#x27;s associated with the source IP that made a DNS query, as well as destination IPs that the query resolves to. Here are some examples of what you can do with these types of rules:</p>
+
+- Block queries that resolve to IPs in a specific country 
+
+- Redirect queries that **don&#x27;t** resolve to IPs in a specific country
+
+- Bypass queries made from IPs in a specific country 
+
+- Block queries made from IPs **not** in a specific country 
+
+<p>Or any combination of the above.</p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;rule-format&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-rule-format&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Rule Format</div><Link aria-label=&quot;Skip link to Rule Format&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#rule-format&quot;></Link>
+
+<p>Geo Custom Rules start with any of the 4 following formats, and are followed by a <Link href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot; target=&quot;&quot; title=&quot;&quot;>2 letter ISO country code</Link>. </p>
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`@` - destination country 
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!@` - NOT destination country
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`@AS00000` - destination Autonomous System (AS)
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!@AS00000` - NOT destination Autonomous System (AS)
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`#` - source country 
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!#` - NOT source country
+
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;examples&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-examples&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Examples</div><Link aria-label=&quot;Skip link to Examples&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#examples&quot;></Link>
+
+<p>Simply create a standard Custom Rule, but instead of a domain name use any of the following formats:</p>
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`@CN` - This will match queries that resolves to a Chinese IP addresses.
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!@US` - This will match queries that do **not** resolve to a US IP addresses.
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`@AS16509` - This will match queries that resolve to IPs that belong to AS16509 / Amazon.com
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!@AS13335` - This will match quires that do **not **resolve to AS13335 / Cloudflare Inc
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`#CA` - This will match if the DNS query originates from a Canadian IP address. 
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!#DE` - This will match if the DNS query does **not** originate from a German IP address.
+
+<p>You can use any <Link href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2&quot; target=&quot;&quot; title=&quot;&quot;>2 letter ISO country code</Link> to make country based rules. You can also make several of these rules in one go, by listing them one per line while adding custom rules (same as domain level rules). </p>
+<p>Rules for ASes have a prefix <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`AS` followed by the AS number. **AS based rules supersede country based ones. **</p>
+> ## <span class=&quot;callout-icon&quot;>🚧</span><p>NOT Rules Limitations</p>
+
+<p>You should not mix different **Rule Actions** for the &quot;not rules&quot; (the ones that start with <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!`), or unexpected behavior will occur. See below for some examples.</p>
+
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;this-ok&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-this-ok&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>This OK</div><Link aria-label=&quot;Skip link to This OK&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#this-ok&quot;></Link>
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!#US` -> BLOCK 
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!#CA` -> BLOCK
+
+<p>The above will result in DNS queries originating from US **and** Canada working normally (subject to the rest of your Profile), while queries that originate from all other countries would get a BLOCK response. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;this-is-not-ok&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-this-is-not-ok&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>This is NOT OK</div><Link aria-label=&quot;Skip link to This is NOT OK&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#this-is-not-ok&quot;></Link>
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!#US` -> BLOCK 
+
+- <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!#CA` -> BYPASS
+
+<p>The above is NOT OK to do. Unexpected (random) behavior will occur. The exact same thing is true for <button aria-label=&quot;Copy Code&quot; class=&quot;rdmd-code-copy fa&quot;></button>`!@` (destination)  rules. </p>
+## <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;rule-actions&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-rule-actions&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Rule Actions</div><Link aria-label=&quot;Skip link to Rule Actions&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#rule-actions&quot;></Link>
+
+<p>Much like with standard Custom Rules one of 3 rule types can be attached to any geo custom rule. Be aware that **domain level rules take priority**, so if a query matches a domain level rule that will take precedence over any of your geo rules.</p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;block&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-block&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Block</div><Link aria-label=&quot;Skip link to Block&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#block&quot;></Link>
+
+<p>A BLOCK action will prevent any domain that matches a rule from loading, and will effectively make it inaccessible from a Device that enforces a Profile.  </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;bypass&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-bypass&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Bypass</div><Link aria-label=&quot;Skip link to Bypass&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#bypass&quot;></Link>
+
+<p>A BYPASS rule will resolve any domain to its true IP address from Authoritative DNS. This is useful to override Filters, Services, or the Default Rule. </p>
+### <div class=&quot;heading-anchor anchor waypoint&quot; id=&quot;redirect&quot;></div><div class=&quot;heading-text&quot;><div id=&quot;section-redirect&quot; class=&quot;heading-anchor_backwardsCompatibility&quot;></div>Redirect</div><Link aria-label=&quot;Skip link to Redirect&quot; class=&quot;heading-anchor-icon fa fa-anchor&quot; href=&quot;#redirect&quot;></Link>
+
+<p>A REDIRECT rule will spoof any domain via a proxy location or specific IP address chosen by you.</p>" style="margin-left:31px" class="rm-Markdown markdown-body rm-Markdown markdown-body ng-non-bindable" data-testid="RDMD">> ## <span class="callout-icon">📘</span><p>Beta Feature</p>
+
+<p>This feature is in beta, and lacks a "pretty UI", however you can use it right now.</p>
+
+# <div class="heading-anchor anchor waypoint" id="what-are-geo-custom-rules"></div><div class="heading-text"><div id="section-what-are-geo-custom-rules" class="heading-anchor_backwardsCompatibility"></div>What are Geo Custom Rules</div>[](#what-are-geo-custom-rules)
+
+<p>Geo Custom Rules work exactly as standard (domain based) custom rules, except they leverage the geo-location data that's associated with the source IP that made a DNS query, as well as destination IPs that the query resolves to. Here are some examples of what you can do with these types of rules:</p>
+
+- Block queries that resolve to IPs in a specific country 
+
+- Redirect queries that **don't** resolve to IPs in a specific country
+
+- Bypass queries made from IPs in a specific country 
+
+- Block queries made from IPs **not** in a specific country 
+
+<p>Or any combination of the above.</p>
+## <div class="heading-anchor anchor waypoint" id="rule-format"></div><div class="heading-text"><div id="section-rule-format" class="heading-anchor_backwardsCompatibility"></div>Rule Format</div>[](#rule-format)
+
+<p>Geo Custom Rules start with any of the 4 following formats, and are followed by a [2 letter ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2). </p>
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">@</span>` - destination country 
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!@</span>` - NOT destination country
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">@AS00000</span>` - destination Autonomous System (AS)
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!@AS00000</span>` - NOT destination Autonomous System (AS)
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">#</span>` - source country 
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!#</span>` - NOT source country
+
+## <div class="heading-anchor anchor waypoint" id="examples"></div><div class="heading-text"><div id="section-examples" class="heading-anchor_backwardsCompatibility"></div>Examples</div>[](#examples)
+
+<p>Simply create a standard Custom Rule, but instead of a domain name use any of the following formats:</p>
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">@CN</span>` - This will match queries that resolves to a Chinese IP addresses.
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!@US</span>` - This will match queries that do **not** resolve to a US IP addresses.
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">@AS16509</span>` - This will match queries that resolve to IPs that belong to AS16509 / Amazon.com
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!@AS13335</span>` - This will match quires that do **not **resolve to AS13335 / Cloudflare Inc
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">#CA</span>` - This will match if the DNS query originates from a Canadian IP address. 
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!#DE</span>` - This will match if the DNS query does **not** originate from a German IP address.
+
+<p>You can use any [2 letter ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to make country based rules. You can also make several of these rules in one go, by listing them one per line while adding custom rules (same as domain level rules). </p>
+<p>Rules for ASes have a prefix <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">AS</span>` followed by the AS number. **AS based rules supersede country based ones. **</p>
+> ## <span class="callout-icon">🚧</span><p>NOT Rules Limitations</p>
+
+<p>You should not mix different **Rule Actions** for the "not rules" (the ones that start with <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!</span>`), or unexpected behavior will occur. See below for some examples.</p>
+
+### <div class="heading-anchor anchor waypoint" id="this-ok"></div><div class="heading-text"><div id="section-this-ok" class="heading-anchor_backwardsCompatibility"></div>This OK</div>[](#this-ok)
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!#US</span>` -> BLOCK 
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!#CA</span>` -> BLOCK
+
+<p>The above will result in DNS queries originating from US **and** Canada working normally (subject to the rest of your Profile), while queries that originate from all other countries would get a BLOCK response. </p>
+### <div class="heading-anchor anchor waypoint" id="this-is-not-ok"></div><div class="heading-text"><div id="section-this-is-not-ok" class="heading-anchor_backwardsCompatibility"></div>This is NOT OK</div>[](#this-is-not-ok)
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!#US</span>` -> BLOCK 
+
+- <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!#CA</span>` -> BYPASS
+
+<p>The above is NOT OK to do. Unexpected (random) behavior will occur. The exact same thing is true for <button aria-label="Copy Code" class="rdmd-code-copy fa"></button>`<span class="cm-s-neo" data-testid="SyntaxHighlighter">!@</span>` (destination)  rules. </p>
+## <div class="heading-anchor anchor waypoint" id="rule-actions"></div><div class="heading-text"><div id="section-rule-actions" class="heading-anchor_backwardsCompatibility"></div>Rule Actions</div>[](#rule-actions)
+
+<p>Much like with standard Custom Rules one of 3 rule types can be attached to any geo custom rule. Be aware that **domain level rules take priority**, so if a query matches a domain level rule that will take precedence over any of your geo rules.</p>
+### <div class="heading-anchor anchor waypoint" id="block"></div><div class="heading-text"><div id="section-block" class="heading-anchor_backwardsCompatibility"></div>Block</div>[](#block)
+
+<p>A BLOCK action will prevent any domain that matches a rule from loading, and will effectively make it inaccessible from a Device that enforces a Profile.  </p>
+### <div class="heading-anchor anchor waypoint" id="bypass"></div><div class="heading-text"><div id="section-bypass" class="heading-anchor_backwardsCompatibility"></div>Bypass</div>[](#bypass)
+
+<p>A BYPASS rule will resolve any domain to its true IP address from Authoritative DNS. This is useful to override Filters, Services, or the Default Rule. </p>
+### <div class="heading-anchor anchor waypoint" id="redirect"></div><div class="heading-text"><div id="section-redirect" class="heading-anchor_backwardsCompatibility"></div>Redirect</div>[](#redirect)
+
+<p>A REDIRECT rule will spoof any domain via a proxy location or specific IP address chosen by you.</p></div><div class="UpdatedAt"><p class="DateLine "><i class="icon icon-watch"></i>Updated<!-- --> <!-- -->about 1 year ago<!-- --> </p></div><hr class="NextStepsDivider"><nav aria-label="Pagination Controls" class="PaginationControlsjDYuqu8pBMUy rm-Pagination">[<span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-left2"></span><div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_left3wBkn4C9R0W_">Folders</div>](/docs/folder-rules)[<div class="PaginationControls-text3qEXHZU00znD PaginationControls-text_right3EIfWubgRVVP">Magic Folders</div><span class="PaginationControls-iconZbaZ3tgyhNmI icon-arrow-right2"></span>](/docs/magic-folders)</nav><div class="rm-PageThumbs PageThumbs"><div class="PageThumbs-helpful">Did this page help you?<div class="PageThumbs-cta"><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-up-2"></i><span>Yes</span></button></div><div class="Dropdown Dropdown_closed"><button aria-haspopup="dialog" class="Button Button_sm PageThumbs-button Dropdown-toggle Button_secondary Button_secondary_text" type="button" aria-expanded="false"><i class="icon icon-thumbs-down1"></i><span>No</span></button></div></div></div></div></section><section class="content-toc grid-25"><nav>- [<i class="icon icon-text-align-left"></i>Table of Contents](#)
+- <ul>
+<li>
+[What are Geo Custom Rules](#what-are-geo-custom-rules)
+<ul>
+<li>[Rule Format](#rule-format)
+
+- [Examples](#examples)
+
+- [Rule Actions](#rule-actions)
+
+</li>
+</ul></li></ul></nav></section></div><div class="ModalWrapper" id="tutorialmodal-root"></div>

@@ -1,0 +1,45 @@
+---
+title: "Data Streaming"
+description: "Stream DNS query data to external systems for analysis."
+icon: "database"
+---
+
+# Data Streaming
+
+Control D's data streaming capabilities allow you to export DNS query data to external systems for advanced analysis and monitoring.
+
+## Features
+
+- **SIEM Integration**: Stream data to Security Information and Event Management systems
+- **Custom Export**: Export data in various formats
+- **Real-time Streaming**: Stream data in real-time
+- **Filtered Exports**: Export specific types of data
+- **Multiple Destinations**: Stream to multiple endpoints
+
+## Implementation
+
+```yaml
+streaming:
+  destinations:
+    - type: "splunk"
+      endpoint: "https://splunk.example.com"
+      format: "json"
+    - type: "generic"
+      endpoint: "https://api.example.com"
+      format: "csv"
+  filters:
+    - type: "blocked"
+    - type: "allowed"
+      domains: ["*.company.com"]
+```
+
+## Best Practices
+
+1. Configure appropriate data retention
+2. Use secure endpoints for data streaming
+3. Filter sensitive data before streaming
+4. Monitor streaming performance
+
+<Tip>
+Use data streaming to enhance your security monitoring and compliance reporting.
+</Tip> 
