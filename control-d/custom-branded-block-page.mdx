@@ -1,43 +1,90 @@
 ---
-title: "Custom-Branded Block Page Setup on macOS"
+title: "Blocked Query Response (Custom Block Pages)"
 description: "Learn how to set up a custom-branded block page using Control D on macOS"
+icon: "shield"
 ---
 
 # Custom-Branded Block Page Setup on macOS
 
-This guide will walk you through setting up a custom-branded block page using Control D on an Apple MacBook Pro.
+This guide will walk you through setting up a custom-branded block page using Control D on an Apple MacBook Pro. A custom block page allows you to display your own branded message when users attempt to access blocked content.
+
+<Tip>
+Before proceeding, ensure you have:
+- Administrative access to your Control D dashboard
+- A valid Control D subscription
+- macOS administrator privileges
+</Tip>
 
 ## Step 1: Configure the Control D Profile
 
-1. **Access Control D Profile Options**:
-   - Log in to the Control D Dashboard and navigate to Profiles.
-   - Select the profile you want to modify.
+### Access Control D Profile Options
 
-2. **Set Custom Block Response**:
-   - Click on "Profile Options."
-   - Find the "Block Response" setting.
-   - Select "Custom" from the dropdown.
-   - Input the following IPs for your custom block page:
-     - **IPv4**: `23.171.240.158`
-     - **IPv6**: `2606:1a40:3000:4800::158`
+1. Log in to the Control D Dashboard
+2. Navigate to the **Profiles** section
+3. Select the profile you want to modify
+
+### Set Custom Block Response
+
+1. Click on **Profile Options**
+2. Locate the **Block Response** setting
+3. Select **Custom** from the dropdown menu
+4. Configure the following IP addresses for your custom block page:
+
+```bash
+IPv4: 23.171.240.158
+IPv6: 2606:1a40:3000:4800::158
+```
+
+<Tip>
+These IP addresses are specifically configured for Control D's custom block page service. Do not modify them unless instructed by Control D support.
+</Tip>
 
 ## Step 2: Install the Root Certificate
 
-1. **Download the Certificate**:
-   - Download the Control D root certificate from [here](https://deploy.controld.com/blockpage/Control-D-root-x1.cer).
+### Download the Certificate
 
-2. **Install the Certificate**:
-   - Open the downloaded `.cer` file with Keychain Access.
-   - Select the "System" keychain.
-   - Drag the certificate into the "System" keychain.
-   - Double-click the certificate, expand "Trust," and set to "Always Trust."
+1. Download the Control D root certificate from the official source:
+   [Control D Root Certificate](https://deploy.controld.com/blockpage/Control-D-root-x1.cer)
+
+### Install the Certificate
+
+1. Open the downloaded `.cer` file with **Keychain Access**
+2. Select the **System** keychain from the sidebar
+3. Drag the certificate into the **System** keychain
+4. Double-click the certificate to open its details
+5. Expand the **Trust** section
+6. Set the certificate trust to **Always Trust**
+
+<Warning>
+Installing a root certificate requires administrative privileges. Make sure you're logged in as an administrator on your Mac.
+</Warning>
 
 ## Step 3: Apply Changes on macOS
 
-1. **Flush DNS Cache**:
-   - Open Terminal and execute:  
-     ```bash
-     sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
-     ```
+### Flush DNS Cache
 
-This ensures that your MacBook Pro correctly displays the custom block page. 
+To ensure your MacBook Pro correctly displays the custom block page, you'll need to flush the DNS cache. Open Terminal and execute the following command:
+
+```bash
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+
+<Tip>
+You may need to enter your administrator password when executing these commands.
+</Tip>
+
+## Verification
+
+To verify that your custom block page is working correctly:
+
+1. Try accessing a blocked website
+2. You should see your custom block page instead of the default browser error
+3. The page should load securely (with HTTPS)
+
+<Warning>
+If you don't see the custom block page after following these steps:
+- Verify that the root certificate is properly installed
+- Check that the IP addresses are correctly configured
+- Try clearing your browser cache
+- Restart your browser
+</Warning> 
