@@ -1,0 +1,174 @@
+---
+title: "Content Management"
+description: "Learn how to manage and structure your Mintlify documentation content"
+icon: "file-text"
+---
+
+# Content Management
+
+This guide covers everything you need to know about managing content in Mintlify, from basic page creation to advanced content organization.
+
+## Page Structure
+
+### Frontmatter
+
+Every page in Mintlify starts with frontmatter, which defines metadata for the page:
+
+```mdx
+---
+title: "Page Title"
+description: "Page description for SEO and previews"
+icon: "icon-name"  # Optional icon from Mintlify's icon set
+---
+```
+
+### Headers
+
+Use headers to structure your content:
+
+```mdx
+# Main Title (H1)
+## Section (H2)
+### Subsection (H3)
+```
+
+## Content Types
+
+### Text Formatting
+
+```mdx
+**Bold text**
+*Italic text*
+~~Strikethrough~~
+`Inline code`
+```
+
+### Lists
+
+```mdx
+- Unordered list item
+- Another item
+  - Nested item
+
+1. Ordered list item
+2. Another item
+   1. Nested item
+```
+
+### Code Blocks
+
+```mdx
+```javascript
+const example = "Code block";
+```
+
+### Tables
+
+```mdx
+| Header 1 | Header 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+| Cell 3   | Cell 4   |
+```
+
+## Components
+
+### Tip
+
+```mdx
+<Tip>
+This is a helpful tip for your users.
+</Tip>
+```
+
+### Warning
+
+```mdx
+<Warning>
+This is an important warning message.
+</Warning>
+```
+
+### CodeGroup
+
+```mdx
+<CodeGroup>
+<CodeGroupItem title="JavaScript">
+
+```javascript
+console.log("Hello!");
+```
+
+</CodeGroupItem>
+<CodeGroupItem title="Python">
+
+```python
+print("Hello!")
+```
+
+</CodeGroupItem>
+</CodeGroup>
+```
+
+## Navigation
+
+### docs.json
+
+Configure your navigation in `docs.json`:
+
+```json
+{
+  "navigation": [
+    {
+      "group": "Getting Started",
+      "pages": ["introduction", "installation"]
+    },
+    {
+      "group": "Guides",
+      "pages": ["content", "styling"]
+    }
+  ]
+}
+```
+
+### Links
+
+```mdx
+[Link text](/path/to/page)
+[External link](https://example.com)
+```
+
+## Images and Assets
+
+### Local Images
+
+```mdx
+![Alt text](/path/to/image.png)
+```
+
+### Remote Images
+
+```mdx
+![Alt text](https://example.com/image.png)
+```
+
+## Best Practices
+
+1. **Consistent Structure**
+   - Use consistent header levels
+   - Follow a logical content flow
+   - Maintain consistent formatting
+
+2. **SEO Optimization**
+   - Use descriptive titles
+   - Include relevant descriptions
+   - Add appropriate metadata
+
+3. **Accessibility**
+   - Use descriptive alt text for images
+   - Maintain proper heading hierarchy
+   - Ensure sufficient color contrast
+
+<Tip>
+Use the `mintlify dev` command to preview your content changes in real-time.
+</Tip> 

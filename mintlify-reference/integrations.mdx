@@ -1,0 +1,220 @@
+---
+title: "Integrations"
+description: "Learn how to integrate Mintlify with other tools and services"
+icon: "puzzle"
+---
+
+# Integrations
+
+This guide covers how to integrate Mintlify with various tools and services to enhance your documentation.
+
+## Version Control
+
+### GitHub Integration
+
+1. Connect your GitHub repository in the Mintlify dashboard
+2. Configure webhooks for automatic deployments
+3. Set up branch protection rules
+
+```json
+{
+  "github": {
+    "repository": "your-org/your-repo",
+    "branch": "main",
+    "deployBranch": "gh-pages"
+  }
+}
+```
+
+### GitLab Integration
+
+1. Connect your GitLab repository
+2. Configure CI/CD pipelines
+3. Set up deployment tokens
+
+```json
+{
+  "gitlab": {
+    "repository": "your-org/your-repo",
+    "branch": "main",
+    "deployBranch": "pages"
+  }
+}
+```
+
+## Search
+
+### Algolia Search
+
+Configure Algolia for enhanced search functionality:
+
+```json
+{
+  "search": {
+    "provider": "algolia",
+    "config": {
+      "appId": "your-app-id",
+      "apiKey": "your-api-key",
+      "indexName": "your-index-name"
+    }
+  }
+}
+```
+
+### Custom Search
+
+Implement a custom search provider:
+
+```javascript
+// components/CustomSearch.jsx
+export default function CustomSearch() {
+  // Custom search implementation
+}
+```
+
+## Analytics
+
+### Google Analytics
+
+```json
+{
+  "analytics": {
+    "provider": "google",
+    "config": {
+      "trackingId": "UA-XXXXXXXXX-X"
+    }
+  }
+}
+```
+
+### Plausible Analytics
+
+```json
+{
+  "analytics": {
+    "provider": "plausible",
+    "config": {
+      "domain": "your-domain.com"
+    }
+  }
+}
+```
+
+## CI/CD
+
+### GitHub Actions
+
+Example workflow for automatic deployments:
+
+```yaml
+name: Deploy Documentation
+on:
+  push:
+    branches: [main]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy to Mintlify
+        uses: mintlify/action@v1
+        with:
+          token: ${{ secrets.MINTLIFY_TOKEN }}
+```
+
+### GitLab CI/CD
+
+Example pipeline configuration:
+
+```yaml
+deploy:
+  stage: deploy
+  script:
+    - npm install -g mintlify
+    - mintlify deploy
+  only:
+    - main
+```
+
+## Custom Domains
+
+### DNS Configuration
+
+1. Add a CNAME record pointing to your Mintlify site
+2. Configure SSL certificate
+3. Update domain settings in Mintlify dashboard
+
+```json
+{
+  "domain": {
+    "name": "docs.your-domain.com",
+    "ssl": true
+  }
+}
+```
+
+## API Documentation
+
+### OpenAPI/Swagger
+
+Integrate OpenAPI specifications:
+
+```json
+{
+  "api": {
+    "spec": "path/to/openapi.yaml",
+    "renderer": "swagger-ui"
+  }
+}
+```
+
+### GraphQL
+
+Add GraphQL documentation:
+
+```json
+{
+  "api": {
+    "type": "graphql",
+    "schema": "path/to/schema.graphql"
+  }
+}
+```
+
+## Content Management
+
+### CMS Integration
+
+Example Headless CMS configuration:
+
+```json
+{
+  "cms": {
+    "provider": "contentful",
+    "config": {
+      "spaceId": "your-space-id",
+      "accessToken": "your-access-token"
+    }
+  }
+}
+```
+
+## Best Practices
+
+1. **Security**
+   - Use environment variables for sensitive data
+   - Implement proper access controls
+   - Regularly update dependencies
+
+2. **Performance**
+   - Optimize build processes
+   - Implement caching strategies
+   - Monitor deployment times
+
+3. **Maintenance**
+   - Document integration configurations
+   - Set up monitoring and alerts
+   - Regular backup procedures
+
+<Tip>
+Test integrations in a staging environment before deploying to production. 

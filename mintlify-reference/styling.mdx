@@ -1,0 +1,187 @@
+---
+title: "Custom Styling"
+description: "Learn how to customize the appearance of your Mintlify documentation"
+icon: "palette"
+---
+
+# Custom Styling
+
+This guide covers how to customize the appearance of your Mintlify documentation using CSS and theme configuration.
+
+## Theme Configuration
+
+### Basic Theme
+
+Configure your theme in `docs.json`:
+
+```json
+{
+  "theme": {
+    "primary": "#0066FF",
+    "secondary": "#6B7280",
+    "accent": "#FF6B6B",
+    "font": "Inter"
+  }
+}
+```
+
+### Dark Mode
+
+Mintlify automatically supports dark mode. You can customize dark mode colors:
+
+```json
+{
+  "theme": {
+    "dark": {
+      "primary": "#3B82F6",
+      "background": "#1F2937",
+      "text": "#F3F4F6"
+    }
+  }
+}
+```
+
+## Custom CSS
+
+### Global Styles
+
+Create a `styles/global.css` file:
+
+```css
+:root {
+  --primary: #0066FF;
+  --secondary: #6B7280;
+  --accent: #FF6B6B;
+}
+
+/* Custom component styles */
+.custom-component {
+  background: var(--primary);
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+}
+```
+
+### Component-Specific Styles
+
+```css
+/* Style specific components */
+.Tip {
+  border-left: 4px solid var(--primary);
+  padding: 1rem;
+  margin: 1rem 0;
+}
+
+.CodeGroup {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+```
+
+## Custom Components
+
+### Creating Components
+
+Create custom components in `components/`:
+
+```jsx
+// components/CustomAlert.jsx
+export default function CustomAlert({ children, type = 'info' }) {
+  return (
+    <div className={`custom-alert ${type}`}>
+      {children}
+    </div>
+  );
+}
+```
+
+### Using Custom Components
+
+```mdx
+import CustomAlert from '../components/CustomAlert';
+
+<CustomAlert type="warning">
+  This is a custom alert component!
+</CustomAlert>
+```
+
+## Responsive Design
+
+### Media Queries
+
+```css
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+  
+  .content {
+    padding: 1rem;
+  }
+}
+```
+
+### Mobile-First Approach
+
+```css
+/* Base styles for mobile */
+.component {
+  padding: 1rem;
+}
+
+/* Styles for larger screens */
+@media (min-width: 768px) {
+  .component {
+    padding: 2rem;
+  }
+}
+```
+
+## Typography
+
+### Font Configuration
+
+```json
+{
+  "theme": {
+    "font": {
+      "heading": "Inter",
+      "body": "Inter",
+      "monospace": "Fira Code"
+    }
+  }
+}
+```
+
+### Custom Font Sizes
+
+```css
+:root {
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+}
+```
+
+## Best Practices
+
+1. **Consistency**
+   - Use CSS variables for colors and spacing
+   - Maintain consistent component styling
+   - Follow a design system
+
+2. **Performance**
+   - Minimize CSS file size
+   - Use efficient selectors
+   - Optimize media queries
+
+3. **Accessibility**
+   - Ensure sufficient color contrast
+   - Use relative units for font sizes
+   - Support keyboard navigation
+
+<Tip>
+Use the Chrome DevTools to inspect and debug your custom styles in real-time.
+</Tip> 

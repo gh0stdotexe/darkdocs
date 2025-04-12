@@ -1,0 +1,199 @@
+---
+title: "API Reference"
+description: "Comprehensive API reference for Mintlify's features and components"
+icon: "code"
+---
+
+# API Reference
+
+This reference documents Mintlify's API, components, and configuration options.
+
+## Configuration
+
+### docs.json
+
+```json
+{
+  "navigation": [
+    {
+      "group": "Group Name",
+      "pages": ["page1", "page2"]
+    }
+  ],
+  "theme": {
+    "primary": "#0066FF",
+    "secondary": "#6B7280",
+    "accent": "#FF6B6B",
+    "font": "Inter"
+  }
+}
+```
+
+## Components
+
+### Tip
+
+Displays a helpful tip or note.
+
+```mdx
+<Tip>
+Your tip content here
+</Tip>
+```
+
+Props:
+- `type`: "info" | "warning" | "success" | "error" (default: "info")
+
+### Warning
+
+Displays a warning message.
+
+```mdx
+<Warning>
+Your warning content here
+</Warning>
+```
+
+### CodeGroup
+
+Groups multiple code blocks with tabs.
+
+```mdx
+<CodeGroup>
+<CodeGroupItem title="JavaScript">
+
+```javascript
+console.log("Hello!");
+```
+
+</CodeGroupItem>
+</CodeGroup>
+```
+
+Props:
+- `title`: string (required)
+- `active`: boolean (default: false)
+
+## CLI Commands
+
+### mintlify init
+
+Initialize a new Mintlify project.
+
+```bash
+mintlify init
+```
+
+Options:
+- `--template`: Specify a template
+- `--name`: Project name
+- `--path`: Installation path
+
+### mintlify dev
+
+Start the development server.
+
+```bash
+mintlify dev
+```
+
+Options:
+- `--port`: Port number (default: 3000)
+- `--host`: Host address (default: localhost)
+
+### mintlify build
+
+Build the documentation for production.
+
+```bash
+mintlify build
+```
+
+## Frontmatter
+
+Page metadata configuration.
+
+```mdx
+---
+title: "Page Title"
+description: "Page description"
+icon: "icon-name"
+---
+```
+
+Options:
+- `title`: string (required)
+- `description`: string
+- `icon`: string
+- `hideInSidebar`: boolean
+- `hideInSearch`: boolean
+
+## Search Configuration
+
+Configure search behavior in `docs.json`:
+
+```json
+{
+  "search": {
+    "enabled": true,
+    "algolia": {
+      "appId": "your-app-id",
+      "apiKey": "your-api-key",
+      "indexName": "your-index-name"
+    }
+  }
+}
+```
+
+## Analytics
+
+Configure analytics in `docs.json`:
+
+```json
+{
+  "analytics": {
+    "enabled": true,
+    "provider": "google" | "plausible",
+    "config": {
+      "trackingId": "your-tracking-id"
+    }
+  }
+}
+```
+
+## Deployment
+
+### GitHub Pages
+
+Configure GitHub Pages deployment in `docs.json`:
+
+```json
+{
+  "deployment": {
+    "provider": "github-pages",
+    "config": {
+      "branch": "gh-pages",
+      "path": "docs"
+    }
+  }
+}
+```
+
+### Netlify
+
+Configure Netlify deployment in `docs.json`:
+
+```json
+{
+  "deployment": {
+    "provider": "netlify",
+    "config": {
+      "siteId": "your-site-id"
+    }
+  }
+}
+```
+
+<Tip>
+For the most up-to-date API information, refer to the [official Mintlify documentation](https://mintlify.com/docs).
+</Tip> 

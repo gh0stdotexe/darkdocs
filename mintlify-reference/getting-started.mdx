@@ -1,0 +1,97 @@
+---
+title: "Getting Started with Mintlify"
+description: "Learn how to set up and use Mintlify for your documentation"
+icon: "rocket"
+---
+
+# Getting Started with Mintlify
+
+This guide will help you get started with Mintlify, from installation to your first deployment.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+
+- Node.js 16 or later installed
+- A GitHub account
+- A Mintlify account (you can sign up at [mintlify.com](https://mintlify.com))
+
+## Installation
+
+1. Install the Mintlify CLI globally:
+
+```bash
+npm install -g mintlify
+```
+
+2. Create a new documentation project:
+
+```bash
+mintlify init
+```
+
+3. Follow the prompts to set up your project:
+   - Choose a project name
+   - Select a template
+   - Configure your GitHub repository
+
+## Project Structure
+
+A typical Mintlify project structure looks like this:
+
+```
+docs/
+├── docs.json          # Navigation configuration
+├── index.mdx          # Homepage
+├── getting-started.mdx
+├── components/        # Custom components
+├── public/           # Static assets
+└── styles/           # Custom styles
+```
+
+## Writing Content
+
+Mintlify uses MDX, which combines Markdown with React components. Here's a basic example:
+
+```mdx
+---
+title: "My Page"
+description: "A sample page"
+---
+
+# My Page
+
+This is a paragraph with **bold** and *italic* text.
+
+<Tip>
+This is a tip component!
+</Tip>
+
+<CodeGroup>
+<CodeGroupItem title="JavaScript">
+
+```javascript
+console.log("Hello, Mintlify!");
+```
+
+</CodeGroupItem>
+</CodeGroup>
+```
+
+## Deployment
+
+To deploy your documentation:
+
+1. Push your changes to GitHub
+2. Mintlify will automatically build and deploy your site
+3. Your documentation will be available at `https://your-project.mintlify.app`
+
+## Next Steps
+
+- Learn about [content management](/mintlify-reference/content)
+- Explore [custom styling](/mintlify-reference/styling)
+- Check out the [API reference](/mintlify-reference/api)
+
+<Tip>
+Use the Mintlify CLI's `mintlify dev` command to preview your documentation locally while developing.
+</Tip> 
