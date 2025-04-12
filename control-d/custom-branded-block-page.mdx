@@ -1,0 +1,43 @@
+---
+title: "Custom-Branded Block Page Setup on macOS"
+description: "Learn how to set up a custom-branded block page using Control D on macOS"
+---
+
+# Custom-Branded Block Page Setup on macOS
+
+This guide will walk you through setting up a custom-branded block page using Control D on an Apple MacBook Pro.
+
+## Step 1: Configure the Control D Profile
+
+1. **Access Control D Profile Options**:
+   - Log in to the Control D Dashboard and navigate to Profiles.
+   - Select the profile you want to modify.
+
+2. **Set Custom Block Response**:
+   - Click on "Profile Options."
+   - Find the "Block Response" setting.
+   - Select "Custom" from the dropdown.
+   - Input the following IPs for your custom block page:
+     - **IPv4**: `23.171.240.158`
+     - **IPv6**: `2606:1a40:3000:4800::158`
+
+## Step 2: Install the Root Certificate
+
+1. **Download the Certificate**:
+   - Download the Control D root certificate from [here](https://deploy.controld.com/blockpage/Control-D-root-x1.cer).
+
+2. **Install the Certificate**:
+   - Open the downloaded `.cer` file with Keychain Access.
+   - Select the "System" keychain.
+   - Drag the certificate into the "System" keychain.
+   - Double-click the certificate, expand "Trust," and set to "Always Trust."
+
+## Step 3: Apply Changes on macOS
+
+1. **Flush DNS Cache**:
+   - Open Terminal and execute:  
+     ```bash
+     sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+     ```
+
+This ensures that your MacBook Pro correctly displays the custom block page. 

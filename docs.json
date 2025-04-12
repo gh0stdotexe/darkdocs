@@ -31,6 +31,12 @@
               "essentials/navigation",
               "essentials/reusable-snippets"
             ]
+          },
+          {
+            "group": "Control D",
+            "pages": [
+              "control-d/custom-branded-block-page"
+            ]
           }
         ]
       },
